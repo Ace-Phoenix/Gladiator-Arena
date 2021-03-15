@@ -1,0 +1,1 @@
+//classes for the ai not the NPC creation class but just for the creation of ai types
