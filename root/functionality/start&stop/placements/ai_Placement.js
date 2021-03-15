@@ -1,0 +1,1 @@
+//ai placements will take the AI class and npc class and use them to place them
