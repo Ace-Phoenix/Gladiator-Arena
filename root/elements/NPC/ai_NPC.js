@@ -3,3 +3,4 @@
 //-health
 //-damage
 //-spawn rate?
+//Big class that uses the ai_Class.js to make an AI 
