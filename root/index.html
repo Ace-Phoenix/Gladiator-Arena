@@ -1,15 +1,20 @@
-<!--
-Order of operation
--Elements
-   -Map
-        -Map Class[All:before][First thing if its not clear of waht All:before means]
-        -Ai Class[AI NPC:Before][Befoore ai npc]
-        -AI NPC[AI Class:After][after ai class]
-        -player Class[after other classes]
-        [These should be together]
--functionality
-    -Advance stages
-        - Layout[before]
-        - StageHandeler[after] 
-    -start and stop [this goes last so that it can utilize all files]
--->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Gladiator Game</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+  </body>
+  <script src="elements/Map/map_Class.js"></script>
+  <script src="elements/NPC/ai_Class.js"></script>
+  <script src="elements/NPC/ai_NPC.js"></script>
+  <script src="elements/Player/player_Class.js"></script>
+  <script src="functionality/start&stop/start&stop.js"></script>
+  <script src="functionality/start&stop/advance_Stage/layout.js"></script>
+  <script src="functionality/start&stop/advance_Stage/stageHandelers.js"></script>
+  <script src="functionality/start&stop/placements/ai_Placements.js"></script>
+  <script src="functionality/start&stop/placements/object_Placements.js"></script>
+  <script src="functionality/start&stop/placements/player_Placements.js"></script>
+</html>
