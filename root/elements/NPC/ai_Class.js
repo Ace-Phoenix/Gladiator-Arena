@@ -17,15 +17,19 @@ class MakeAI{
     getInstructions(type){
         if (type == "Gladiator") {
             this.difficulty = "adept";
+            this.instruct = "Target Player Slowly"
         }
         if (type == "Tiger") {
             this.difficulty = "advanced";
+            this.instruct = "Target Player Fast"
         }
         if (type == "Peasant") {
             this.difficulty = "Low";
+            this.instruct = "Go slow don't know were to go";
         }
         if (type == "Boss") {
             this.difficulty = "Extreme";
+            this.instruct = "Destroy";
         }
     }
     
