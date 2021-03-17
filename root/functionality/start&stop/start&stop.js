@@ -42,3 +42,17 @@ function keyUpHandler(e) {
     right = false;
   }
 }
+
+//@function placementHandeler() : handels placement
+function placementHandeler() {
+    //code
+}
+
+//@function fileHandeler() : handelers all files and folders
+//essentially makes the game run
+//-collision
+//-movement
+//-updating
+function fileHandeler() {
+    //code
+}
