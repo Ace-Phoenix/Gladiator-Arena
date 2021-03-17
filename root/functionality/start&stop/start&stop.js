@@ -46,6 +46,7 @@ function keyUpHandler(e) {
 //@function placementHandeler() : handels placement
 function placementHandeler() {
     //code
+    //calls the placement funtions
 }
 
 //@function fileHandeler() : handelers all files and folders
@@ -55,4 +56,6 @@ function placementHandeler() {
 //-updating
 function fileHandeler() {
     //code
+    //make new enemies, removes the ones that die, places player, updade for movment and collision of player, and refresh
+    //Tells stage handler what stage to use
 }
