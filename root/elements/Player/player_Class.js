@@ -5,8 +5,9 @@
 //-Lives? (lives)
 
 class Player {
-  constructor(pos, hp, dam, lives) {
-    this.pos = pos;
+  constructor(xPos, yPos, hp, dam, lives) {
+    this.xPos = xPos;
+    this.yPos = yPos;
     this.hp = hp;
     this.dam = dam;
     this.lives = lives;
