@@ -1,3 +1,5 @@
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
 //Functions that tell the game to update and also to start or end game theoretically this will be
 //done last and used as a test until everything else is done
 var gameState = false;
@@ -58,4 +60,8 @@ function fileHandeler() {
     //code
     //make new enemies, removes the ones that die, places player, updade for movment and collision of player, and refresh
     //Tells stage handler what stage to use
+    ctx.clearRect(0, 0, c.width, c.height);
+    drawPlayer();
+    placeObjects();
+    
 }
