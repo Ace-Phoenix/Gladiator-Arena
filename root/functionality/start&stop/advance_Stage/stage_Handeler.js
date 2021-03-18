@@ -9,3 +9,4 @@ function stage()
     background.x = 0;
     background.y = 0;
     stage.addChild(background);
+ }
