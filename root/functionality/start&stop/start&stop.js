@@ -78,21 +78,21 @@ function fileHandeler() {
   }
   else if(left == true) {
     player.xPos -= 7;
-    if (player.xPos < 0){
-      player.xPos = 0;
+    if (player.xPos-10 < 0){
+      player.xPos = 10;
     }
   }
   if (down == true) {
     player.yPos += 7;
     // this is to prevent the player from running off the map. Its in a comment because I don't know the width of the player
-    if (player.xPos + 10 > c.width){
-      player.xPox = c.width - 10;
+    if (player.yPos + 10 > c.width){
+      player.yPos = c.width - 10;
     }
   }
   else if (up == true) {
     player.yPos -= 7;
-    if (player.yPos < 0) {
-      player.yPos = 0;
+    if (player.yPos-10 < 0) {
+      player.yPos = 10;
     }
   }
   if (player.xPos + dx > c.width - 10 || player.xPos + dx < 10) { //If the circle's x position exceeds the width of the canvas...
