@@ -11,4 +11,3 @@ function setLocations(stage,player) {
      }
      drawPlayer(player);
 }
-setLocations(1,player);

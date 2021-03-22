@@ -61,9 +61,7 @@ function fileHandeler() {
   //make new enemies, removes the ones that die, places player, updade for movment and collision of player, and refresh
   //Tells stage handler what stage to use
   ctx.clearRect(0, 0, c.width, c.height);
-  drawPlayer();
-  placeNPC();
-  placeObjects();
+  setLocations(stage,player);
   if(right == true) {
     player.xPos += 3;
     /* this is to prevent the player from running off the map. Its in a comment because I don't know the width of the player
