@@ -8,6 +8,10 @@ var down = false;//variable to detect if the s key is peing pressed down
 var left = false;//variable to detect if the a key is peing pressed down
 var right = false;//variable to detect if the d key is peing pressed down
 
+var stage = 1;
+var player = new Player(200, 200, 100, 1, 3);
+
+
 while (gameState == true) {
   //game run
 }
@@ -100,3 +104,4 @@ function fileHandeler() {
     ball.y += dy;
   }
 }
+setInterval(fileHandeler,100);
