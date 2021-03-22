@@ -62,6 +62,15 @@ function fileHandeler() {
     //Tells stage handler what stage to use
     ctx.clearRect(0, 0, c.width, c.height);
     drawPlayer();
+    placeNPC();
     placeObjects();
-    
+    if (ball.x + dx > c.width - ball.ballSize || ball.x + dx < ball.ballSize) { //If the circle's x position exceeds the width of the canvas...
+      dx = -dx; //The ball's x direction will be flipped, and it will bounce a specific distance (damping).
+    }
+    if(ball.y + dy > c.height - ball.ballSize || ball.y + dy < ball.ballSize) { //If the circle's y position exceeds the height of the canvas...
+      dy = -dy * damping; //Its y direction will be flipped, and it's speed will decrease.
+    }
+    if (((ball.y + dy) + ball.ballSize) <= c.height) {//prevents the ball from falling off the canvas
+      ball.y += dy;
+    }
 }
