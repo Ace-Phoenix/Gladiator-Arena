@@ -11,21 +11,21 @@
 class Stages{
     constructor(stage){
         this.stage = stage;
-        this.objects = objectsPush(stage);
-        this.enemy = enemyPush(stage);
-        this.playerSpawn = playerPush(stage);
+        this.objects = this.objectsPush(stage);
+        this.enemy = this.enemyPush(stage);
+        this.playerSpawn = this.playerPush(stage);
     }
     objectsPush(stage){
         var retObject = {locations:[],amount:undefined};
         if (stage == 1) {
-            retObject.locations += {x:35,y:55};
-            retObject.locations += {x:125,y:100};
-            retObject.locations += {x:100,y:350};
-            retObject.locations += {x:200,y:75};
-            retObject.locations += {x:190,y:175};
-            retObject.locations += {x:250,y:95};
-            retObject.locations += {x:230,y:300};
-            retObject.locations += {x:360,y:160};
+            retObject.locations.push({x:35,y:55});
+            retObject.locations.push({x:125,y:100});
+            retObject.locations.push({x:100,y:310});
+            retObject.locations.push({x:200,y:75});
+            retObject.locations.push({x:190,y:175});
+            retObject.locations.push({x:250,y:95});
+            retObject.locations.push({x:230,y:300});
+            retObject.locations.push({x:360,y:160});
         }
         if (stage == 2) {
             retObject.locations += {x:35,y:55};
@@ -77,12 +77,13 @@ class Stages{
             retObject.locations += {x:230,y:300};
             retObject.locations += {x:360,y:160};
         }
+        retObject.amount = retObject.locations.length;
         return retObject;
     }
     playerPush(stage){
         var retPlayer = {x:undefined,y:undefined};
         if (stage == 1) {
-            retObject.locations += {x:380,y:180};            
+            retPlayer = {x:380,y:180};            
         }
         if (stage == 2) {
             
@@ -99,20 +100,20 @@ class Stages{
         if (stage == 6) {
             
         }
-        return playerSpawn;
+        return retPlayer;
     }
     enemyPush(stage){
         var retEnemy = [];
         if (stage == 1) {
-            retEnemy += {type:"peasant", x:35, y:35};
-            retEnemy += {type:"peasant", x:125, y:35};
-            retEnemy += {type:"peasant", x:250, y:35};
-            retEnemy += {type:"peasant", x:365, y:35};
-            retEnemy += {type:"peasant", x:35, y:200};
-            retEnemy += {type:"peasant", x:35, y:365};
-            retEnemy += {type:"peasant", x:125, y:365};
-            retEnemy += {type:"peasant", x:250, y:365};
-            retEnemy += {type:"peasant", x:365, y:365};
+            retEnemy.push({type:"peasant", x:35, y:35});
+            retEnemy.push({type:"peasant", x:125, y:35});
+            retEnemy.push({type:"peasant", x:250, y:35});
+            retEnemy.push({type:"peasant", x:365, y:35});
+            retEnemy.push({type:"peasant", x:35, y:200});
+            retEnemy.push({type:"peasant", x:35, y:365});
+            retEnemy.push({type:"peasant", x:125, y:365});
+            retEnemy.push({type:"peasant", x:250, y:365});
+            retEnemy.push({type:"peasant", x:365, y:365});
         }
         if (stage == 2) {
             retEnemy += {type:"peasant", x:35, y:35};

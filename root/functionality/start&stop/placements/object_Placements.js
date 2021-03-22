@@ -1,4 +1,12 @@
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
 //takes the object Class and places the objects 
 function placeObjects(location,width,height){
-ctx.drawImage(objectImage,location.x,location.y,width,height);
+       ctx.beginPath();//begins to draw ball on the canvas
+ctx.rect(location.x, location.y, 30, 30);
+  ctx.stroke();
+
+
+//ctx.drawImage(objectImage,location.x,location.y,width,height);
 }
