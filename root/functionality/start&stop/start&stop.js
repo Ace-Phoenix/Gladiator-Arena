@@ -95,14 +95,5 @@ function fileHandeler() {
       player.yPos = 10;
     }
   }
-  if (player.xPos + dx > c.width - 10 || player.xPos + dx < 10) { //If the circle's x position exceeds the width of the canvas...
-    player.xPos = player.xPos; //The ball's x direction will be flipped, and it will bounce a specific distance (damping).
-  }
-  if(player.yPos + dy > c.height - 10 || player.yPos + dy < 10) { //If the circle's y position exceeds the height of the canvas...
-    player.yPos = player.yPos; //Its y direction will be flipped, and it's speed will decrease.
-  }
-  if (((ball.y + dy) + ball.ballSize) <= c.height) {//prevents the ball from falling off the canvas
-    ball.y += dy;
-  }
 }
 setInterval(fileHandeler,100);
