@@ -7,8 +7,11 @@ var up = false;//variable to detect if the w key is peing pressed down
 var down = false;//variable to detect if the s key is peing pressed down
 var left = false;//variable to detect if the a key is peing pressed down
 var right = false;//variable to detect if the d key is peing pressed down
-
-var stage = 1;
+var stage = undefined;
+function nextStage(stageNum) {
+    stage = new Stages(stageNum);
+}
+nextStage(1);
 var player = new Player(200, 200, 100, 1, 3);
 
 
@@ -65,7 +68,7 @@ function fileHandeler() {
   //make new enemies, removes the ones that die, places player, updade for movment and collision of player, and refresh
   //Tells stage handler what stage to use
   ctx.clearRect(0, 0, c.width, c.height);
-  setLocations(stage,player);
+  setLocations(player);
   if(right == true) {
     player.xPos += 3;
     /* this is to prevent the player from running off the map. Its in a comment because I don't know the width of the player
