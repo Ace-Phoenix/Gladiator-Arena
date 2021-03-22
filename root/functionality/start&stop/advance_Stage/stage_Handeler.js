@@ -1,12 +1,12 @@
-function stage()
- {
-  loadScreen();
- }
- function loadScreen()
- {
-   background = new createjs.Shape();
-    background.graphics
-    background.x = 0;
-    background.y = 0;
-    stage.addChild(background);
- }
+function setLocations(stage) {
+    var stage = new Stages(stage);
+    console.log(stage)
+     for (var i = 0; i < stage.enemy.length;i++) {
+     placeNpc(stage.enemy[i]);
+     }
+     for (var j = 0; j < stage.objects.amount;j++) {
+        placeObjects(stage.objects.locations[j]);
+     }
+     drawPlayer();
+}
+setLocations(1);
