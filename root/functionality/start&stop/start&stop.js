@@ -70,38 +70,36 @@ function fileHandeler() {
   ctx.clearRect(0, 0, c.width, c.height);
   setLocations(player);
   if(right == true) {
-    player.xPos += 3;
-    /* this is to prevent the player from running off the map. Its in a comment because I don't know the width of the player
-    if (player.dx + paddleWidth > canvas.width){
-      paddleX = canvas.width - paddleWidth;
+    player.xPos += 7;
+    //this is to prevent the player from running off the map. Its in a comment because I don't know the width of the player
+    if (player.xPos + 10 > c.width){
+      player.xPos = c.width - 10;
     }
-    */
   }
   else if(left == true) {
-    player.xPos -= 3;
+    player.xPos -= 7;
     if (player.xPos < 0){
       player.xPos = 0;
     }
   }
   if (down == true) {
-    player.yPos += 3;
-    /* this is to prevent the player from running off the map. Its in a comment because I don't know the width of the player
-    if (player.xPos + player width > canvas.width){
-      player.xPox = canvas.width - player width;
+    player.yPos += 7;
+    // this is to prevent the player from running off the map. Its in a comment because I don't know the width of the player
+    if (player.xPos + 10 > c.width){
+      player.xPox = c.width - 10;
     }
-    */
   }
   else if (up == true) {
-    player.yPos -= 3;
+    player.yPos -= 7;
     if (player.yPos < 0) {
       player.yPos = 0;
     }
   }
-  if (ball.x + dx > c.width - ball.ballSize || ball.x + dx < ball.ballSize) { //If the circle's x position exceeds the width of the canvas...
-    dx = -dx; //The ball's x direction will be flipped, and it will bounce a specific distance (damping).
+  if (player.xPos + dx > c.width - 10 || player.xPos + dx < 10) { //If the circle's x position exceeds the width of the canvas...
+    player.xPos = player.xPos; //The ball's x direction will be flipped, and it will bounce a specific distance (damping).
   }
-  if(ball.y + dy > c.height - ball.ballSize || ball.y + dy < ball.ballSize) { //If the circle's y position exceeds the height of the canvas...
-    dy = -dy * damping; //Its y direction will be flipped, and it's speed will decrease.
+  if(player.yPos + dy > c.height - 10 || player.yPos + dy < 10) { //If the circle's y position exceeds the height of the canvas...
+    player.yPos = player.yPos; //Its y direction will be flipped, and it's speed will decrease.
   }
   if (((ball.y + dy) + ball.ballSize) <= c.height) {//prevents the ball from falling off the canvas
     ball.y += dy;
