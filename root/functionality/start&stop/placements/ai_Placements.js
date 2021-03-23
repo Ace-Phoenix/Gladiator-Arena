@@ -2,10 +2,10 @@
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
 
-function placeNpc(npc){
+function placeNpc(npc){//function place Npc
 
-   ctx.beginPath();//begins to draw ball on the canvas
-   ctx.arc(npc.x, npc.y, 10, 0, Math.PI*2); //Draws the player using it's pre-determined loation and radius.
+   ctx.beginPath();//begins to draw ai 
+   ctx.arc(npc.x, npc.y, 10, 0, Math.PI*2); //draws the ai based on npc x and y, and location
    ctx.fillStyle = "clear";
      ctx.strokeStyle = "black";
 
