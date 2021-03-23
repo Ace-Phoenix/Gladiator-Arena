@@ -7,7 +7,7 @@ function placeNpc(npc){//function place Npc
    ctx.beginPath();//begins to draw ai 
    ctx.arc(npc.x, npc.y, 10, 0, Math.PI*2); //draws the ai based on npc x and y, and location
    ctx.fillStyle = "clear";
-     ctx.strokeStyle = "black";
+     ctx.strokeStyle = "red";
 
    //ctx.drawImage(npcImg, npc.xPos - 19, npc.yPos - 19, 45, 35);
    ctx.stroke();
