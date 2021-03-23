@@ -70,27 +70,27 @@ function fileHandeler() {
   ctx.clearRect(0, 0, c.width, c.height);
   setLocations(player);
   if(right == true) {
-    player.xPos += 3;
+    player.xPos += 1;
     //this is to prevent the player from running off the map. Its in a comment because I don't know the width of the player
     if (player.xPos + 10 > c.width){
       player.xPos = c.width - 10;
     }
   }
   else if(left == true) {
-    player.xPos -= 3;
+    player.xPos -= 1;
     if (player.xPos-10 < 0){
       player.xPos = 10;
     }
   }
   if (down == true) {
-    player.yPos += 3;
+    player.yPos += 1;
     // this is to prevent the player from running off the map. Its in a comment because I don't know the width of the player
     if (player.yPos + 10 > c.width){
       player.yPos = c.width - 10;
     }
   }
   else if (up == true) {
-    player.yPos -= 3;
+    player.yPos -= 1;
     if (player.yPos-10 < 0) {
       player.yPos = 10;
     }
@@ -99,19 +99,19 @@ function fileHandeler() {
     if ((player.xPos >= stage.objects.locations[i].x && player.xPos <= stage.objects.locations[i].x + 30) || (player.xPos + 10 >= stage.objects.locations[i].x && player.xPos + 10 <= stage.objects.locations[i].x + 30) || (player.xPos - 10 >= stage.objects.locations[i].x && player.xPos - 10 <= stage.objects.locations[i].x + 30)) {
       if ((player.yPos >= stage.objects.locations[i].y && player.yPos <= stage.objects.locations[i].y + 30) || (player.yPos - 10 >= stage.objects.locations[i].y && player.yPos - 10 <= stage.objects.locations[i].y + 30) || (player.yPos + 10 >= stage.objects.locations[i].y && player.yPos + 10 <= stage.objects.locations[i].y + 30)) {
         if(right == true) {
-          player.xPos -= 3;
+          player.xPos -= 1;
         }
         else if(left == true) {
-          player.xPos += 3;
+          player.xPos += 1;
         }
         if (down == true) {
-          player.yPos -= 3;
+          player.yPos -= 1;
         }
         else if (up == true) {
-          player.yPos += 3;
+          player.yPos += 1;
         }
       }
     }
   }
 }
-setInterval(fileHandeler,100);
+setInterval(fileHandeler, 20);
