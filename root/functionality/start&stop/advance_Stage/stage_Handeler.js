@@ -6,5 +6,6 @@ function setLocations(player) {
      for (var j = 0; j < stage.objects.amount;j++) {
         placeObjects(stage.objects.locations[j]);
      }
+     placeObjects({x:370,y:185},"green");
      drawPlayer(player);
 }

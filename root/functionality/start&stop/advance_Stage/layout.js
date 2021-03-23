@@ -25,7 +25,7 @@ class Stages{
             retObject.locations.push({x:190,y:175});
             retObject.locations.push({x:250,y:95});
             retObject.locations.push({x:230,y:300});
-            retObject.locations.push({x:360,y:160});
+            retObject.locations.push({x:360,y:130});
         }
         if (stage == 2) {
             retObject.locations += {x:35,y:55};
@@ -83,7 +83,7 @@ class Stages{
     playerPush(stage){
         var retPlayer = {x:undefined,y:undefined};
         if (stage == 1) {
-            retPlayer = {x:380,y:180};            
+            retPlayer = {x:390,y:200};            
         }
         if (stage == 2) {
             

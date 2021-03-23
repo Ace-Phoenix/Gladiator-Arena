@@ -12,7 +12,7 @@ function nextStage(stageNum) {
     stage = new Stages(stageNum);
 }
 nextStage(1);
-var player = new Player(200, 200, 100, 1, 3);
+var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 1, 3);
 
 
 while (gameState == true) {
