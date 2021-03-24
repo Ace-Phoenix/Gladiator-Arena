@@ -1,20 +1,20 @@
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
 
-//takes the object Class and places the objects 
+//@function placeObjects() [Function:Placements:Objects] : places the objects
+//@param location [object] {restricted : Must follow {x:#,y:#}} : location at which the object will be placed
+//@param style [string] {restricted: colors} : color of said object
 function placeObjects(location,style){
        ctx.beginPath();//begins to draw ball on the canvas
-       if (style !== undefined) {
-        ctx.strokeStyle = style;
+       if (style !== undefined) {//style exists
+        ctx.strokeStyle = style;//set to style color
        }
-       else if (style == undefined) {
-        ctx.strokeStyle = "black";
+       else if (style == undefined) {//style does not exist
+        ctx.strokeStyle = "black";//default black
        }
        
-ctx.rect(location.x, location.y, 30, 30);
+ctx.rect(location.x, location.y, 30, 30);//draw the box
 
-  ctx.stroke();
-
-
-//ctx.drawImage(objectImage,location.x,location.y,width,height);
+  ctx.stroke();//end draw
+//ctx.drawImage(objectImage,location.x,location.y,width,height);//this will be used soon
 }

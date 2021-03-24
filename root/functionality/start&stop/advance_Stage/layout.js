@@ -3,18 +3,22 @@
 
 //@class Stages [class] : Layouts for stage one
 ////@constructor
-////@param obsticles [array] {restricted:[objects] within [array]} : The location of the cover
-////@param playerSpawn [object] {absolute : No random spawn location} : Location at which the player will spawn
-////@param enemySpawns [array] {restricted : [objects] within [array]} : The Location of enemy spawns
-////@param enemyTypes [array] {restricted : [obect] within [arrays]} : types of enemies allowed to spawn
+////@param stage [integer] {restricted : 0 < stage <= 7 : Whole Numbers} : Current stage number
+////@return obsticles [array] {restricted:[objects] within [array]} : The location of the cover
+////@return playerSpawn [object] {absolute : No random spawn location} : Location at which the player will spawn
+////@return enemySpawns [array] {restricted : [objects] within [array]} : The Location of enemy spawns
+////@return enemyTypes [array] {restricted : [obect] within [arrays]} : types of enemies allowed to spawn
 
 class Stages{
     constructor(stage){
-        this.stage = stage;
-        this.objects = this.objectsPush(stage);
-        this.enemy = this.enemyPush(stage);
-        this.playerSpawn = this.playerPush(stage);
+        this.stage = stage;//stage number
+        this.objects = this.objectsPush(stage);//objects well object
+        this.enemy = this.enemyPush(stage);//enemy is actually enemies but its ok
+        this.playerSpawn = this.playerPush(stage);//player default spawn varies for each stage
     }
+    
+    //@class_function objectsPush() : takes the default for the stage and pushes it to this.objects
+    //@param stage [integer] {restricted : 0 < stage <= 7 : Whole Numbers} : the stage number
     objectsPush(stage){
         var retObject = {locations:[],amount:undefined};
         if (stage == 1) {
@@ -80,6 +84,8 @@ class Stages{
         retObject.amount = retObject.locations.length;
         return retObject;
     }
+    //@class_function playerPush() : pushes what will be player spawn for the stage
+    //@param stage [integer] {restricted : 0 < stage <= 7 : Whole Numbers} : the stage number
     playerPush(stage){
         var retPlayer = {x:undefined,y:undefined};
         if (stage == 1) {
@@ -102,6 +108,8 @@ class Stages{
         }
         return retPlayer;
     }
+    //@class_function enemyPush() : pushes the enemy spawn locations to this.enemy
+    //@param stage [integer] {restricted : 0 < stage <= 7 : Whole Numbers} : the stage number
     enemyPush(stage){
         var retEnemy = [];
         if (stage == 1) {

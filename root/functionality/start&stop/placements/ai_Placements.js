@@ -2,6 +2,9 @@
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
 
+
+//@function placeNPC() [Function:Placements:NPC] : Handles the placements for the NPC
+//@param npc [Class:Object] : this is from the class that makes the NPC
 function placeNpc(npc){//function place Npc
 
    ctx.beginPath();//begins to draw ai 

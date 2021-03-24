@@ -1,11 +1,12 @@
-
+//@function setLocations() : Ceneral draw function that draws everything were it is supposed to be
+//@param player [class:Object] {restricted:Must come from player_Class.js class player} : just player things 
 function setLocations(player) {
      for (var i = 0; i < stage.enemy.length;i++) {
-     placeNpc(stage.enemy[i]);
+     placeNpc(stage.enemy[i]);//place NPC
      }
      for (var j = 0; j < stage.objects.amount;j++) {
-        placeObjects(stage.objects.locations[j]);
+        placeObjects(stage.objects.locations[j]);//Place Objects
      }
-     placeObjects({x:370,y:185},"green");
-     drawPlayer(player);
+     placeObjects({x:370,y:185},"green");//Place player spawn
+     drawPlayer(player);//Place Player
 }

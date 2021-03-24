@@ -7,6 +7,12 @@
 //-Gladiators - Medium Brain - medium Speed - Medium Range
 //all needing a different class for each
 
+//@class MakeAI : makes the AI for an NPC
+////@constructor
+////@param type [string] : type of AI needed and above ground name
+////@param rootName [string] : what we wanna call it in the code
+////@return difficulty [string] : predetermined by AI type
+////@return instruct [string] : how it will move
 class MakeAI{
     constructor(type,rootName){
         this.type = type;

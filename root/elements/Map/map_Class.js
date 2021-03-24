@@ -21,3 +21,4 @@ function formObject(location, width, height) {
     objects.push(newObject);//object push to be able to catelog them 
     return newObject;//return so that it logs 
 }
+//Mainly if we end up needing this

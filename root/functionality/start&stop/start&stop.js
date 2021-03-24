@@ -1,18 +1,19 @@
-var c = document.getElementById("myCanvas");
+var c = document.getElementById("myCanvas");//canvas variables
 var ctx = c.getContext("2d");
-//Functions that tell the game to update and also to start or end game theoretically this will be
-//done last and used as a test until everything else is done
-var gameState = false;
+
+var gameState = false;//State of the game
 var up = false;//variable to detect if the w key is peing pressed down
 var down = false;//variable to detect if the s key is peing pressed down
 var left = false;//variable to detect if the a key is peing pressed down
 var right = false;//variable to detect if the d key is peing pressed down
 var stage = undefined;
+//@function nextStage() : Advances and sets stage layouts
+//@param stageNum [integer] {restricted : 0< stageNum < 7 : Whole Numbers} : The stage number 
 function nextStage(stageNum) {
-    stage = new Stages(stageNum);
+    stage = new Stages(stageNum);//updates the stage
 }
-nextStage(1);
-var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 1, 3);
+nextStage(1);//tells to start the stage at one
+var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 1, 3);//forms the player
 
 
 while (gameState == true) {
@@ -24,41 +25,39 @@ document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
 
 //If the key is pressed down, set the movment direction corredponding to the key to true
+//@function keyDownHandler() [Event Function] : Function that handles the keyDown
+//@param e [Object:Key] : keys that is pressed
 function keyDownHandler(e) {
-  if (e.key == "w") {
-    up = true;
+  if (e.key == "w") {//North movement
+    up = true;//setting up to true
   }
-  if (e.key == "s") {
+  if (e.key == "s") {//South movement 
     down = true;
   }
-  if (e.key == "a") {
+  if (e.key == "a") {//West movement
     left = true;
   }
-  if (e.key == "d") {
+  if (e.key == "d") {//East movement
     right = true;
   }
 }
 
 //If the key is released,  set the movment direction corredponding to the key to false
+//@function keyUpHandler [Event Function] : handles all key ups
+//@param e [Object:Key] : Key that is pressed
 function keyUpHandler(e) {
-  if (e.key == "w") {
+  if (e.key == "w") {//North stop movement
     up = false;
   }
-  if (e.key == "s") {
+  if (e.key == "s") {//South stop movement
     down = false;
   }
-  if (e.key == "a") {
+  if (e.key == "a") {//West stop movement
     left = false;
   }
-  if (e.key == "d") {
+  if (e.key == "d") {//East stop movement
     right = false;
   }
-}
-
-//@function placementHandeler() : handels placement
-function placementHandeler() {
-    //code
-    //calls the placement funtions
 }
 
 //@function fileHandeler() : handelers all files and folders
@@ -67,7 +66,6 @@ function placementHandeler() {
 //-movement
 //-updating
 function fileHandeler() {
-  //code
   //make new enemies, removes the ones that die, places player, updade for movment and collision of player, and refresh
   //Tells stage handler what stage to use
   ctx.clearRect(0, 0, c.width, c.height);
@@ -115,4 +113,4 @@ function fileHandeler() {
     }
   }
 }
-setInterval(fileHandeler, 20);
+setInterval(fileHandeler, 20);//interval for updates 
