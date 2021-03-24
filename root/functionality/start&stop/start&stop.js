@@ -60,6 +60,28 @@ function keyUpHandler(e) {
   }
 }
 
+function npcMovement() {
+    var peasant = new MakeAI("Peasant", "Weakling");
+    var gladiator = new MakeAI("Gladiator", "Warrior");
+    var tiger = new MakeAI("Tiger", "Giant_Cat");
+    var boss = new MakeAI("Boss", "Destroyer");
+    for (var i = 0; i < stage.enemy.length;i++) {
+      if (stage.enemy[i].type == "Peasant") {
+        stage.enemy[i].x+=1;
+      }
+      if (stage.enemy[i].type == "Gladiator") {
+        
+      }
+      if (stage.enemy[i].type == "Tiger") {
+        
+      }
+      if (stage.enemy[i].type == "Boss") {
+        
+      }
+    }
+}
+
+
 //@function fileHandeler() : handelers all files and folders
 //essentially makes the game run
 //-collision
@@ -69,6 +91,7 @@ function fileHandeler() {
   //make new enemies, removes the ones that die, places player, updade for movment and collision of player, and refresh
   //Tells stage handler what stage to use
   ctx.clearRect(0, 0, c.width, c.height);
+  npcMovement();
   setLocations(player);
   if(right == true) {//Allows the player to move to the right
     player.xPos += 1;

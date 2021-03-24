@@ -113,15 +113,15 @@ class Stages{
     enemyPush(stage){
         var retEnemy = [];
         if (stage == 1) {
-            retEnemy.push({type:"peasant", x:35, y:35});
-            retEnemy.push({type:"peasant", x:125, y:35});
-            retEnemy.push({type:"peasant", x:250, y:35});
-            retEnemy.push({type:"peasant", x:365, y:35});
-            retEnemy.push({type:"peasant", x:35, y:200});
-            retEnemy.push({type:"peasant", x:35, y:365});
-            retEnemy.push({type:"peasant", x:125, y:365});
-            retEnemy.push({type:"peasant", x:250, y:365});
-            retEnemy.push({type:"peasant", x:365, y:365});
+            retEnemy.push({type:"Peasant", x:35, y:35});
+            retEnemy.push({type:"Peasant", x:125, y:35});
+            retEnemy.push({type:"Peasant", x:250, y:35});
+            retEnemy.push({type:"Peasant", x:365, y:35});
+            retEnemy.push({type:"Peasant", x:35, y:200});
+            retEnemy.push({type:"Peasant", x:35, y:365});
+            retEnemy.push({type:"Peasant", x:125, y:365});
+            retEnemy.push({type:"Peasant", x:250, y:365});
+            retEnemy.push({type:"Peasant", x:365, y:365});
         }
         if (stage == 2) {
             retEnemy += {type:"peasant", x:35, y:35};
