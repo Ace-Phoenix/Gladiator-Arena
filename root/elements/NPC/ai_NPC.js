@@ -11,10 +11,11 @@
 ////@param dam [object] {restricted : Must follow {min: #, max:#}}:damage of the NPC
 ////@param spRate [integer:time] : spawn rate of the NPC
 class Npc {
-  constructor(pos, hp, dam, spRate) {
+  constructor(pos, hp, dam, spRate,type) {
     this.pos = pos;
     this.hp = hp;
     this.dam = dam;
     this.spRate = spRate;
+    this.type = type;
   }
 }

@@ -4,6 +4,9 @@ function setLocations(player) {
      for (var i = 0; i < stage.enemy.length;i++) {
      placeNpc(stage.enemy[i]);//place NPC
      }
+     for (var k = 0; k < enemies.length;k++) {
+     placeNpc(enemies[k].pos);//place NPC
+     }
      for (var j = 0; j < stage.objects.amount;j++) {
         placeObjects(stage.objects.locations[j]);//Place Objects
      }
