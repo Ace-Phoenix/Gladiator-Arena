@@ -8,7 +8,7 @@ var left = false;//variable to detect if the a key is peing pressed down
 var right = false;//variable to detect if the d key is peing pressed down
 var stage = undefined;
 //@function nextStage() : Advances and sets stage layouts
-//@param stageNum [integer] {restricted : 0< stageNum < 7 : Whole Numbers} : The stage number 
+//@param stageNum [integer] {restricted : 0< stageNum < 7 : Whole Numbers} : The stage number
 function nextStage(stageNum) {
     stage = new Stages(stageNum);//updates the stage
 }
@@ -31,7 +31,7 @@ function keyDownHandler(e) {
   if (e.key == "w") {//North movement
     up = true;//setting up to true
   }
-  if (e.key == "s") {//South movement 
+  if (e.key == "s") {//South movement
     down = true;
   }
   if (e.key == "a") {//West movement
@@ -105,7 +105,7 @@ function npcMovement() {
               xAdd= -1;
             }else{
            xAdd=1;
-              
+
             }
             //code
           }
@@ -114,7 +114,7 @@ function npcMovement() {
              if (randomNess> 0.75) {
               xAdd= 1;
             }else{
-              
+
            xAdd= -1;
             }
           }
@@ -128,7 +128,7 @@ function npcMovement() {
             if (randomNess> 0.75) {
               yAdd= -1;
             }else{
-              
+
             yAdd=1;
             }
             //code
@@ -167,13 +167,13 @@ function npcMovement() {
   }
       }
       if (enemies[i].type == "Gladiator") {
-        
+
       }
       if (enemies[i].type ==  "Tiger") {
-        
+
       }
       if (enemies[i].type ==  "Boss") {
-        
+
       }
     }
 }
@@ -235,5 +235,3 @@ function fileHandeler() {
 }
 setInterval(makeThemSpawn, 5000);//interval for updates 
 setInterval(fileHandeler, 20);//interval for updates
-
-
