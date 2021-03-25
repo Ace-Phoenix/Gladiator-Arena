@@ -93,8 +93,7 @@ function npcMovement() {
       var xAdd = 0;
       var yAdd = 0;
       if (enemies[i].type == "Peasant") {
-        if (enemies[i].pos.y == player.yPos) {
-          var add = enemies[i].pos.y - player.yPos;
+        if (enemies[i].pos.y == player.yPos) {var add = enemies[i].pos.y - player.yPos;
             if (add == 0) {var randomNess = randomNumber(0.1,1);
               if (randomNess> 0.50) {yAdd= -1;}else{yAdd=1;}}
         }
