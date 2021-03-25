@@ -66,6 +66,15 @@ function makeThemSpawn() {
     }
 }
 makeThemSpawn();
+
+function randomNumber(min,max) {
+    var retNumber = 0;
+    for (var i = 0; i < 20;i++) {
+       retNumber = Math.random()*(max-min)+min;
+    }
+    return retNumber;
+}
+
 function npcMovement() {
     var peasant = new MakeAI("Peasant", "Weakling");
     var gladiator = new MakeAI("Gladiator", "Warrior");
@@ -85,22 +94,46 @@ function npcMovement() {
         if (enemies[i].pos.x !== player.xPos) {
           var add = enemies[i].pos.x - player.xPos;
           if (add < 0) {
-            xAdd=1;
+            var randomNess = randomNumber(0.1,1)
+             if (randomNess> 0.75) {
+              xAdd= -1;
+            }else{
+           xAdd=1;
+              
+            }
             //code
           }
           else if (add > 0) {
-              xAdd= -1;
+            var randomNess = randomNumber(0.1,1)
+             if (randomNess> 0.75) {
+              xAdd= 1;
+            }else{
+              
+           xAdd= -1;
+            }
           }
             //code
         }
         if (enemies[i].pos.y !== player.yPos) {
           var add = enemies[i].pos.y - player.yPos;
           if (add < 0) {
+            var randomNess = randomNumber(0.1,1)
+
+            if (randomNess> 0.75) {
+              yAdd= -1;
+            }else{
+              
             yAdd=1;
+            }
             //code
           }
           else if (add > 0) {
+            var randomNess = randomNumber(0.1,1)
+            if (randomNess> 0.75) {
+              yAdd= 1;
+            }else{
               yAdd= -1;
+            }
           }
             //code
         }
@@ -110,7 +143,6 @@ function npcMovement() {
         for (var j= 0; j < stage.objects.amount; j++) {//Checks to see if the player is atempting to move into a spot that is should not be
     if ((enemies[i].pos.x  >= stage.objects.locations[j].x && enemies[i].pos.x  <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x  + 10 >= stage.objects.locations[j].x && enemies[i].pos.x  + 10 <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x - 10 >= stage.objects.locations[j].x && enemies[i].pos.x - 10 <= stage.objects.locations[j].x + 30)) {
       if ((enemies[i].pos.y >= stage.objects.locations[j].y && enemies[i].pos.y <= stage.objects.locations[j].y + 30) || (enemies[i].pos.y - 10 >= stage.objects.locations[j].y && enemies[i].pos.y - 10 <= stage.objects.locations[j].y + 30) || (enemies[i].pos.y + 10 >= stage.objects.locations[j].y && enemies[i].pos.y + 10 <= stage.objects.locations[j].y + 30)) {
-                  enemies[i].pos.x  -= 1;
 
         if(xAdd == 1) {//prevents the player from going inside of objects that are suposed to be soild
           enemies[i].pos.x  -= 1;
