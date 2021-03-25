@@ -67,6 +67,11 @@ function makeThemSpawn() {
 }
 makeThemSpawn();
 
+
+//@function randomNumber() : gets a random number used for peasants
+//@param min [integre] : number for the min value
+//@param max [integer] : number for the max value
+//@returns retNumber [integer:random] : random number between min and max
 function randomNumber(min,max) {
     var retNumber = 0;
     for (var i = 0; i < 20;i++) {
@@ -75,6 +80,7 @@ function randomNumber(min,max) {
     return retNumber;
 }
 
+//@function npcMovement() : Handles all movement of all Curently Living NPC
 function npcMovement() {
     var peasant = new MakeAI("Peasant", "Weakling");
     var gladiator = new MakeAI("Gladiator", "Warrior");
@@ -94,7 +100,7 @@ function npcMovement() {
         if (enemies[i].pos.x !== player.xPos) {
           var add = enemies[i].pos.x - player.xPos;
           if (add < 0) {
-            var randomNess = randomNumber(0.1,1)
+            var randomNess = randomNumber(0.1,1);
              if (randomNess> 0.75) {
               xAdd= -1;
             }else{
@@ -104,7 +110,7 @@ function npcMovement() {
             //code
           }
           else if (add > 0) {
-            var randomNess = randomNumber(0.1,1)
+            var randomNess = randomNumber(0.1,1);
              if (randomNess> 0.75) {
               xAdd= 1;
             }else{
@@ -117,7 +123,7 @@ function npcMovement() {
         if (enemies[i].pos.y !== player.yPos) {
           var add = enemies[i].pos.y - player.yPos;
           if (add < 0) {
-            var randomNess = randomNumber(0.1,1)
+            var randomNess = randomNumber(0.1,1);
 
             if (randomNess> 0.75) {
               yAdd= -1;
@@ -128,7 +134,7 @@ function npcMovement() {
             //code
           }
           else if (add > 0) {
-            var randomNess = randomNumber(0.1,1)
+            var randomNess = randomNumber(0.1,1);
             if (randomNess> 0.75) {
               yAdd= 1;
             }else{
@@ -160,13 +166,13 @@ function npcMovement() {
     }
   }
       }
-      if (stage.enemy[i].type == "Gladiator") {
+      if (enemies[i].type == "Gladiator") {
         
       }
-      if (stage.enemy[i].type == "Tiger") {
+      if (enemies[i].type ==  "Tiger") {
         
       }
-      if (stage.enemy[i].type == "Boss") {
+      if (enemies[i].type ==  "Boss") {
         
       }
     }
@@ -227,4 +233,7 @@ function fileHandeler() {
     }
   }
 }
-setInterval(fileHandeler, 20);//interval for updates 
+setInterval(makeThemSpawn, 5000);//interval for updates 
+setInterval(fileHandeler, 20);//interval for updates
+
+
