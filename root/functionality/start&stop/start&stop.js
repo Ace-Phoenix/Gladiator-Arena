@@ -97,6 +97,30 @@ function npcMovement() {
       var xAdd = 0;
       var yAdd = 0;
       if (enemies[i].type == "Peasant") {
+        if (enemies[i].pos.y == player.yPos) {
+          var add = enemies[i].pos.y - player.yPos;
+                  if (add == 0) {
+            //code
+           var randomNess = randomNumber(0.1,1);
+            if (randomNess> 0.50) {
+              yAdd= -1;
+            }else{
+            yAdd=1;
+            }
+          }
+        }
+        if (enemies[i].pos.x == player.xPos) {
+          var add = enemies[i].pos.x - player.xPos;
+                  if (add == 0) {
+            //code
+           var randomNess = randomNumber(0.1,1);
+            if (randomNess> 0.50) {
+              xAdd= -1;
+            }else{
+            xAdd=1;
+            }
+          }
+        }
         if (enemies[i].pos.x !== player.xPos) {
           var add = enemies[i].pos.x - player.xPos;
           if (add < 0) {
@@ -120,15 +144,22 @@ function npcMovement() {
           }
             //code
         }
-        if (enemies[i].pos.y !== player.yPos) {
+        if (enemies[i].pos.y !== player.yPos ) {
           var add = enemies[i].pos.y - player.yPos;
+          if (add == 0) {
+            //code  
+           var randomNess = randomNumber(0.1,1);
+            if (randomNess> 0.50) {
+              yAdd= -1;
+            }else{
+            yAdd=1;
+            }
+          }
           if (add < 0) {
             var randomNess = randomNumber(0.1,1);
-
             if (randomNess> 0.75) {
               yAdd= -1;
             }else{
-              
             yAdd=1;
             }
             //code
@@ -141,6 +172,7 @@ function npcMovement() {
               yAdd= -1;
             }
           }
+          
             //code
         }
               enemies[i].pos.y += yAdd;
