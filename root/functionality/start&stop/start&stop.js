@@ -87,116 +87,52 @@ function npcMovement() {
     var tiger = new MakeAI("Tiger", "Giant_Cat");
     var boss = new MakeAI("Boss", "Destroyer");
     for (var i = 0; i < enemies.length;i++) {
-      if (enemies[i].pos.x + 10 > c.width){// this is to prevent the player from running off the map
-      enemies[i].pos.x = c.width - 10;
-      }
-      if (enemies[i].pos.x -10 < 0){// this is to prevent the player from running off the map
-        enemies[i].pos.x  = 10;
-      }
+      if (enemies[i].pos.x + 10 > c.width){enemies[i].pos.x = c.width - 10;}
+      if (enemies[i].pos.x -10 < 0){enemies[i].pos.x  = 10;}
 
       var xAdd = 0;
       var yAdd = 0;
       if (enemies[i].type == "Peasant") {
         if (enemies[i].pos.y == player.yPos) {
           var add = enemies[i].pos.y - player.yPos;
-                  if (add == 0) {
-            //code
-           var randomNess = randomNumber(0.1,1);
-            if (randomNess> 0.50) {
-              yAdd= -1;
-            }else{
-            yAdd=1;
-            }
-          }
+            if (add == 0) {var randomNess = randomNumber(0.1,1);
+              if (randomNess> 0.50) {yAdd= -1;}else{yAdd=1;}}
         }
-        if (enemies[i].pos.x == player.xPos) {
-          var add = enemies[i].pos.x - player.xPos;
-                  if (add == 0) {
-            //code
-           var randomNess = randomNumber(0.1,1);
-            if (randomNess> 0.50) {
-              xAdd= -1;
-            }else{
-            xAdd=1;
+        if (enemies[i].pos.x == player.xPos) {var add = enemies[i].pos.x - player.xPos;
+            if (add == 0) {var randomNess = randomNumber(0.1,1);
+              if (randomNess> 0.50) {xAdd= -1;}else{xAdd=1;}
             }
-          }
         }
-        if (enemies[i].pos.x !== player.xPos) {
-          var add = enemies[i].pos.x - player.xPos;
+        if (enemies[i].pos.x !== player.xPos) {var add = enemies[i].pos.x - player.xPos;
           if (add < 0) {
             var randomNess = randomNumber(0.1,1);
-             if (randomNess> 0.75) {
-              xAdd= -1;
-            }else{
-           xAdd=1;
-              
-            }
-            //code
-          }
-          else if (add > 0) {
-            var randomNess = randomNumber(0.1,1);
-             if (randomNess> 0.75) {
-              xAdd= 1;
-            }else{
-              
-           xAdd= -1;
-            }
-          }
-            //code
+             if (randomNess> 0.75) {xAdd= -1;}else{xAdd=1;}
+          }else if (add > 0) {var randomNess = randomNumber(0.1,1);
+             if (randomNess> 0.75) {xAdd= 1;}else{xAdd= -1;}}
         }
-        if (enemies[i].pos.y !== player.yPos ) {
-          var add = enemies[i].pos.y - player.yPos;
-          if (add == 0) {
-            //code  
-           var randomNess = randomNumber(0.1,1);
-            if (randomNess> 0.50) {
-              yAdd= -1;
-            }else{
-            yAdd=1;
-            }
+        if (enemies[i].pos.y !== player.yPos ) {var add = enemies[i].pos.y - player.yPos;
+          if (add == 0) {  var randomNess = randomNumber(0.1,1);
+            if (randomNess> 0.50) {yAdd= -1;}else{yAdd=1;}
           }
-          if (add < 0) {
-            var randomNess = randomNumber(0.1,1);
-            if (randomNess> 0.75) {
-              yAdd= -1;
-            }else{
-            yAdd=1;
-            }
-            //code
+          if (add < 0) {var randomNess = randomNumber(0.1,1);
+            if (randomNess> 0.75) {yAdd= -1;}else{yAdd=1;}
           }
-          else if (add > 0) {
-            var randomNess = randomNumber(0.1,1);
-            if (randomNess> 0.75) {
-              yAdd= 1;
-            }else{
-              yAdd= -1;
-            }
+          else if (add > 0) {var randomNess = randomNumber(0.1,1);
+            if (randomNess> 0.75) {yAdd= 1;}else{yAdd= -1;}
           }
-          
-            //code
         }
               enemies[i].pos.y += yAdd;
               enemies[i].pos.x += xAdd;
-
         for (var j= 0; j < stage.objects.amount; j++) {//Checks to see if the player is atempting to move into a spot that is should not be
-    if ((enemies[i].pos.x  >= stage.objects.locations[j].x && enemies[i].pos.x  <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x  + 10 >= stage.objects.locations[j].x && enemies[i].pos.x  + 10 <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x - 10 >= stage.objects.locations[j].x && enemies[i].pos.x - 10 <= stage.objects.locations[j].x + 30)) {
-      if ((enemies[i].pos.y >= stage.objects.locations[j].y && enemies[i].pos.y <= stage.objects.locations[j].y + 30) || (enemies[i].pos.y - 10 >= stage.objects.locations[j].y && enemies[i].pos.y - 10 <= stage.objects.locations[j].y + 30) || (enemies[i].pos.y + 10 >= stage.objects.locations[j].y && enemies[i].pos.y + 10 <= stage.objects.locations[j].y + 30)) {
-
-        if(xAdd == 1) {//prevents the player from going inside of objects that are suposed to be soild
-          enemies[i].pos.x  -= 1;
+            if ((enemies[i].pos.x  >= stage.objects.locations[j].x && enemies[i].pos.x  <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x  + 10 >= stage.objects.locations[j].x && enemies[i].pos.x  + 10 <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x - 10 >= stage.objects.locations[j].x && enemies[i].pos.x - 10 <= stage.objects.locations[j].x + 30)) {
+                if ((enemies[i].pos.y >= stage.objects.locations[j].y && enemies[i].pos.y <= stage.objects.locations[j].y + 30) || (enemies[i].pos.y - 10 >= stage.objects.locations[j].y && enemies[i].pos.y - 10 <= stage.objects.locations[j].y + 30) || (enemies[i].pos.y + 10 >= stage.objects.locations[j].y && enemies[i].pos.y + 10 <= stage.objects.locations[j].y + 30)) {
+                    if(xAdd == 1) {enemies[i].pos.x  -= 1;}
+                      else if(xAdd == -1) {enemies[i].pos.x+= 1;}
+                if (yAdd == 1) {enemies[i].pos.y-= 1;}
+                    else if (yAdd == -1) {enemies[i].pos.y += 1;}
+                }
+            }
         }
-        else if(xAdd == -1) {//prevents the player from going inside of objects that are suposed to be soild
-          enemies[i].pos.x+= 1;
-        }
-        if (yAdd == 1) {//prevents the player from going inside of objects that are suposed to be soild
-          enemies[i].pos.y-= 1;
-        }
-        else if (yAdd == -1) {//prevents the player from going inside of objects that are suposed to be soild
-          enemies[i].pos.y += 1;
-        }
-      }
-    }
-  }
       }
       if (enemies[i].type == "Gladiator") {
         
