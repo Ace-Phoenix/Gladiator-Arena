@@ -12,7 +12,7 @@ var stage = undefined;
 function nextStage(stageNum) {
     stage = new Stages(stageNum);//updates the stage
 }
-nextStage(5);//tells to start the stage at one
+nextStage(1);//tells to start the stage at one
 var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 1, 3);//forms the player
 
 
@@ -59,14 +59,33 @@ function keyUpHandler(e) {
     right = false;
   }
 }
-var enemies = [];
+
+var enemies = [];//all the enemies
+//@function makeThemSpawn : makes them spawn
 function makeThemSpawn() {
     for (var i = 0; i < stage.enemy.length;i++) {
-        enemies.push(new Npc({x:stage.enemy[i].x,y:stage.enemy[i].y}, 100, 10, 1,stage.enemy[i].type));
+        enemies.push(new Npc({x:stage.enemy[i].x,y:stage.enemy[i].y}, 100, 10, 1,stage.enemy[i].type));//makes new
     }
 }
-makeThemSpawn();
 
+var setNumber = 0;//interator
+var afterSpawn = false;
+//@function sets : amount of sets that are in the stage
+function sets() {
+  
+  if ((stage.enemy.length == 0 && enemies.length == 0 ) || afterSpawn == false) {
+    //code
+    if (setNumber!==stage.sets) {
+        makeThemSpawn();
+        setNumber++;
+        afterSpawn = true;
+    }
+  }
+  if (enemies.length == 0) {
+        afterSpawn = false;
+  }
+}
+sets();
 
 //@function randomNumber() : gets a random number used for peasants
 //@param min [integre] : number for the min value
@@ -304,5 +323,5 @@ function fileHandeler() {
     }
   }
 }
-setInterval(makeThemSpawn, 5000);//interval for updates 
+setInterval(sets, 100);//interval for updates 
 setInterval(fileHandeler, 20);//interval for updates

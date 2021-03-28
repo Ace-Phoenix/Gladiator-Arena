@@ -15,6 +15,28 @@ class Stages{
         this.objects = this.objectsPush(stage);//objects well object
         this.enemy = this.enemyPush(stage);//enemy is actually enemies but its ok
         this.playerSpawn = this.playerPush(stage);//player default spawn varies for each stage
+        this.sets = this.numberOfSets(stage);//player default spawn varies for each stage
+    }
+    
+    numberOfSets(stage){
+        if (stage == 1) {
+            return 2;
+        }
+        if (stage == 2) {
+            return 3;
+        }
+        if (stage == 3) {
+            return 2;
+        }
+        if (stage == 4) {
+            return 2;
+        }
+        if (stage == 5) {
+            return 1;
+        }
+        if (stage == 6) {
+            return 10;
+        }
     }
     
     //@class_function objectsPush() : takes the default for the stage and pushes it to this.objects
