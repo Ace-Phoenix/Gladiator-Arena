@@ -6,14 +6,17 @@ var up = false;//variable to detect if the w key is peing pressed down
 var down = false;//variable to detect if the s key is peing pressed down
 var left = false;//variable to detect if the a key is peing pressed down
 var right = false;//variable to detect if the d key is peing pressed down
-var stage = undefined;
+var stage = new Stages(1);
+var stageNumber = 1;
+var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 1, 3);//forms the player
 //@function nextStage() : Advances and sets stage layouts
 //@param stageNum [integer] {restricted : 0< stageNum < 7 : Whole Numbers} : The stage number
 function nextStage(stageNum) {
     stage = new Stages(stageNum);//updates the stage
+    player.xPos = stage.playerSpawn.x;
+    player.yPos = stage.playerSpawn.y;
+    setNumber = 0;
 }
-nextStage(1);//tells to start the stage at one
-var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 1, 3);//forms the player
 
 
 while (gameState == true) {
@@ -81,8 +84,12 @@ function sets() {
         afterSpawn = true;
     }
   }
-  if (enemies.length == 0) {
+  if (enemies.length == 0 ) {
         afterSpawn = false;
+        if (setNumber == stage.sets) {
+          stageNumber++;
+          nextStage(stageNumber)
+        }
   }
 }
 sets();
