@@ -8,7 +8,7 @@ var left = false;//variable to detect if the a key is peing pressed down
 var right = false;//variable to detect if the d key is peing pressed down
 var stage = new Stages(1);
 var stageNumber = 1;
-var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 1, 3);//forms the player
+var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 10, 3);//forms the player
 //@function nextStage() : Advances and sets stage layouts
 //@param stageNum [integer] {restricted : 0< stageNum < 7 : Whole Numbers} : The stage number
 function nextStage(stageNum) {
@@ -63,11 +63,13 @@ function keyUpHandler(e) {
   }
 }
 
+
+
 var enemies = [];//all the enemies
 //@function makeThemSpawn : makes them spawn
 function makeThemSpawn() {
     for (var i = 0; i < stage.enemy.length;i++) {
-        enemies.push(new Npc({x:stage.enemy[i].x,y:stage.enemy[i].y}, 100, 10, 1,stage.enemy[i].type));//makes new
+        enemies.push(new Npc({x:stage.enemy[i].x,y:stage.enemy[i].y}, 100, 10, 1,stage.enemy[i].type,0,1.0));//makes new
     }
 }
 
@@ -75,9 +77,7 @@ var setNumber = 0;//interator
 var afterSpawn = false;
 //@function sets : amount of sets that are in the stage
 function sets() {
-  
   if ((stage.enemy.length == 0 && enemies.length == 0 ) || afterSpawn == false) {
-    //code
     if (setNumber!==stage.sets) {
         makeThemSpawn();
         setNumber++;
@@ -93,6 +93,41 @@ function sets() {
   }
 }
 sets();
+
+var counterPeasants = 0;
+var counterGladiator = 0;
+var counterTiger = 0;
+var counterBoss = 0;
+  function npcCollision() {
+    counter++;
+      for (var i = 0; i<enemies.length;i++) {
+          if ((enemies[i].pos.x  >= player.xPos && enemies[i].pos.x  <= player.xPos + 18) || (enemies[i].pos.x  + 10 >= player.xPos && enemies[i].pos.x  + 10 <= player.xPos + 18) || (enemies[i].pos.x - 10 >= player.xPos && enemies[i].pos.x - 10 <= player.xPos + 18)) {
+              if ((enemies[i].pos.y >= player.yPos && enemies[i].pos.y <= player.yPos + 18) || (enemies[i].pos.y - 10 >= player.yPos && enemies[i].pos.y - 10 <= player.yPos + 18) || (enemies[i].pos.y + 10 >= player.yPos && enemies[i].pos.y + 10 <= player.yPos + 18)) {
+                if (enemies[i].type == "Peasant") {
+                    
+                }
+                if (enemies[i].type == "Gladiator") {
+                    //code
+                }
+                if (enemies[i].type == "Tiger") {
+                    //code
+                }
+                if (enemies[i].type == "Boss") {
+                  bossCounter++;
+                    //code
+                }
+                player.hp -= enemies[i].dam;
+                enemies[i].hp -= player.dam;
+                if (player.hp <= 0) {
+                    //code
+                }
+                if (enemies[i].hp <= 0) {
+                    enemies.splice(i,1);
+                }
+              }
+          }
+      }
+  }
 
 //@function randomNumber() : gets a random number used for peasants
 //@param min [integre] : number for the min value
@@ -146,8 +181,14 @@ function npcMovement() {
             if (randomNess> 0.75) {yAdd= 1;}else{yAdd= -1;}
           }
         }
-              enemies[i].pos.y += yAdd;
+        if (((enemies[i].pos.x+xAdd) > player.xPos-20 && (enemies[i].pos.x+xAdd)< player.xPos+20) && ((enemies[i].pos.y+yAdd) > player.yPos-20&&(enemies[i].pos.y+yAdd) < player.yPos+20)) {
+
+
+        }else{
               enemies[i].pos.x += xAdd;
+              enemies[i].pos.y += yAdd;
+
+        }
         for (var j= 0; j < stage.objects.amount; j++) {//Checks to see if the player is atempting to move into a spot that is should not be
             if ((enemies[i].pos.x  >= stage.objects.locations[j].x && enemies[i].pos.x  <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x  + 10 >= stage.objects.locations[j].x && enemies[i].pos.x  + 10 <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x - 10 >= stage.objects.locations[j].x && enemies[i].pos.x - 10 <= stage.objects.locations[j].x + 30)) {
                 if ((enemies[i].pos.y >= stage.objects.locations[j].y && enemies[i].pos.y <= stage.objects.locations[j].y + 30) || (enemies[i].pos.y - 10 >= stage.objects.locations[j].y && enemies[i].pos.y - 10 <= stage.objects.locations[j].y + 30) || (enemies[i].pos.y + 10 >= stage.objects.locations[j].y && enemies[i].pos.y + 10 <= stage.objects.locations[j].y + 30)) {
@@ -187,9 +228,14 @@ function npcMovement() {
         }
         var chanceNotMove = randomNumber(0.1,1);
         if (chanceNotMove < 0.60) {
+                  if (((enemies[i].pos.x+xAdd) > player.xPos-20 && (enemies[i].pos.x+xAdd)< player.xPos+20) && ((enemies[i].pos.y+yAdd) > player.yPos-20&&(enemies[i].pos.y+yAdd) < player.yPos+20)) {
+
+
+        }else{
+
               enemies[i].pos.x += xAdd;
               enemies[i].pos.y += yAdd;
-            
+        }
         }
         for (var j= 0; j < stage.objects.amount; j++) {//Checks to see if the player is atempting to move into a spot that is should not be
             if ((enemies[i].pos.x  >= stage.objects.locations[j].x && enemies[i].pos.x  <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x  + 10 >= stage.objects.locations[j].x && enemies[i].pos.x  + 10 <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x - 10 >= stage.objects.locations[j].x && enemies[i].pos.x - 10 <= stage.objects.locations[j].x + 30)) {
@@ -230,13 +276,24 @@ function npcMovement() {
         }
         }
         var chanceMoveFast = randomNumber(0.1,1);
-        if (chanceMoveFast > 0.90) {
+        if (chanceMoveFast > 0.95) {
+                  if (((enemies[i].pos.x+xAdd) > player.xPos-20 && (enemies[i].pos.x+xAdd)< player.xPos+20) && ((enemies[i].pos.y+yAdd) > player.yPos-20&&(enemies[i].pos.y+yAdd) < player.yPos+20)) {
+
+
+        }else{
+
               enemies[i].pos.x += xAdd;
               enemies[i].pos.y += yAdd;
         }
+        }
+                if (((enemies[i].pos.x+xAdd) > player.xPos-20 && (enemies[i].pos.x+xAdd)< player.xPos+20) && ((enemies[i].pos.y+yAdd) > player.yPos-20&&(enemies[i].pos.y+yAdd) < player.yPos+20)) {
+
+
+        }else{
+
               enemies[i].pos.x += xAdd;
               enemies[i].pos.y += yAdd;
-
+        }
 
       }
       if (enemies[i].type ==  "Boss") {
@@ -267,8 +324,14 @@ function npcMovement() {
         }
         var chanceNotMove = randomNumber(0.1,1);
         if (chanceNotMove > 0.85) {
+                  if (((enemies[i].pos.x+xAdd) > player.xPos-20 && (enemies[i].pos.x+xAdd)< player.xPos+20) && ((enemies[i].pos.y+yAdd) > player.yPos-20&&(enemies[i].pos.y+yAdd) < player.yPos+20)) {
+
+
+        }else{
+
               enemies[i].pos.x += xAdd;
               enemies[i].pos.y += yAdd;
+        }
         }
 
       }
@@ -311,6 +374,7 @@ function fileHandeler() {
       player.yPos = 10;
     }
   }
+  
   for (var i = 0; i < stage.objects.amount; i++) {//Checks to see if the player is atempting to move into a spot that is should not be
     if ((player.xPos >= stage.objects.locations[i].x && player.xPos <= stage.objects.locations[i].x + 30) || (player.xPos + 10 >= stage.objects.locations[i].x && player.xPos + 10 <= stage.objects.locations[i].x + 30) || (player.xPos - 10 >= stage.objects.locations[i].x && player.xPos - 10 <= stage.objects.locations[i].x + 30)) {
       if ((player.yPos >= stage.objects.locations[i].y && player.yPos <= stage.objects.locations[i].y + 30) || (player.yPos - 10 >= stage.objects.locations[i].y && player.yPos - 10 <= stage.objects.locations[i].y + 30) || (player.yPos + 10 >= stage.objects.locations[i].y && player.yPos + 10 <= stage.objects.locations[i].y + 30)) {
@@ -326,9 +390,11 @@ function fileHandeler() {
         else if (up == true) {//prevents the player from going inside of objects that are suposed to be soild
           player.yPos += 1;
         }
+        }
+      
       }
-    }
   }
 }
 setInterval(sets, 100);//interval for updates 
+setInterval(npcCollision, 250);//interval for updates 
 setInterval(fileHandeler, 20);//interval for updates
