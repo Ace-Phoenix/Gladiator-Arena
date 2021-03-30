@@ -167,5 +167,65 @@ const Weapon = [
     spec: "extra damage resistance",
    },
  ]
+  {
+     name: "Unique Chestplate",
+     type: Chestplate,
+     value: 4,
+     desc: "Moderate protection and unique resistance”,
+     damRest: 3,
+     spec: "Unique resistance",
+   },
+     
+   {
+    name: "Unique Helmet",
+    type: Helmet,
+    value: 4,
+    desc: "Moderate protection and unique resistance",
+    damRest: 3,
+    spec: "Unique resistance",
+   },
+ ]
+
+{
+     name: "Mythic Chestplate",
+     type: Chestplate,
+     value: 5,
+     desc: "Light protection and mythic resistance”,
+     damRest: 3,
+     spec: "mythic resistance",
+   },
+     
+   {
+    name: "Mythic Helmet",
+    type: Helmet,
+    value: 5,
+    desc: "Moderate protection and mythic resistance”,
+    damRest: 3,
+    spec: "mythic resistance",
+   },
+ ]
+
+
+
+
+{
+     name: "Ancient Chestplate",
+     type: Chestplate,
+     value: 6,
+     desc: "Heavy protection and ancient power”,
+     damRest: 4,
+     spec: "Ancient power",
+   },
+     
+   {
+    name: "Unique Helmet",
+    type: Helmet,
+    value: 6,
+    desc: "Heavy protection and ancient power”,
+    damRest: 4,
+    spec: "Ancient power",
+   },
+ ]
+
 
 
