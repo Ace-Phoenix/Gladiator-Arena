@@ -17,5 +17,7 @@ class Npc {
     this.dam = dam;
     this.spRate = spRate;
     this.type = type;
+    this.attackTimer = attackTimer;
+    this.attackSpeed = attackSpeed;
   }
 }

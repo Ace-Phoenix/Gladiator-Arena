@@ -8,7 +8,7 @@ var left = false;//variable to detect if the a key is peing pressed down
 var right = false;//variable to detect if the d key is peing pressed down
 var stage = new Stages(1);
 var stageNumber = 1;
-var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 10, 3);//forms the player
+var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 10, 3,0,1);//forms the player
 //@function nextStage() : Advances and sets stage layouts
 //@param stageNum [integer] {restricted : 0< stageNum < 7 : Whole Numbers} : The stage number
 function nextStage(stageNum) {
@@ -69,7 +69,7 @@ var enemies = [];//all the enemies
 //@function makeThemSpawn : makes them spawn
 function makeThemSpawn() {
     for (var i = 0; i < stage.enemy.length;i++) {
-        enemies.push(new Npc({x:stage.enemy[i].x,y:stage.enemy[i].y}, 100, 10, 1,stage.enemy[i].type,0,1.0));//makes new
+        enemies.push(new Npc({x:stage.enemy[i].x,y:stage.enemy[i].y}, stage.enemy[i].hp, stage.enemy[i].dam, 1,stage.enemy[i].type,stage.enemy[i].aT,stage.enemy[i].aS));//makes new
     }
 }
 
@@ -78,51 +78,47 @@ var afterSpawn = false;
 //@function sets : amount of sets that are in the stage
 function sets() {
   if ((stage.enemy.length == 0 && enemies.length == 0 ) || afterSpawn == false) {
-    if (setNumber!==stage.sets) {
+    if (setNumber!==stage.sets) {//amount of sents passed
         makeThemSpawn();
         setNumber++;
         afterSpawn = true;
-    }
+    }//allowed to spawn
   }
-  if (enemies.length == 0 ) {
-        afterSpawn = false;
-        if (setNumber == stage.sets) {
-          stageNumber++;
-          nextStage(stageNumber)
+  if (enemies.length == 0 ) {//if all dead 
+        afterSpawn = false;//allow new spawns
+        if (setNumber == stage.sets) {//if it was the final set
+          stageNumber++;//add to stage
+          nextStage(stageNumber)//set next stage
         }
   }
 }
-sets();
+sets();//starting
 
-var counterPeasants = 0;
-var counterGladiator = 0;
-var counterTiger = 0;
-var counterBoss = 0;
+//@function npcCollision() : the collision of all enemies
   function npcCollision() {
-    counter++;
+    player.attackTimer+=0.1;//add to attack timer
+      if (player.attackTimer>player.attackSpeed) {//attack timer over the speed set zero
+          player.attackTimer = 0;
+      }else{
+          player.attackTimer = Math.round(player.attackTimer*10)/10;//Keeping it all to the first decimal point
+      }
       for (var i = 0; i<enemies.length;i++) {
-          if ((enemies[i].pos.x  >= player.xPos && enemies[i].pos.x  <= player.xPos + 18) || (enemies[i].pos.x  + 10 >= player.xPos && enemies[i].pos.x  + 10 <= player.xPos + 18) || (enemies[i].pos.x - 10 >= player.xPos && enemies[i].pos.x - 10 <= player.xPos + 18)) {
-              if ((enemies[i].pos.y >= player.yPos && enemies[i].pos.y <= player.yPos + 18) || (enemies[i].pos.y - 10 >= player.yPos && enemies[i].pos.y - 10 <= player.yPos + 18) || (enemies[i].pos.y + 10 >= player.yPos && enemies[i].pos.y + 10 <= player.yPos + 18)) {
-                if (enemies[i].type == "Peasant") {
-                    
-                }
-                if (enemies[i].type == "Gladiator") {
-                    //code
-                }
-                if (enemies[i].type == "Tiger") {
-                    //code
-                }
-                if (enemies[i].type == "Boss") {
-                  bossCounter++;
-                    //code
-                }
-                player.hp -= enemies[i].dam;
+          if ((enemies[i].pos.x  >= player.xPos-18 && enemies[i].pos.x  <= player.xPos + 18) || (enemies[i].pos.x  + 10 >= player.xPos-18 && enemies[i].pos.x  + 10 <= player.xPos + 18) || (enemies[i].pos.x - 10 >= player.xPos-18 && enemies[i].pos.x - 10 <= player.xPos + 18)) {
+              if ((enemies[i].pos.y >= player.yPos-18 && enemies[i].pos.y <= player.yPos + 18) || (enemies[i].pos.y - 10 >= player.yPos-18 && enemies[i].pos.y - 10 <= player.yPos + 18) || (enemies[i].pos.y + 10 >= player.yPos-18 && enemies[i].pos.y + 10 <= player.yPos + 18)) {
+                if (enemies[i].attackTimer >= enemies[i].attackSpeed) {//attack params for npc
+                  player.hp -= enemies[i].dam;
+                    enemies[i].attackTimer=0;
+                }else {
+                      enemies[i].attackTimer+=0.1;
+                  }if (player.attackTimer>=player.attackSpeed) {//attack params player
                 enemies[i].hp -= player.dam;
-                if (player.hp <= 0) {
-                    //code
+                  player.attackTimer = 0;
                 }
-                if (enemies[i].hp <= 0) {
-                    enemies.splice(i,1);
+                if (player.hp <= 0) {//player is dead 
+                    //later
+                }
+                if (enemies[i].hp <= 0) {//enemy is dead
+                    enemies.splice(i,1);//remove dead guy
                 }
               }
           }
@@ -396,5 +392,5 @@ function fileHandeler() {
   }
 }
 setInterval(sets, 100);//interval for updates 
-setInterval(npcCollision, 250);//interval for updates 
+setInterval(npcCollision, 100);//interval for updates 
 setInterval(fileHandeler, 20);//interval for updates
