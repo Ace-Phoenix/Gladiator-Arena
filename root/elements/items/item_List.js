@@ -22,5 +22,12 @@ const Weapon = [
      value: 1,
      desc: "Basic protection from attacks",
      damRest: 2,
-   }
+   },
+   {
+    name: "Basic Helmet",
+    type: Helmet,
+    value: 1,
+    desc: "Basic protection from attacks",
+    damRest: 2,
+   },
  ]
