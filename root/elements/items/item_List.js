@@ -134,18 +134,38 @@ const Weapon = [
      name: "Light Chestplate",
      type: Chestplate,
      value: 2,
-     desc: "Light protection from attacks but more movement”,
+     desc: "Light protection from attacks but more movement",
      damRest: 1,
-     spec: “weaker”
+     spec: "weaker",
    },
      
    {
     name: "Light Helmet",
     type: Helmet,
     value: 2,
-    desc: "Light protection from attacks but more movement”,
+    desc: "Light protection from attacks but more movement",
     damRest: 1,
-    spec: “weaker”
+    spec: "weaker",
+   },
+     
+ ]
+  {
+     name: "Heavy Chestplate",
+     type: Chestplate,
+     value: 3,
+     desc: "Heavy protection from attacks",
+     damRest: 4,
+     spec: "extra damage resistance",
+   },
+     
+   {
+    name: "Heavy Helmet",
+    type: Helmet,
+    value: 3,
+    desc: "Heavy protection from attacks",
+    damRest: 4,
+    spec: "extra damage resistance",
    },
  ]
+
 
