@@ -110,7 +110,7 @@ const Weapon = [
     damRest: 6,
     level: 6
   },
-  
+
 
 ]
  const Armor = [
@@ -120,7 +120,12 @@ const Weapon = [
      value: 1,
      desc: "Basic protection from attacks",
      damRest: 2,
-     level: 1
-
-   }
+   },
+   {
+    name: "Basic Helmet",
+    type: Helmet,
+    value: 1,
+    desc: "Basic protection from attacks",
+    damRest: 2,
+   },
  ]
