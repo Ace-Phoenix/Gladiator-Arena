@@ -129,3 +129,23 @@ const Weapon = [
     damRest: 2,
    },
  ]
+ 
+   {
+     name: "Light Chestplate",
+     type: Chestplate,
+     value: 2,
+     desc: "Light protection from attacks but more movement”,
+     damRest: 1,
+     spec: “weaker”
+   },
+     
+   {
+    name: "Light Helmet",
+    type: Helmet,
+    value: 2,
+    desc: "Light protection from attacks but more movement”,
+    damRest: 1,
+    spec: “weaker”
+   },
+ ]
+
