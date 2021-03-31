@@ -48,6 +48,38 @@ const Weapon = [
     level: 6
   },
   {
+    name: "Rare Heavy Sword", //name
+    type: Sword, //type of weapon
+    value: 4, //Items value
+    decs: "Heavy attacks", // A short description of the item
+    dam: 5, //How much damage it does
+    level: 3
+  },
+  {
+    name: "Super Rare Heavy Sword", //name
+    type: Sword, //type of weapon
+    value: 5, //Items value
+    decs: "Slightly more effective than the Rare Heavy Sword", // A short description of the item
+    dam: 6, //How much damage it does
+    level: 4
+  },
+  {
+    name: "Epic Heavy Sword", //name
+    type: Sword, //type of weapon
+    value: 6, //Items value
+    decs: "More effective than the Super Rare Heavy Sword", // A short description of the item
+    dam: 7, //How much damage it does
+    level: 5
+  },
+  {
+    name: "Legendary Heavy Sword", //name
+    type: Sword, //type of weapon
+    value: 7, //Items value
+    decs: "Slightly more effective than the Epic Heavy Sword", // A short description of the item
+    dam: 8, //How much damage it does
+    level: 6
+  },
+  {
     name: "Simple Shield",
     type: Shield,
     value: 1,
