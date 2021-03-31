@@ -129,7 +129,7 @@ const Weapon = [
     damRest: 2,
    },
  ]
- 
+
    {
      name: "Light Chestplate",
      type: Chestplate,
@@ -138,7 +138,7 @@ const Weapon = [
      damRest: 1,
      spec: "weaker",
    },
-     
+
    {
     name: "Light Helmet",
     type: Helmet,
@@ -147,7 +147,7 @@ const Weapon = [
     damRest: 1,
     spec: "weaker",
    },
-     
+
  ]
   {
      name: "Heavy Chestplate",
@@ -157,7 +157,7 @@ const Weapon = [
      damRest: 4,
      spec: "extra damage resistance",
    },
-     
+
    {
     name: "Heavy Helmet",
     type: Helmet,
@@ -171,11 +171,11 @@ const Weapon = [
      name: "Unique Chestplate",
      type: Chestplate,
      value: 4,
-     desc: "Moderate protection and unique resistance”,
+     desc: "Moderate protection and unique resistance",
      damRest: 3,
      spec: "Unique resistance",
    },
-     
+
    {
     name: "Unique Helmet",
     type: Helmet,
@@ -190,16 +190,16 @@ const Weapon = [
      name: "Mythic Chestplate",
      type: Chestplate,
      value: 5,
-     desc: "Light protection and mythic resistance”,
+     desc: "Light protection and mythic resistance",
      damRest: 3,
      spec: "mythic resistance",
    },
-     
+
    {
     name: "Mythic Helmet",
     type: Helmet,
     value: 5,
-    desc: "Moderate protection and mythic resistance”,
+    desc: "Moderate protection and mythic resistance",
     damRest: 3,
     spec: "mythic resistance",
    },
@@ -212,20 +212,17 @@ const Weapon = [
      name: "Ancient Chestplate",
      type: Chestplate,
      value: 6,
-     desc: "Heavy protection and ancient power”,
+     desc: "Heavy protection and ancient power",
      damRest: 4,
      spec: "Ancient power",
    },
-     
+
    {
     name: "Unique Helmet",
     type: Helmet,
     value: 6,
-    desc: "Heavy protection and ancient power”,
+    desc: "Heavy protection and ancient power",
     damRest: 4,
     spec: "Ancient power",
-   },
+   }
  ]
-
-
-
