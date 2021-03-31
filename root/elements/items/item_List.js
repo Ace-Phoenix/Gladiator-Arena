@@ -250,7 +250,7 @@ const Weapon = [
    },
 
    {
-    name: "Unique Helmet",
+    name: "Ancient Helmet",
     type: Helmet,
     value: 6,
     desc: "Heavy protection and ancient power",
