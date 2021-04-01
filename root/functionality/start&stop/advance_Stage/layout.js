@@ -103,66 +103,66 @@ class Stages{
     enemyPush(stage){
         var retEnemy = [];
         if (stage == 1) {
-            retEnemy.push({type:"Peasant", x:35, y:35});
-            retEnemy.push({type:"Peasant", x:125, y:35});
-            retEnemy.push({type:"Peasant", x:250, y:35});
-            retEnemy.push({type:"Peasant", x:365, y:35});
-            retEnemy.push({type:"Peasant", x:35, y:200});
-            retEnemy.push({type:"Peasant", x:35, y:365});
-            retEnemy.push({type:"Peasant", x:125, y:365});
-            retEnemy.push({type:"Peasant", x:250, y:365});
-            retEnemy.push({type:"Peasant", x:365, y:365});
+            retEnemy.push({type:"Peasant", x:35, y:35,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:125, y:35,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:250, y:35,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:365, y:35,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:35, y:200,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:35, y:365,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:125, y:365,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:250, y:365,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:365, y:365,hp:50,dam:5,aT:0,aS:1});
         }
         if (stage == 2) {
-            retEnemy.push({type:"Gladiator", x:35, y:35});
-            retEnemy.push({type:"Peasant", x:125, y:35});
-            retEnemy.push({type:"Gladiator", x:250, y:35});
-            retEnemy.push({type:"Peasant", x:365, y:35});
-            retEnemy.push({type:"Gladiator", x:35, y:200});
-            retEnemy.push({type:"Peasant", x:35, y:365});
-            retEnemy.push({type:"Peasant", x:125, y:365});
-            retEnemy.push({type:"Gladiator", x:250, y:365});
-            retEnemy.push({type:"Peasant", x:365, y:365});
-            retEnemy.push({type:"Gladiator", x:365, y:200});
+            retEnemy.push({type:"Gladiator", x:35, y:35,hp:100,dam:10,aT:0,aS:2});
+            retEnemy.push({type:"Peasant", x:125, y:35,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Gladiator", x:250, y:35,hp:100,dam:10,aT:0,aS:2});
+            retEnemy.push({type:"Peasant", x:365, y:35,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Gladiator", x:35, y:200,hp:100,dam:10,aT:0,aS:2});
+            retEnemy.push({type:"Peasant", x:35, y:365,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:125, y:365,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Gladiator", x:250, y:365,hp:100,dam:10,aT:0,aS:2});
+            retEnemy.push({type:"Peasant", x:365, y:365,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Gladiator", x:365, y:200,hp:100,dam:10,aT:0,aS:2});
         }
         if (stage == 3) {
-            retEnemy.push({type:"Gladiator", x:35, y:35});
-            retEnemy.push({type:"Peasant", x:125, y:35});
-            retEnemy.push({type:"Gladiator", x:250, y:35});
-            retEnemy.push({type:"Tiger", x:365, y:35});
-            retEnemy.push({type:"Gladiator", x:35, y:200});
-            retEnemy.push({type:"Tiger", x:35, y:365});
-            retEnemy.push({type:"Gladiator", x:125, y:365});
-            retEnemy.push({type:"Tiger", x:250, y:365});
-            retEnemy.push({type:"Peasant", x:365, y:365});
-            retEnemy.push({type:"Gladiator", x:365, y:200});
+            retEnemy.push({type:"Gladiator", x:35, y:35,hp:100,dam:10,aT:0,aS:2});
+            retEnemy.push({type:"Peasant", x:125, y:35,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Gladiator", x:250, y:35,hp:100,dam:10,aT:0,aS:2});
+            retEnemy.push({type:"Tiger", x:365, y:35,hp:75,dam:5,aT:0,aS:0.5});
+            retEnemy.push({type:"Gladiator", x:35, y:200,hp:100,dam:10,aT:0,aS:2});
+            retEnemy.push({type:"Tiger", x:35, y:365,hp:75,dam:5,aT:0,aS:0.5});
+            retEnemy.push({type:"Gladiator", x:125, y:365,hp:100,dam:10,aT:0,aS:2});
+            retEnemy.push({type:"Tiger", x:250, y:365,hp:75,dam:5,aT:0,aS:0.5});
+            retEnemy.push({type:"Peasant", x:365, y:365,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Gladiator", x:365, y:200,hp:100,dam:10,aT:0,aS:2});
         }
         if (stage == 4) {
-            retEnemy.push({type:"Tiger", x:35, y:35});
-            retEnemy.push({type:"Tiger", x:125, y:35});
-            retEnemy.push({type:"Tiger", x:250, y:35});
-            retEnemy.push({type:"Tiger", x:365, y:35});
-            retEnemy.push({type:"Tiger", x:35, y:200});
-            retEnemy.push({type:"Gladiator", x:35, y:365});
-            retEnemy.push({type:"Gladiator", x:125, y:365});
-            retEnemy.push({type:"Tiger", x:250, y:365});
-            retEnemy.push({type:"Gladiator", x:365, y:365});
-            retEnemy.push({type:"Tiger", x:365, y:200});
+            retEnemy.push({type:"Tiger", x:35, y:35,hp:75,dam:5,aT:0,aS:0.5});
+            retEnemy.push({type:"Tiger", x:125, y:35,hp:75,dam:5,aT:0,aS:0.5});
+            retEnemy.push({type:"Tiger", x:250, y:35,hp:75,dam:5,aT:0,aS:0.5});
+            retEnemy.push({type:"Tiger", x:365, y:35,hp:75,dam:5,aT:0,aS:0.5});
+            retEnemy.push({type:"Tiger", x:35, y:200,hp:75,dam:5,aT:0,aS:0.5});
+            retEnemy.push({type:"Gladiator", x:35, y:365,hp:100,dam:10,aT:0,aS:2});
+            retEnemy.push({type:"Gladiator", x:125, y:365,hp:100,dam:10,aT:0,aS:2});
+            retEnemy.push({type:"Tiger", x:250, y:365,hp:75,dam:5,aT:0,aS:0.5});
+            retEnemy.push({type:"Gladiator", x:365, y:365,hp:100,dam:10,aT:0,aS:2});
+            retEnemy.push({type:"Tiger", x:365, y:200,hp:75,dam:5,aT:0,aS:0.5});
         }
         if (stage == 5) {
-            retEnemy.push({type:"Boss", x:35, y:200});
+            retEnemy.push({type:"Boss", x:35, y:200,hp:500,dam:100,aT:0,aS:2.5});
         }
         if (stage == 6) {
-            retEnemy.push({type:"Peasant", x:35, y:35});
-            retEnemy.push({type:"Peasant", x:125, y:35});
-            retEnemy.push({type:"Peasant", x:250, y:35});
-            retEnemy.push({type:"Peasant", x:365, y:35});
-            retEnemy.push({type:"Peasant", x:35, y:200});
-            retEnemy.push({type:"Peasant", x:35, y:365});
-            retEnemy.push({type:"Peasant", x:125, y:365});
-            retEnemy.push({type:"Peasant", x:250, y:365});
-            retEnemy.push({type:"Peasant", x:365, y:365});
-            retEnemy.push({type:"Peasant", x:365, y:200});
+            retEnemy.push({type:"Peasant", x:35, y:35,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:125, y:35,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:250, y:35,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:365, y:35,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:35, y:200,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:35, y:365,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:125, y:365,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:250, y:365,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:365, y:365,hp:50,dam:5,aT:0,aS:1});
+            retEnemy.push({type:"Peasant", x:365, y:200,hp:50,dam:5,aT:0,aS:1});
         }
         return retEnemy;
     }

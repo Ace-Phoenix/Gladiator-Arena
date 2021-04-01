@@ -48,11 +48,43 @@ const Weapon = [
     level: 6
   },
   {
-    name: "Common Shield",//name
-    type: Shield,//type of shield
-    value: 1,//Items value
-    desc: "A basic shield for some protection",//A short description of the item
-    dam: 1,//How much damage it does
+    name: "Rare Heavy Sword", //name
+    type: Sword, //type of weapon
+    value: 4, //Items value
+    decs: "Heavy attacks", // A short description of the item
+    dam: 5, //How much damage it does
+    level: 3
+  },
+  {
+    name: "Super Rare Heavy Sword", //name
+    type: Sword, //type of weapon
+    value: 5, //Items value
+    decs: "Slightly more effective than the Rare Heavy Sword", // A short description of the item
+    dam: 6, //How much damage it does
+    level: 4
+  },
+  {
+    name: "Epic Heavy Sword", //name
+    type: Sword, //type of weapon
+    value: 6, //Items value
+    decs: "More effective than the Super Rare Heavy Sword", // A short description of the item
+    dam: 7, //How much damage it does
+    level: 5
+  },
+  {
+    name: "Legendary Heavy Sword", //name
+    type: Sword, //type of weapon
+    value: 7, //Items value
+    decs: "Slightly more effective than the Epic Heavy Sword", // A short description of the item
+    dam: 8, //How much damage it does
+    level: 6
+  },
+  {
+    name: "Simple Shield",
+    type: Shield,
+    value: 1,
+    desc: "A basic shield for some protection",
+    dam: 1,
     damRest: 1, //How much damage it resists/ block power/ armor
     level: 1
   },
@@ -173,4 +205,101 @@ const Weapon = [
     desc: "Basic protection from attacks",
     damRest: 2,
    },
+ ]
+
+   {
+     name: "Light Chestplate",
+     type: Chestplate,
+     value: 2,
+     desc: "Light protection from attacks but more movement",
+     damRest: 1,
+     spec: "weaker",
+   },
+
+   {
+    name: "Light Helmet",
+    type: Helmet,
+    value: 2,
+    desc: "Light protection from attacks but more movement",
+    damRest: 1,
+    spec: "weaker",
+   },
+
+ ]
+  {
+     name: "Heavy Chestplate",
+     type: Chestplate,
+     value: 3,
+     desc: "Heavy protection from attacks",
+     damRest: 4,
+     spec: "extra damage resistance",
+   },
+
+   {
+    name: "Heavy Helmet",
+    type: Helmet,
+    value: 3,
+    desc: "Heavy protection from attacks",
+    damRest: 4,
+    spec: "extra damage resistance",
+   },
+ ]
+  {
+     name: "Unique Chestplate",
+     type: Chestplate,
+     value: 4,
+     desc: "Moderate protection and unique resistance",
+     damRest: 3,
+     spec: "Unique resistance",
+   },
+
+   {
+    name: "Unique Helmet",
+    type: Helmet,
+    value: 4,
+    desc: "Moderate protection and unique resistance",
+    damRest: 3,
+    spec: "Unique resistance",
+   },
+ ]
+
+{
+     name: "Mythic Chestplate",
+     type: Chestplate,
+     value: 5,
+     desc: "Light protection and mythic resistance",
+     damRest: 3,
+     spec: "mythic resistance",
+   },
+
+   {
+    name: "Mythic Helmet",
+    type: Helmet,
+    value: 5,
+    desc: "Moderate protection and mythic resistance",
+    damRest: 3,
+    spec: "mythic resistance",
+   },
+ ]
+
+
+
+
+{
+     name: "Ancient Chestplate",
+     type: Chestplate,
+     value: 6,
+     desc: "Heavy protection and ancient power",
+     damRest: 4,
+     spec: "Ancient power",
+   },
+
+   {
+    name: "Ancient Helmet",
+    type: Helmet,
+    value: 6,
+    desc: "Heavy protection and ancient power",
+    damRest: 4,
+    spec: "Ancient power",
+   }
  ]
