@@ -48,16 +48,61 @@ const Weapon = [
     level: 6
   },
   {
-    name: "Simple Shield",
-    type: Shield,
-    value: 1,
-    desc: "A basic shield for some protection",
-    dam: 1,
+    name: "Common Shield",//name
+    type: Shield,//type of shield
+    value: 1,//Items value
+    desc: "A basic shield for some protection",//A short description of the item
+    dam: 1,//How much damage it does
     damRest: 1, //How much damage it resists/ block power/ armor
     level: 1
   },
   {
-    name: "Common Mace",
+    name: "Uncommon Shield",//name
+    type: Shield,//type of shield
+    value: 2,//Items value
+    desc: "A basic shield with slightly more prtection than the Common Shield",//A simple description of the item
+    dam: 2,//how much damage it does
+    damRest: 2, //How much damage it resists/ block power/ armor
+    level: 2
+  },
+  {
+    name: "Rare Shield",//name
+    type: Shield,//type of shield
+    value: 3,//Items value
+    desc: "A basic shield with slightly more protection than the Uncommon Shield",//a basic description of the item
+    dam: 3,//how much damage it does
+    damRest: 3, //How much damage it resists/ block power/ armor
+    level: 3
+  },
+  {
+    name: "Super Rare Shield",//name
+    type: Shield,//type of shield
+    value: 4,//items value
+    desc: "A not so basic shield that returns the damage it takes back at the enemy",//a simple description of the item
+    dam: 4,//how much damage it does
+    damRest: 4, //How much damage it resists/ block power/ armor
+    level: 4
+  },
+  {
+    name: "Epic Shield",//name
+    type: Shield,//type of shield
+    value: 5,//items value
+    desc: "A not so basic shield that returns the damage it takes back at the enemy",//a simple description of the item
+    dam: 5,//how much damage it does
+    damRest: 5, //How much damage it resists/ block power/ armor
+    level: 5
+  },
+  {
+    name: "Legendary Shield",//name
+    type: Shield,//type of shield
+    value: 6,//items value
+    desc: "A not so basic shield that returns the damage it takes back at the enemy",//a simple description of the item
+    dam: 6,//how much damage it does
+    damRest: 6, //How much damage it resists/ block power/ armor
+    level: 6
+  },
+  {
+    name: "Common Mace",//name
     type: Mace,
     value: 1,
     desc: "Common Mace in your face",
