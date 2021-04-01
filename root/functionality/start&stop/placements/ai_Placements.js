@@ -7,7 +7,7 @@ var ctx = c.getContext("2d");
 //@param npc [Class:Object] : this is from the class that makes the NPC
 function placeNpc(npc,localType){//function place Npc
 
-   ctx.beginPath();//begins to draw ai 
+   ctx.beginPath();//begins to draw ai
    ctx.arc(npc.x, npc.y, 10, 0, Math.PI*2); //draws the ai based on npc x and y, and location
    ctx.fillStyle = "clear";
    if (localType == "enemy") {
