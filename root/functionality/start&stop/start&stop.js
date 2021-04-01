@@ -84,7 +84,7 @@ function sets() {
         afterSpawn = true;
     }//allowed to spawn
   }
-  if (enemies.length == 0 ) {//if all dead 
+  if (enemies.length == 0 ) {//if all dead
         afterSpawn = false;//allow new spawns
         if (setNumber == stage.sets) {//if it was the final set
           stageNumber++;//add to stage
@@ -114,7 +114,7 @@ sets();//starting
                 enemies[i].hp -= player.dam;
                   player.attackTimer = 0;
                 }
-                if (player.hp <= 0) {//player is dead 
+                if (player.hp <= 0) {//player is dead
                     //later
                 }
                 if (enemies[i].hp <= 0) {//enemy is dead
@@ -139,199 +139,179 @@ function randomNumber(min,max) {
 
 //@function npcMovement() : Handles all movement of all Curently Living NPC
 function npcMovement() {
-    var peasant = new MakeAI("Peasant", "Weakling");
-    var gladiator = new MakeAI("Gladiator", "Warrior");
-    var tiger = new MakeAI("Tiger", "Giant_Cat");
-    var boss = new MakeAI("Boss", "Destroyer");
-    for (var i = 0; i < enemies.length;i++) {
-      if (enemies[i].pos.x + 10 > c.width){enemies[i].pos.x = c.width - 10;}
-      if (enemies[i].pos.x -10 < 0){enemies[i].pos.x  = 10;}
-
-      var xAdd = 0;
-      var yAdd = 0;
-      if (enemies[i].type == "Peasant") {
-        if (enemies[i].pos.y == player.yPos) {var add = enemies[i].pos.y - player.yPos;
-            if (add == 0) {var randomNess = randomNumber(0.1,1);
-              if (randomNess> 0.50) {yAdd= -1;}else{yAdd=1;}}
-        }
-        if (enemies[i].pos.x == player.xPos) {var add = enemies[i].pos.x - player.xPos;
-            if (add == 0) {var randomNess = randomNumber(0.1,1);
-              if (randomNess> 0.50) {xAdd= -1;}else{xAdd=1;}
-            }
-        }
-        if (enemies[i].pos.x !== player.xPos) {var add = enemies[i].pos.x - player.xPos;
-          if (add < 0) {
-            var randomNess = randomNumber(0.1,1);
-             if (randomNess> 0.75) {xAdd= -1;}else{xAdd=1;}
-          }else if (add > 0) {var randomNess = randomNumber(0.1,1);
-             if (randomNess> 0.75) {xAdd= 1;}else{xAdd= -1;}}
-        }
-        if (enemies[i].pos.y !== player.yPos ) {var add = enemies[i].pos.y - player.yPos;
-          if (add == 0) {  var randomNess = randomNumber(0.1,1);
-            if (randomNess> 0.50) {yAdd= -1;}else{yAdd=1;}
-          }
-          if (add < 0) {var randomNess = randomNumber(0.1,1);
-            if (randomNess> 0.75) {yAdd= -1;}else{yAdd=1;}
-          }
-          else if (add > 0) {var randomNess = randomNumber(0.1,1);
-            if (randomNess> 0.75) {yAdd= 1;}else{yAdd= -1;}
-          }
-        }
-        if (((enemies[i].pos.x+xAdd) > player.xPos-20 && (enemies[i].pos.x+xAdd)< player.xPos+20) && ((enemies[i].pos.y+yAdd) > player.yPos-20&&(enemies[i].pos.y+yAdd) < player.yPos+20)) {
-
-
-        }else{
-              enemies[i].pos.x += xAdd;
-              enemies[i].pos.y += yAdd;
-
-        }
-        for (var j= 0; j < stage.objects.amount; j++) {//Checks to see if the player is atempting to move into a spot that is should not be
-            if ((enemies[i].pos.x  >= stage.objects.locations[j].x && enemies[i].pos.x  <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x  + 10 >= stage.objects.locations[j].x && enemies[i].pos.x  + 10 <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x - 10 >= stage.objects.locations[j].x && enemies[i].pos.x - 10 <= stage.objects.locations[j].x + 30)) {
-                if ((enemies[i].pos.y >= stage.objects.locations[j].y && enemies[i].pos.y <= stage.objects.locations[j].y + 30) || (enemies[i].pos.y - 10 >= stage.objects.locations[j].y && enemies[i].pos.y - 10 <= stage.objects.locations[j].y + 30) || (enemies[i].pos.y + 10 >= stage.objects.locations[j].y && enemies[i].pos.y + 10 <= stage.objects.locations[j].y + 30)) {
-                    if(xAdd == 1) {enemies[i].pos.x  -= 1;}
-                      else if(xAdd == -1) {enemies[i].pos.x+= 1;}
-                if (yAdd == 1) {enemies[i].pos.y-= 1;}
-                    else if (yAdd == -1) {enemies[i].pos.y += 1;}
-                }
-            }
+  var peasant = new MakeAI("Peasant", "Weakling");
+  var gladiator = new MakeAI("Gladiator", "Warrior");
+  var tiger = new MakeAI("Tiger", "Giant_Cat");
+  var boss = new MakeAI("Boss", "Destroyer");
+  for (var i = 0; i < enemies.length;i++) {
+    if (enemies[i].pos.x + 10 > c.width) {enemies[i].pos.x = c.width - 10;}
+    if (enemies[i].pos.x -10 < 0) {enemies[i].pos.x  = 10;}
+    var xAdd = 0;
+    var yAdd = 0;
+    if (enemies[i].type == "Peasant") {
+      if (enemies[i].pos.y == player.yPos) {
+        var add = enemies[i].pos.y - player.yPos;
+        if (add == 0) {
+          var randomNess = randomNumber(0.1,1);
+          if (randomNess> 0.50) {yAdd= -1;}
+          else {yAdd=1;}
         }
       }
-      if (enemies[i].type == "Gladiator") {
-        if (enemies[i].pos.y == player.yPos) {var add = enemies[i].pos.y - player.yPos;
-            if (add == 0) {
-              yAdd=1;
+      if (enemies[i].pos.x == player.xPos) {
+        var add = enemies[i].pos.x - player.xPos;
+        if (add == 0) {
+          var randomNess = randomNumber(0.1,1);
+          if (randomNess> 0.50) {xAdd= -1;}
+          else{xAdd=1;}
         }
-        }
-        if (enemies[i].pos.x == player.xPos) {var add = enemies[i].pos.x - player.xPos;
-            if (add == 0) {
-              xAdd=1;
-            }
-        }
-        if (enemies[i].pos.x !== player.xPos) {var add = enemies[i].pos.x - player.xPos;
-          if (add < 0) {
-             xAdd=1;
-          }else if (add > 0) {
-             xAdd= -1;
-        }
-        if (enemies[i].pos.y !== player.yPos ) {var add = enemies[i].pos.y - player.yPos;
-          if (add < 0) {
-            yAdd=1;
-          }
-          else if (add > 0) {
-            yAdd= -1;
-          }
-        }
-        }
-        var chanceNotMove = randomNumber(0.1,1);
-        if (chanceNotMove < 0.60) {
-                  if (((enemies[i].pos.x+xAdd) > player.xPos-20 && (enemies[i].pos.x+xAdd)< player.xPos+20) && ((enemies[i].pos.y+yAdd) > player.yPos-20&&(enemies[i].pos.y+yAdd) < player.yPos+20)) {
-
-
-        }else{
-
-              enemies[i].pos.x += xAdd;
-              enemies[i].pos.y += yAdd;
-        }
-        }
-        for (var j= 0; j < stage.objects.amount; j++) {//Checks to see if the player is atempting to move into a spot that is should not be
-            if ((enemies[i].pos.x  >= stage.objects.locations[j].x && enemies[i].pos.x  <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x  + 10 >= stage.objects.locations[j].x && enemies[i].pos.x  + 10 <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x - 10 >= stage.objects.locations[j].x && enemies[i].pos.x - 10 <= stage.objects.locations[j].x + 30)) {
-                if ((enemies[i].pos.y >= stage.objects.locations[j].y && enemies[i].pos.y <= stage.objects.locations[j].y + 30) || (enemies[i].pos.y - 10 >= stage.objects.locations[j].y && enemies[i].pos.y - 10 <= stage.objects.locations[j].y + 30) || (enemies[i].pos.y + 10 >= stage.objects.locations[j].y && enemies[i].pos.y + 10 <= stage.objects.locations[j].y + 30)) {
-                    if(xAdd == 1) {enemies[i].pos.x  -= 1;}
-                      else if(xAdd == -1) {enemies[i].pos.x+= 1;}
-                if (yAdd == 1) {enemies[i].pos.y-= 1;}
-                    else if (yAdd == -1) {enemies[i].pos.y += 1;}
-                }
-            }
-        }
-      
       }
-      if (enemies[i].type ==  "Tiger") {
-        if (enemies[i].pos.y == player.yPos) {var add = enemies[i].pos.y - player.yPos;
-            if (add == 0) {
-              yAdd=1;
+      if (enemies[i].pos.x !== player.xPos) {
+        var add = enemies[i].pos.x - player.xPos;
+        if (add < 0) {
+          var randomNess = randomNumber(0.1,1);
+          if (randomNess> 0.75) {xAdd= -1;}
+          else {xAdd=1;}
         }
+        else if (add > 0) {
+          var randomNess = randomNumber(0.1,1);
+          if (randomNess> 0.75) {xAdd= 1;}
+          else {xAdd= -1;}
         }
-        if (enemies[i].pos.x == player.xPos) {var add = enemies[i].pos.x - player.xPos;
-            if (add == 0) {
-              xAdd=1;
-            }
-        }
-        if (enemies[i].pos.x !== player.xPos) {var add = enemies[i].pos.x - player.xPos;
-          if (add < 0) {
-             xAdd=1;
-          }else if (add > 0) {
-             xAdd= -1;
-        }
-        if (enemies[i].pos.y !== player.yPos ) {var add = enemies[i].pos.y - player.yPos;
-          if (add < 0) {
-            yAdd=1;
-          }
-          else if (add > 0) {
-            yAdd= -1;
-          }
-        }
-        }
-        var chanceMoveFast = randomNumber(0.1,1);
-        if (chanceMoveFast > 0.95) {
-                  if (((enemies[i].pos.x+xAdd) > player.xPos-20 && (enemies[i].pos.x+xAdd)< player.xPos+20) && ((enemies[i].pos.y+yAdd) > player.yPos-20&&(enemies[i].pos.y+yAdd) < player.yPos+20)) {
-
-
-        }else{
-
-              enemies[i].pos.x += xAdd;
-              enemies[i].pos.y += yAdd;
-        }
-        }
-                if (((enemies[i].pos.x+xAdd) > player.xPos-20 && (enemies[i].pos.x+xAdd)< player.xPos+20) && ((enemies[i].pos.y+yAdd) > player.yPos-20&&(enemies[i].pos.y+yAdd) < player.yPos+20)) {
-
-
-        }else{
-
-              enemies[i].pos.x += xAdd;
-              enemies[i].pos.y += yAdd;
-        }
-
       }
-      if (enemies[i].type ==  "Boss") {
-        if (enemies[i].pos.y == player.yPos) {var add = enemies[i].pos.y - player.yPos;
-            if (add == 0) {
-              yAdd=1;
+      if (enemies[i].pos.y !== player.yPos ) {
+        var add = enemies[i].pos.y - player.yPos;
+        if (add == 0) {
+          var randomNess = randomNumber(0.1,1);
+          if (randomNess> 0.50) {yAdd= -1;}
+          else {yAdd=1;}
         }
-        }
-        if (enemies[i].pos.x == player.xPos) {var add = enemies[i].pos.x - player.xPos;
-            if (add == 0) {
-              xAdd=1;
-            }
-        }
-        if (enemies[i].pos.x !== player.xPos) {var add = enemies[i].pos.x - player.xPos;
-          if (add < 0) {
-             xAdd=1;
-          }else if (add > 0) {
-             xAdd= -1;
-        }
-        if (enemies[i].pos.y !== player.yPos ) {var add = enemies[i].pos.y - player.yPos;
-          if (add < 0) {
-            yAdd=1;
+        if (add < 0) {
+          var randomNess = randomNumber(0.1,1);
+          if (randomNess> 0.75) {yAdd= -1;}
+          else {yAdd=1;}
           }
-          else if (add > 0) {
-            yAdd= -1;
+        else if (add > 0) {
+          var randomNess = randomNumber(0.1,1);
+          if (randomNess> 0.75) {yAdd= 1;}
+          else {yAdd= -1;}
+        }
+      }
+      if (((enemies[i].pos.x+xAdd) > player.xPos-20 && (enemies[i].pos.x+xAdd)< player.xPos+20) && ((enemies[i].pos.y+yAdd) > player.yPos-20&&(enemies[i].pos.y+yAdd) < player.yPos+20)) { }
+      else {
+        enemies[i].pos.x += xAdd;
+        enemies[i].pos.y += yAdd;
+      }
+      for (var j= 0; j < stage.objects.amount; j++) {//Checks to see if the player is atempting to move into a spot that is should not be
+        if ((enemies[i].pos.x  >= stage.objects.locations[j].x && enemies[i].pos.x  <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x  + 10 >= stage.objects.locations[j].x && enemies[i].pos.x  + 10 <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x - 10 >= stage.objects.locations[j].x && enemies[i].pos.x - 10 <= stage.objects.locations[j].x + 30)) {
+          if ((enemies[i].pos.y >= stage.objects.locations[j].y && enemies[i].pos.y <= stage.objects.locations[j].y + 30) || (enemies[i].pos.y - 10 >= stage.objects.locations[j].y && enemies[i].pos.y - 10 <= stage.objects.locations[j].y + 30) || (enemies[i].pos.y + 10 >= stage.objects.locations[j].y && enemies[i].pos.y + 10 <= stage.objects.locations[j].y + 30)) {
+            if (xAdd == 1) {enemies[i].pos.x  -= 1;}
+            else if (xAdd == -1) {enemies[i].pos.x+= 1;}
+            if (yAdd == 1) {enemies[i].pos.y-= 1;}
+            else if (yAdd == -1) {enemies[i].pos.y += 1;}
           }
         }
-        }
-        var chanceNotMove = randomNumber(0.1,1);
-        if (chanceNotMove > 0.85) {
-                  if (((enemies[i].pos.x+xAdd) > player.xPos-20 && (enemies[i].pos.x+xAdd)< player.xPos+20) && ((enemies[i].pos.y+yAdd) > player.yPos-20&&(enemies[i].pos.y+yAdd) < player.yPos+20)) {
-
-
-        }else{
-
-              enemies[i].pos.x += xAdd;
-              enemies[i].pos.y += yAdd;
-        }
-        }
-
       }
     }
+    if (enemies[i].type == "Gladiator") {
+      if (enemies[i].pos.y == player.yPos) {
+        var add = enemies[i].pos.y - player.yPos;
+        if (add == 0) {yAdd=1;}
+      }
+      if (enemies[i].pos.x == player.xPos) {
+        var add = enemies[i].pos.x - player.xPos;
+        if (add == 0) {xAdd=1;}
+      }
+      if (enemies[i].pos.x !== player.xPos) {
+        var add = enemies[i].pos.x - player.xPos;
+        if (add < 0) {xAdd=1;}
+        else if (add > 0) {xAdd= -1;}
+        if (enemies[i].pos.y !== player.yPos) {
+          var add = enemies[i].pos.y - player.yPos;
+          if (add < 0) {yAdd=1;}
+          else if (add > 0) {yAdd= -1;}
+        }
+      }
+      var chanceNotMove = randomNumber(0.1,1);
+      if (chanceNotMove < 0.60) {
+        if (((enemies[i].pos.x+xAdd) > player.xPos-20 && (enemies[i].pos.x+xAdd)< player.xPos+20) && ((enemies[i].pos.y+yAdd) > player.yPos-20&&(enemies[i].pos.y+yAdd) < player.yPos+20)) { }
+        else{
+          enemies[i].pos.x += xAdd;
+          enemies[i].pos.y += yAdd;
+        }
+      }
+      for (var j= 0; j < stage.objects.amount; j++) {//Checks to see if the player is atempting to move into a spot that is should not be
+        if ((enemies[i].pos.x  >= stage.objects.locations[j].x && enemies[i].pos.x  <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x  + 10 >= stage.objects.locations[j].x && enemies[i].pos.x  + 10 <= stage.objects.locations[j].x + 30) || (enemies[i].pos.x - 10 >= stage.objects.locations[j].x && enemies[i].pos.x - 10 <= stage.objects.locations[j].x + 30)) {
+          if ((enemies[i].pos.y >= stage.objects.locations[j].y && enemies[i].pos.y <= stage.objects.locations[j].y + 30) || (enemies[i].pos.y - 10 >= stage.objects.locations[j].y && enemies[i].pos.y - 10 <= stage.objects.locations[j].y + 30) || (enemies[i].pos.y + 10 >= stage.objects.locations[j].y && enemies[i].pos.y + 10 <= stage.objects.locations[j].y + 30)) {
+            if(xAdd == 1) {enemies[i].pos.x  -= 1;}
+            else if(xAdd == -1) {enemies[i].pos.x+= 1;}
+            if (yAdd == 1) {enemies[i].pos.y-= 1;}
+            else if (yAdd == -1) {enemies[i].pos.y += 1;}
+          }
+        }
+      }
+    }
+    if (enemies[i].type ==  "Tiger") {
+      if (enemies[i].pos.y == player.yPos) {
+        var add = enemies[i].pos.y - player.yPos;
+        if (add == 0) {yAdd=1;}
+      }
+      if (enemies[i].pos.x == player.xPos) {
+        var add = enemies[i].pos.x - player.xPos;
+        if (add == 0) {xAdd=1;}
+      }
+      if (enemies[i].pos.x !== player.xPos) {
+        var add = enemies[i].pos.x - player.xPos;
+        if (add < 0) {xAdd=1;}
+        else if (add > 0) {xAdd= -1;}
+        if (enemies[i].pos.y !== player.yPos ) {
+          var add = enemies[i].pos.y - player.yPos;
+          if (add < 0) {yAdd=1;}
+          else if (add > 0) {yAdd= -1;}
+        }
+      }
+      var chanceMoveFast = randomNumber(0.1,1);
+      if (chanceMoveFast > 0.95) {
+        if (((enemies[i].pos.x+xAdd) > player.xPos-20 && (enemies[i].pos.x+xAdd)< player.xPos+20) && ((enemies[i].pos.y+yAdd) > player.yPos-20&&(enemies[i].pos.y+yAdd) < player.yPos+20)) { }
+        else {
+          enemies[i].pos.x += xAdd;
+          enemies[i].pos.y += yAdd;
+        }
+      }
+      if (((enemies[i].pos.x+xAdd) > player.xPos-20 && (enemies[i].pos.x+xAdd)< player.xPos+20) && ((enemies[i].pos.y+yAdd) > player.yPos-20&&(enemies[i].pos.y+yAdd) < player.yPos+20)) { }
+      else {
+        enemies[i].pos.x += xAdd;
+        enemies[i].pos.y += yAdd;
+      }
+    }
+    if (enemies[i].type ==  "Boss") {
+      if (enemies[i].pos.y == player.yPos) {
+        var add = enemies[i].pos.y - player.yPos;
+        if (add == 0) {yAdd=1;}
+      }
+      if (enemies[i].pos.x == player.xPos) {
+        var add = enemies[i].pos.x - player.xPos;
+        if (add == 0) {xAdd=1;}
+      }
+      if (enemies[i].pos.x !== player.xPos) {
+        var add = enemies[i].pos.x - player.xPos;
+        if (add < 0) {xAdd=1;}
+        else if (add > 0) {xAdd= -1;}
+        if (enemies[i].pos.y !== player.yPos ) {
+          var add = enemies[i].pos.y - player.yPos;
+          if (add < 0) {yAdd=1;}
+          else if (add > 0) {yAdd= -1;}
+        }
+      }
+      var chanceNotMove = randomNumber(0.1,1);
+      if (chanceNotMove > 0.85) {
+        if (((enemies[i].pos.x+xAdd) > player.xPos-20 && (enemies[i].pos.x+xAdd)< player.xPos+20) && ((enemies[i].pos.y+yAdd) > player.yPos-20&&(enemies[i].pos.y+yAdd) < player.yPos+20)) { }
+        else{
+          enemies[i].pos.x += xAdd;
+          enemies[i].pos.y += yAdd;
+        }
+      }
+    }
+  }
 }
 
 
@@ -370,7 +350,7 @@ function fileHandeler() {
       player.yPos = 10;
     }
   }
-  
+
   for (var i = 0; i < stage.objects.amount; i++) {//Checks to see if the player is atempting to move into a spot that is should not be
     if ((player.xPos >= stage.objects.locations[i].x && player.xPos <= stage.objects.locations[i].x + 30) || (player.xPos + 10 >= stage.objects.locations[i].x && player.xPos + 10 <= stage.objects.locations[i].x + 30) || (player.xPos - 10 >= stage.objects.locations[i].x && player.xPos - 10 <= stage.objects.locations[i].x + 30)) {
       if ((player.yPos >= stage.objects.locations[i].y && player.yPos <= stage.objects.locations[i].y + 30) || (player.yPos - 10 >= stage.objects.locations[i].y && player.yPos - 10 <= stage.objects.locations[i].y + 30) || (player.yPos + 10 >= stage.objects.locations[i].y && player.yPos + 10 <= stage.objects.locations[i].y + 30)) {
@@ -387,10 +367,10 @@ function fileHandeler() {
           player.yPos += 1;
         }
         }
-      
+
       }
   }
 }
-setInterval(sets, 100);//interval for updates 
-setInterval(npcCollision, 100);//interval for updates 
+setInterval(sets, 100);//interval for updates
+setInterval(npcCollision, 100);//interval for updates
 setInterval(fileHandeler, 20);//interval for updates
