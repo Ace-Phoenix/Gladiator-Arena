@@ -192,18 +192,18 @@ const Weapon = [
 ]
  const Armor = [
    {
-     name: "Basic Chestplate",
-     type: Chestplate,
-     value: 1,
-     desc: "Basic protection from attacks",
-     damRest: 2,
+     name: "Basic Chestplate",//name of chestplate
+     type: Chestplate,//type of armor
+     value: 1,//value
+     desc: "Basic protection from attacks",//description for the type of armor
+     damRest: 2,//damage resistance
    },
    {
-    name: "Basic Helmet",
-    type: Helmet,
-    value: 1,
-    desc: "Basic protection from attacks",
-    damRest: 2,
+    name: "Basic Helmet",//name of helmet
+    type: Helmet,//type of armor
+    value: 1,//value
+    desc: "Basic protection from attacks",//description
+    damRest: 2,//damage resistance
    },
  ]
 
@@ -213,7 +213,7 @@ const Weapon = [
      value: 2,
      desc: "Light protection from attacks but more movement",
      damRest: 1,
-     spec: "weaker",
+     spec: "weaker",//special
    },
 
    {
@@ -222,7 +222,7 @@ const Weapon = [
     value: 2,
     desc: "Light protection from attacks but more movement",
     damRest: 1,
-    spec: "weaker",
+    spec: "weaker",//special
    },
 
  ]
