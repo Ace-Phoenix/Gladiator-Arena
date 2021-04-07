@@ -314,6 +314,20 @@ function npcMovement() {
   }
 }
 
+var appliedEffects = [undefined,undefined];
+function applyEffects(){
+  var before = appliedEffects;
+  var after = [];
+  for (var i = 0; i < player.effects;i++) {
+    after.push(player.effects[i]);
+  }
+  if (after[0] == appliedEffects[0] && after[1] == appliedEffects[1]) {
+    //code
+  }else{
+    applyEffects = after;
+    }
+}
+
 
 //@function fileHandeler() : handelers all files and folders
 //essentially makes the game run
@@ -374,3 +388,4 @@ function fileHandeler() {
 setInterval(sets, 100);//interval for updates
 setInterval(npcCollision, 100);//interval for updates
 setInterval(fileHandeler, 20);//interval for updates
+setInterval(applyEffects, 100);//interval for updates
