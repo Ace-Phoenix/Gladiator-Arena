@@ -18,12 +18,12 @@ class Player {
     this.hp = hp;
     this.dam = dam;
     this.lives = lives;
+    this.armorRating = 0;
     this.attackTimer = attackTimer;
     this.attackSpeed = attackSpeed;
   }
   effectsAdd(equiped){
     var previousEffects = this.effects;
-                  console.log(previousEffects)
     if (equiped.helmet !== undefined || equiped.chestplate !== undefined) {
         //code
     if (equiped.helmet !== undefined ) {
@@ -32,55 +32,143 @@ class Player {
     }if (equiped.chestplate !== undefined) {
        var secondEffect = equiped.chestplate.spec;
         secondEffect = secondEffect.split(":");
-              console.log(secondEffect)
-}
+    }
         if (equiped.helmet !== undefined && equiped.chestplate !== undefined) {
-    var effect = [{location:"Helmet",name:firstEffect[0],percentage:(parseFloat(firstEffect[1])/100)},{location:"Chestplate",name:secondEffect[0],percentage:(parseFloat(secondEffect[1])/100)}];
+          var effect = [{location:"Helmet",name:firstEffect[0],percentage:(parseFloat(firstEffect[1])/100)},{location:"Chestplate",name:secondEffect[0],percentage:(parseFloat(secondEffect[1])/100)}];
         }else if (equiped.helmet !== undefined ) {
-          console.log(firstEffect)
-    var effect = [{location:"Helmet",name:firstEffect[0],percentage:(parseFloat(firstEffect[1])/100)}];
+           var effect = [{location:"Helmet",name:firstEffect[0],percentage:(parseFloat(firstEffect[1])/100)}];
         }else if (equiped.chestplate !== undefined) {
-          console.log(secondEffect)
-    var effect = [{location:"Chestplate",name:secondEffect[0],percentage:(parseFloat(secondEffect[1])/100)}];
+          var effect = [{location:"Chestplate",name:secondEffect[0],percentage:(parseFloat(secondEffect[1])/100)}];
         }
     }
     return this.effects = effect;
   }
+  updateOrRemove(type){
+    var boost = {aDb:0,aSb:0,dRb:0,hpB:0};
+    if (this.effects!==undefined) {
+        //code
+    if (this.effects[0]!==undefined) {
+      if (this.effects[0].name == "AttackDamage") {
+        boost.aDb += this.effects[0].percentage;
+      }
+      if (this.effects[0].name == "HealthBoost") {
+        boost.hpB += this.effects[0].percentage;
+        console.log(boost)
+        }
+      if (this.effects[0].name == "DamageRes") {
+        boost.dRb += this.effects[0].percentage;
+      }
+      if (this.effects[0].name == "AttackSpeed") {
+        boost.aSb += this.effects[0].percentage;
+      }
+    }
+    if (this.effects[1]!==undefined) {
+      if (this.effects[1].name == "AttackDamage") {
+        boost.aDb += this.effects[1].percentage;
+      }
+      if (this.effects[1].name == "HealthBoost") {
+        boost.hpB += this.effects[1].percentage;
+                console.log(boost)
+      }
+      if (this.effects[1].name == "DamageRes") {
+        boost.dRb += this.effects[1].percentage;
+      }
+      if (this.effects[1].name == "AttackSpeed") {
+        boost.aSb += this.effects[1].percentage;
+      }
+    }
+    }
+    if (type=="update") {
+      if (boost.aDb>0) {
+        console.log(boost.aDb);
+        console.log(this.dam);
+        this.dam += (this.dam*boost.aDb);
+        this.dam = Math.round(this.dam*10)/10;
+      }
+      if (boost.hpB>0) {
+        console.log(this.hp)
+        this.hp += (this.hp*boost.hpB);
+         console.log(this.hp)
+       this.hp = Math.round(this.hp);
+        console.log(this.hp)
+      }
+      if (boost.dRb>0) {
+        this.armorRating += (this.armorRating*boost.dRb);
+      }
+      if (boost.aSb>0) {
+        this.attackSpeed -= (this.attackSpeed*boost.aSb);
+      }
+    }
+    if (type=="remove") {
+      if (boost.aDb>0) {
+        this.dam -= (this.dam*boost.aDb);
+        this.dam = Math.round(this.dam);
+      }
+      if (boost.hpB>0) {
+        console.log(boost.hpB)
+        this.hp = Math.round(this.hp);    
+        console.log(this.hp)
+        this.hp = (this.hp/(boost.hpB+1));
+        console.log(this.hp)
+        this.hp = Math.round(this.hp);    
+        console.log(this.hp);
+      }
+      if (boost.dRb>0) {
+        this.armorRating -= (this.armorRating*boost.dRb);
+      }
+      if (boost.aSb>0) {
+        this.attackSpeed += (this.attackSpeed*boost.aSb);
+      }
+    }
+  }
   equipItem(item){
+    var prevEffect = this.effects;
+    if (this.effects !== undefined) {
+      this.updateOrRemove("remove");
+    }
     if (item.type == "Helmet") {
         this.equiped.helmet = item;
-        
+        this.armorRating += item.damRest;
     }
     if (item.type == "Chestplate") {
       this.equiped.chestplate = item;
-      
+      this.armorRating += item.damRest;
     }
     if (item.type == "Sword") {
       this.equiped.weapon = item;
-
+      this.dam += item.dam;
     }
     if (item.type == "Shield") {
       this.equiped.shield = item;
-
+      this.armorRating += item.damRest;
+      this.dam += item.dam;
     }
     this.effectsAdd(this.equiped);
+    this.updateOrRemove("update");
   }
-  unequipItem(slot){
-    if (slot == "Helmet") {
-        this.equiped.helmet = undefined;
-          this.effectsAdd(this.equiped);
   
+  unequipItem(slot){
+      this.updateOrRemove("remove");
+    if (slot == "Helmet") {
+      this.armorRating -= this.equiped.helmet.damRest;
+      this.equiped.helmet = undefined;
+      this.effectsAdd(this.equiped);
     }
     if (slot == "Chestplate") {
+      this.armorRating -= this.equiped.chestplate.damRest;
       this.equiped.chestplate = undefined;
-          this.effectsAdd(this.equiped);
-
+      this.effectsAdd(this.equiped);
     }
     if (slot == "Sword") {
+      this.dam -= this.equiped.weapon.dam;
       this.equiped.weapon = undefined;
     }
     if (slot == "Shield") {
+      this.armorRating -= this.equiped.shield.damRest;
+      this.dam -= this.equiped.weapon.dam;
       this.equiped.shield = undefined;
     }
+        this.updateOrRemove("update");
+
   }
 }

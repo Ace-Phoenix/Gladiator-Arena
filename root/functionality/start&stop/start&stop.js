@@ -9,6 +9,7 @@ var right = false;//variable to detect if the d key is peing pressed down
 var stage = new Stages(1);
 var stageNumber = 1;
 var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 10, 3,0,1);//forms the player
+var appliedEffects = [undefined,undefined];//player status effects
 //@function nextStage() : Advances and sets stage layouts
 //@param stageNum [integer] {restricted : 0< stageNum < 7 : Whole Numbers} : The stage number
 function nextStage(stageNum) {
@@ -94,6 +95,18 @@ function sets() {
 }
 sets();//starting
 
+//@function randomNumber() : gets a random number used for peasants
+//@param min [integre] : number for the min value
+//@param max [integer] : number for the max value
+//@returns retNumber [integer:random] : random number between min and max
+function randomNumber(min,max) {
+    var retNumber = 0;
+    for (var i = 0; i < 20;i++) {
+       retNumber = Math.random()*(max-min)+min;
+    }
+    return retNumber;
+}
+
 //@function npcCollision() : the collision of all enemies
   function npcCollision() {
     player.attackTimer+=0.1;//add to attack timer
@@ -101,12 +114,32 @@ sets();//starting
           player.attackTimer = 0;
       }else{
           player.attackTimer = Math.round(player.attackTimer*10)/10;//Keeping it all to the first decimal point
-      }
+      } 
       for (var i = 0; i<enemies.length;i++) {
           if ((enemies[i].pos.x  >= player.xPos-18 && enemies[i].pos.x  <= player.xPos + 18) || (enemies[i].pos.x  + 10 >= player.xPos-18 && enemies[i].pos.x  + 10 <= player.xPos + 18) || (enemies[i].pos.x - 10 >= player.xPos-18 && enemies[i].pos.x - 10 <= player.xPos + 18)) {
               if ((enemies[i].pos.y >= player.yPos-18 && enemies[i].pos.y <= player.yPos + 18) || (enemies[i].pos.y - 10 >= player.yPos-18 && enemies[i].pos.y - 10 <= player.yPos + 18) || (enemies[i].pos.y + 10 >= player.yPos-18 && enemies[i].pos.y + 10 <= player.yPos + 18)) {
                 if (enemies[i].attackTimer >= enemies[i].attackSpeed) {//attack params for npc
-                  player.hp -= enemies[i].dam;
+                    var randomNess = randomNumber(0,1);
+                        if (appliedEffects[0] !== undefined || applyEffects[1] !== undefined) {
+                            if (appliedEffects[0].name == "Dodge" || applyEffects[1].name == "Dodge") {
+                                if (applyEffects[0].name == "Dodge" && applyEffects[1].name == "Dodge") {
+                                    if (randomNess >=(applyEffects[1].percentage+applyEffects[0].percentage)) {
+                                        player.hp -= enemies[i].dam;
+                                    }
+                                }
+                                else if (applyEffects[0].name == "Dodge" && randomNess >=applyEffects[0].percentage) {
+                                    player.hp -= enemies[i].dam;
+
+                                }
+                                else if (applyEffects[1].name == "Dodge" && randomNess >=applyEffects[1].percentage) {
+                                    player.hp -= enemies[i].dam;
+                                }
+                            }else{
+                              player.hp -= enemies[i].dam;
+                            }
+                        }else{
+                          player.hp -= enemies[i].dam;
+                        }
                     enemies[i].attackTimer=0;
                 }else {
                       enemies[i].attackTimer+=0.1;
@@ -125,17 +158,6 @@ sets();//starting
       }
   }
 
-//@function randomNumber() : gets a random number used for peasants
-//@param min [integre] : number for the min value
-//@param max [integer] : number for the max value
-//@returns retNumber [integer:random] : random number between min and max
-function randomNumber(min,max) {
-    var retNumber = 0;
-    for (var i = 0; i < 20;i++) {
-       retNumber = Math.random()*(max-min)+min;
-    }
-    return retNumber;
-}
 
 //@function npcMovement() : Handles all movement of all Curently Living NPC
 function npcMovement() {
@@ -314,7 +336,6 @@ function npcMovement() {
   }
 }
 
-var appliedEffects = [undefined,undefined];
 function applyEffects(){
   var before = appliedEffects;
   var after = [];
@@ -327,6 +348,7 @@ function applyEffects(){
     applyEffects = after;
     }
 }
+
 
 
 //@function fileHandeler() : handelers all files and folders

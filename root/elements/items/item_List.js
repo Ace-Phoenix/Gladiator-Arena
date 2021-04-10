@@ -197,13 +197,13 @@ const weapon = [
     value: 5,
     desc: "Light chestplate, with the power of life bestowed upon it",
     damRest: 3,
-    spec: "HealthBoost:1%"},//Special Effect : HealthBoost : increases health by a percentage
+    spec: "HealthBoost:4%"},//Special Effect : HealthBoost : increases health by a percentage
    {name: "Mythic Helmet",
     type: "Helmet",
     value: 5,
     desc: "Light helmet, with the power of life bestowed upon it",
     damRest: 3,
-    spec: "HealthBoost:1%"},//Special Effect : HealthBoost : increases health by a percentage
+    spec: "HealthBoost:6%"},//Special Effect : HealthBoost : increases health by a percentage
    {name: "Ancient Chestplate",
     type: "Chestplate",
     value: 6,
