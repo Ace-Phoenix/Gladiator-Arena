@@ -53,7 +53,6 @@ class Player {
       }
       if (this.effects[0].name == "HealthBoost") {
         boost.hpB += this.effects[0].percentage;
-        console.log(boost)
         }
       if (this.effects[0].name == "DamageRes") {
         boost.dRb += this.effects[0].percentage;
@@ -86,11 +85,8 @@ class Player {
         this.dam = Math.round(this.dam*10)/10;
       }
       if (boost.hpB>0) {
-        console.log(this.hp)
         this.hp += (this.hp*boost.hpB);
-         console.log(this.hp)
        this.hp = Math.round(this.hp);
-        console.log(this.hp)
       }
       if (boost.dRb>0) {
         this.armorRating += (this.armorRating*boost.dRb);
@@ -105,13 +101,9 @@ class Player {
         this.dam = Math.round(this.dam);
       }
       if (boost.hpB>0) {
-        console.log(boost.hpB)
         this.hp = Math.round(this.hp);    
-        console.log(this.hp)
         this.hp = (this.hp/(boost.hpB+1));
-        console.log(this.hp)
         this.hp = Math.round(this.hp);    
-        console.log(this.hp);
       }
       if (boost.dRb>0) {
         this.armorRating -= (this.armorRating*boost.dRb);
