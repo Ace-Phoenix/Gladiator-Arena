@@ -19,6 +19,7 @@ class Player {
     this.dam = dam;
     this.lives = lives;
     this.armorRating = 0;
+    this.attackDist = 35;//px
     this.attackTimer = attackTimer;
     this.attackSpeed = attackSpeed;
   }

@@ -143,10 +143,7 @@ function randomNumber(min,max) {
                     enemies[i].attackTimer=0;
                 }else {
                       enemies[i].attackTimer+=0.1;
-                  }if (player.attackTimer>=player.attackSpeed) {//attack params player
-                enemies[i].hp -= player.dam;
-                  player.attackTimer = 0;
-                }
+                  }
                 if (player.hp <= 0) {//player is dead
                     //later
                 }
@@ -407,7 +404,49 @@ function fileHandeler() {
       }
   }
 }
+
+ function playerAttack(){
+  if (player.attackTimer !== player.attackSpeed) {
+    player.attackTimer+=0.1;
+  }
+}
+
+
+document.addEventListener('click', clickLoc, false);
+function clickLoc(e) {
+    var mousepos = mousePos(e);
+    var enemyClicked = [];
+    for (var i = 0; i < enemies.length;i++) {
+          if (mousepos.xPos > enemies[i].pos.x -10 && mousepos.xPos < enemies[i].pos.x +10) {
+              if (mousepos.yPos > enemies[i].pos.y - 10 && mousepos.yPos < enemies[i].pos.y +10) {
+                enemyClicked=enemies[i];
+              }
+          }
+    }
+    if (enemyClicked.pos !== undefined) {
+        var distancePos = {x:(player.xPos-enemyClicked.pos.x),y:(player.yPos-enemyClicked.pos.y)};
+        var distanceValue = Math.sqrt(Math.pow(distancePos.x,2)+Math.pow(distancePos.y,2)); 
+    }
+      if (player.attackTimer>=player.attackSpeed) {//attack params player
+        if (distanceValue <= player.attackDist) {
+             enemyClicked.hp -= player.dam;
+            //code
+          player.attackTimer = 0;
+             console.log("clicked");
+        }
+      }
+}
+function mousePos(e) {
+  var rect = c.getBoundingClientRect();
+  return {
+    xPos: e.clientX - rect.left,
+    yPos: e.clientY - rect.top
+  };
+}
+
+
 setInterval(sets, 100);//interval for updates
 setInterval(npcCollision, 100);//interval for updates
+setInterval(playerAttack, 100);//interval for updates
 setInterval(fileHandeler, 20);//interval for updates
 setInterval(applyEffects, 100);//interval for updates
