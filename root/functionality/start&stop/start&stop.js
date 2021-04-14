@@ -10,6 +10,42 @@ var stage = new Stages(1);
 var stageNumber = 1;
 var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 10, 3,0,1);//forms the player
 var appliedEffects = [undefined,undefined];//player status effects
+
+var playerImg = new Image();
+playerImg.src = "sprites/player.png";
+playerImg.onload = function(){
+  init();
+}
+var playerScale = 0.40
+function init(){
+  ctx.drawImage(playerImg,0,0,64,64,player.xPos-13,player.yPos-13,64*playerScale,64*playerScale);
+
+cycle("init",playerImg,{x:player.xPos,y:player.yPos});
+}
+function drawFrame(img,number,scale,x,y) {
+  if (number == 0) {
+    ctx.drawImage(img,0,0,64,64,x,y,64*scale,64*scale);
+  }if (number == 1) {
+    ctx.drawImage(img,64,0,64,64,x,y,64*scale,64*scale);
+  }if (number == 2) {
+    ctx.drawImage(img,0,64,64,64,x,y,64*scale,64*scale);
+  }if (number == 3) {
+    ctx.drawImage(img,64,64,64,64,x,y,64*scale,64*scale);    
+  }
+}
+var itterAnim = 0;
+function cycle(from,img,target) {
+  drawFrame(img,itterAnim,playerScale,target.x-13,target.y-13);
+
+  if (from == "init") {
+  itterAnim++;
+  drawFrame(itterAnim);
+  if (itterAnim >3) {
+    itterAnim = 0;
+  }
+    //code
+  }
+}
 //@function nextStage() : Advances and sets stage layouts
 //@param stageNum [integer] {restricted : 0< stageNum < 7 : Whole Numbers} : The stage number
 function nextStage(stageNum) {
@@ -346,8 +382,6 @@ function applyEffects(){
     }
 }
 
-
-
 //@function fileHandeler() : handelers all files and folders
 //essentially makes the game run
 //-collision
@@ -357,6 +391,7 @@ function fileHandeler() {
   //make new enemies, removes the ones that die, places player, updade for movment and collision of player, and refresh
   //Tells stage handler what stage to use
   ctx.clearRect(0, 0, c.width, c.height);
+cycle("",playerImg,{x:player.xPos,y:player.yPos});
   npcMovement();
   setLocations(player);
   if(right == true) {//Allows the player to move to the right
@@ -449,4 +484,5 @@ setInterval(sets, 100);//interval for updates
 setInterval(npcCollision, 100);//interval for updates
 setInterval(playerAttack, 100);//interval for updates
 setInterval(fileHandeler, 20);//interval for updates
+setInterval(init, 250);//interval for updates
 setInterval(applyEffects, 100);//interval for updates
