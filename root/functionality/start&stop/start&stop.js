@@ -14,13 +14,35 @@ var appliedEffects = [undefined,undefined];//player status effects
 var playerImg = new Image();
 playerImg.src = "sprites/player.png";
 playerImg.onload = function(){
-  init();
+  init(playerImg,{x:player.xPos,y:player.yPos});
 }
-var playerScale = 0.40
-function init(){
-  ctx.drawImage(playerImg,0,0,64,64,player.xPos-13,player.yPos-13,64*playerScale,64*playerScale);
+var enemies = [];//all the enemies
+    var peasantImg = new Image();
+      peasantImg.src = "sprites/peasant.png";
+    peasantImg.onload = function(){
+     init(peasantImg,{x:0,y:0});
+    }
+    var gladiatorImg = new Image();
+      gladiatorImg.src = "sprites/gladiator.png";
+    gladiatorImg.onload = function(){
+     init(gladiatorImg,{x:player.xPos,y:player.yPos});
+    }
+    var tigerImg = new Image();
+      tigerImg.src = "sprites/tiger.png";
+    tigerImg.onload = function(){
+     init(tigerImg,{x:player.xPos,y:player.yPos});
+    }
+    var bossImg = new Image();
+      bossImg.src = "sprites/boss.png";
+    bossImg.onload = function(){
+     init(bossImg,{x:player.xPos,y:player.yPos});
+    }
 
-cycle("init",playerImg,{x:player.xPos,y:player.yPos});
+var playerScale = 0.40
+function init(img,locat){
+  ctx.drawImage(img,0,0,64,64,locat.x-13,locat.y-13,64*playerScale,64*playerScale);
+
+cycle("init",img,{x:locat.x,y:locat.y});
 }
 function drawFrame(img,number,scale,x,y) {
   if (number == 0) {
@@ -39,13 +61,60 @@ function cycle(from,img,target) {
 
   if (from == "init") {
   itterAnim++;
-  drawFrame(itterAnim);
+  drawFrame(img,itterAnim,playerScale,target.x-13,target.y-13);
   if (itterAnim >3) {
     itterAnim = 0;
   }
     //code
   }
 }
+function cycleAllOnScreen() {
+  for (var i = 0; i < enemies.length;i++) {
+    if (enemies[i].type == "Peasant") {
+      cycle("",peasantImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
+    }
+    if (enemies[i].type == "Gladiator") {
+        //code
+       cycle("",gladiatorImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
+   }
+    if (enemies[i].type == "Tiger") {
+        //code
+      cycle("",tigerImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
+    }
+    if (enemies[i].type == "Boss") {
+        //code
+      cycle("",bossImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
+    }
+cycle("",playerImg,{x:player.xPos,y:player.yPos});
+
+  }
+}
+function initAllOnScreen() {
+if (enemies.length!== 0) {
+  for (var i = 0; i < enemies.length;i++) {
+    if (enemies[i].type == "Peasant") {
+      init(peasantImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
+    }
+    if (enemies[i].type == "Gladiator") {
+        //code
+       init(gladiatorImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
+   }
+    if (enemies[i].type == "Tiger") {
+        //code
+      init(tigerImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
+    }
+    if (enemies[i].type == "Boss") {
+        //code
+      init(bossImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
+    }
+  }
+}
+      init(playerImg,{x:player.xPos,y:player.yPos});
+
+}
+
+
+
 //@function nextStage() : Advances and sets stage layouts
 //@param stageNum [integer] {restricted : 0< stageNum < 7 : Whole Numbers} : The stage number
 function nextStage(stageNum) {
@@ -102,18 +171,23 @@ function keyUpHandler(e) {
 
 
 
-var enemies = [];//all the enemies
 //@function makeThemSpawn : makes them spawn
 function makeThemSpawn() {
     for (var i = 0; i < stage.enemy.length;i++) {
         enemies.push(new Npc({x:stage.enemy[i].x,y:stage.enemy[i].y}, stage.enemy[i].hp, stage.enemy[i].dam, 1,stage.enemy[i].type,stage.enemy[i].aT,stage.enemy[i].aS));//makes new
     }
 }
-
+var fixAnims = 0;
 var setNumber = 0;//interator
 var afterSpawn = false;
 //@function sets : amount of sets that are in the stage
 function sets() {
+  if (fixAnims!==2) {
+    //code
+enemies = [];
+makeThemSpawn();
+fixAnims++;
+  }else{
   if ((stage.enemy.length == 0 && enemies.length == 0 ) || afterSpawn == false) {
     if (setNumber!==stage.sets) {//amount of sents passed
         makeThemSpawn();
@@ -127,6 +201,7 @@ function sets() {
           stageNumber++;//add to stage
           nextStage(stageNumber)//set next stage
         }
+  }
   }
 }
 sets();//starting
@@ -391,7 +466,7 @@ function fileHandeler() {
   //make new enemies, removes the ones that die, places player, updade for movment and collision of player, and refresh
   //Tells stage handler what stage to use
   ctx.clearRect(0, 0, c.width, c.height);
-cycle("",playerImg,{x:player.xPos,y:player.yPos});
+cycleAllOnScreen();
   npcMovement();
   setLocations(player);
   if(right == true) {//Allows the player to move to the right
@@ -484,5 +559,5 @@ setInterval(sets, 100);//interval for updates
 setInterval(npcCollision, 100);//interval for updates
 setInterval(playerAttack, 100);//interval for updates
 setInterval(fileHandeler, 20);//interval for updates
-setInterval(init, 250);//interval for updates
+setInterval(initAllOnScreen, 250);//interval for updates
 setInterval(applyEffects, 100);//interval for updates

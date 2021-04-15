@@ -19,5 +19,8 @@ class Npc {
     this.type = type;
     this.attackTimer = attackTimer;
     this.attackSpeed = attackSpeed;
+    this.aF = 0;
+    this.aMF = 4;
+    this.aMFFB = 22;
   }
 }

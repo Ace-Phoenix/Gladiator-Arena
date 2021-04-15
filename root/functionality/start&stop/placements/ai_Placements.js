@@ -10,25 +10,7 @@ function placeNpc(npc,localType,type){//function place Npc
    ctx.beginPath();//begins to draw ai
    ctx.arc(npc.x, npc.y, 10, 0, Math.PI*2); //draws the ai based on npc x and y, and location
    ctx.fillStyle = "clear";
-   if (localType == "enemy") {
-      if (type == "Peasant") {
-        ctx.strokeStyle = "Green";
- 
-      }
-      if (type == "Gladiator") {
-           ctx.strokeStyle = "red";
-      }
-      if (type == "Tiger") {
-     ctx.strokeStyle = "Orange";
-      }
-      if (type == "Boss") {
-     ctx.strokeStyle = "Pink";
-      }
-   }else {
            ctx.strokeStyle = "rgba(0,0,0,0)";
-
-   }
-
    //ctx.drawImage(npcImg, npc.xPos - 19, npc.yPos - 19, 45, 35);
    ctx.stroke();
 }
