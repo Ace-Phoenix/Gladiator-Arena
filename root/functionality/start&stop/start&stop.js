@@ -527,8 +527,8 @@ function clickLoc(e) {
     var mousepos = mousePos(e);
     var enemyClicked = [];
     for (var i = 0; i < enemies.length;i++) {
-          if (mousepos.xPos > enemies[i].pos.x -10 && mousepos.xPos < enemies[i].pos.x +10) {
-              if (mousepos.yPos > enemies[i].pos.y - 10 && mousepos.yPos < enemies[i].pos.y +10) {
+          if (mousepos.xPos > enemies[i].pos.x -20 && mousepos.xPos < enemies[i].pos.x +20) {
+              if (mousepos.yPos > enemies[i].pos.y - 20 && mousepos.yPos < enemies[i].pos.y +20) {
                 enemyClicked=enemies[i];
               }
           }
