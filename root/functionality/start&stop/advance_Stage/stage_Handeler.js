@@ -10,6 +10,6 @@ function setLocations(player) {
      for (var j = 0; j < stage.objects.amount;j++) {
         placeObjects(stage.objects.locations[j]);//Place Objects
      }
-     placeObjects({x:(stage.playerSpawn.x-15),y:(stage.playerSpawn.y-15)},"green");//Place player spawn
+     placeObjects({x:(stage.playerSpawn.x-30),y:(stage.playerSpawn.y-30)},"green");//Place player spawn
      drawPlayer(player);//Place Player
 }
