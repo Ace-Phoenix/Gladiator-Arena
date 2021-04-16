@@ -5,11 +5,11 @@ function setLocations(player) {
      placeNpc(stage.enemy[i]);//place NPC
      }
      for (var k = 0; k < enemies.length;k++) {
-     placeNpc(enemies[k].pos,"enemy");//place NPC
+     placeNpc(enemies[k].pos,"enemy",enemies[k].type);//place NPC
      }
      for (var j = 0; j < stage.objects.amount;j++) {
         placeObjects(stage.objects.locations[j]);//Place Objects
      }
-     placeObjects({x:(stage.playerSpawn.x-15),y:(stage.playerSpawn.y-15)},"green");//Place player spawn
+     placeObjects({x:(stage.playerSpawn.x-30),y:(stage.playerSpawn.y-30)},"green");//Place player spawn
      drawPlayer(player);//Place Player
 }

@@ -13,7 +13,7 @@ function placeObjects(location,style){
         ctx.strokeStyle = "black";//default black
        }
        
-ctx.rect(location.x, location.y, 30, 30);//draw the box
+ctx.rect(location.x, location.y, 60, 60);//draw the box
 
   ctx.stroke();//end draw
 //ctx.drawImage(objectImage,location.x,location.y,width,height);//this will be used soon
