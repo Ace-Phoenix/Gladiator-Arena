@@ -14,28 +14,28 @@ var appliedEffects = [undefined,undefined];//player status effects
 var playerImg = new Image();
 playerImg.src = "sprites/player.png";
 playerImg.onload = function(){
-  init(playerImg,{x:player.xPos,y:player.yPos});
+  initAllOnScreen();
 }
 var enemies = [];//all the enemies
     var peasantImg = new Image();
       peasantImg.src = "sprites/peasant.png";
     peasantImg.onload = function(){
-     init(peasantImg,{x:0,y:0});
+  initAllOnScreen();
     }
     var gladiatorImg = new Image();
       gladiatorImg.src = "sprites/gladiator.png";
     gladiatorImg.onload = function(){
-     init(gladiatorImg,{x:player.xPos,y:player.yPos});
+  initAllOnScreen();
     }
     var tigerImg = new Image();
       tigerImg.src = "sprites/tiger.png";
     tigerImg.onload = function(){
-     init(tigerImg,{x:player.xPos,y:player.yPos});
+  initAllOnScreen();
     }
     var bossImg = new Image();
       bossImg.src = "sprites/boss.png";
     bossImg.onload = function(){
-     init(bossImg,{x:player.xPos,y:player.yPos});
+  initAllOnScreen();
     }
 
 var playerScale = 0.80
@@ -186,6 +186,7 @@ function sets() {
     //code
 enemies = [];
 makeThemSpawn();
+enemies = [];
 fixAnims++;
   }else{
   if ((stage.enemy.length == 0 && enemies.length == 0 ) || afterSpawn == false) {
