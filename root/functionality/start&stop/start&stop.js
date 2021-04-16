@@ -10,6 +10,111 @@ var stage = new Stages(1);
 var stageNumber = 1;
 var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 10, 3,0,1);//forms the player
 var appliedEffects = [undefined,undefined];//player status effects
+
+var playerImg = new Image();
+playerImg.src = "sprites/player.png";
+playerImg.onload = function(){
+  init(playerImg,{x:player.xPos,y:player.yPos});
+}
+var enemies = [];//all the enemies
+    var peasantImg = new Image();
+      peasantImg.src = "sprites/peasant.png";
+    peasantImg.onload = function(){
+     init(peasantImg,{x:0,y:0});
+    }
+    var gladiatorImg = new Image();
+      gladiatorImg.src = "sprites/gladiator.png";
+    gladiatorImg.onload = function(){
+     init(gladiatorImg,{x:player.xPos,y:player.yPos});
+    }
+    var tigerImg = new Image();
+      tigerImg.src = "sprites/tiger.png";
+    tigerImg.onload = function(){
+     init(tigerImg,{x:player.xPos,y:player.yPos});
+    }
+    var bossImg = new Image();
+      bossImg.src = "sprites/boss.png";
+    bossImg.onload = function(){
+     init(bossImg,{x:player.xPos,y:player.yPos});
+    }
+
+var playerScale = 0.40
+function init(img,locat){
+  ctx.drawImage(img,0,0,64,64,locat.x-13,locat.y-13,64*playerScale,64*playerScale);
+
+cycle("init",img,{x:locat.x,y:locat.y});
+}
+function drawFrame(img,number,scale,x,y) {
+  if (number == 0) {
+    ctx.drawImage(img,0,0,64,64,x,y,64*scale,64*scale);
+  }if (number == 1) {
+    ctx.drawImage(img,64,0,64,64,x,y,64*scale,64*scale);
+  }if (number == 2) {
+    ctx.drawImage(img,0,64,64,64,x,y,64*scale,64*scale);
+  }if (number == 3) {
+    ctx.drawImage(img,64,64,64,64,x,y,64*scale,64*scale);
+  }
+}
+var itterAnim = 0;
+function cycle(from,img,target) {
+  drawFrame(img,itterAnim,playerScale,target.x-13,target.y-13);
+
+  if (from == "init") {
+  itterAnim++;
+  drawFrame(img,itterAnim,playerScale,target.x-13,target.y-13);
+  if (itterAnim >3) {
+    itterAnim = 0;
+  }
+    //code
+  }
+}
+function cycleAllOnScreen() {
+  for (var i = 0; i < enemies.length;i++) {
+    if (enemies[i].type == "Peasant") {
+      cycle("",peasantImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
+    }
+    if (enemies[i].type == "Gladiator") {
+        //code
+       cycle("",gladiatorImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
+   }
+    if (enemies[i].type == "Tiger") {
+        //code
+      cycle("",tigerImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
+    }
+    if (enemies[i].type == "Boss") {
+        //code
+      cycle("",bossImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
+    }
+cycle("",playerImg,{x:player.xPos,y:player.yPos});
+
+  }
+}
+function initAllOnScreen() {
+if (enemies.length!== 0) {
+  for (var i = 0; i < enemies.length;i++) {
+    if (enemies[i].type == "Peasant") {
+      init(peasantImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
+    }
+    if (enemies[i].type == "Gladiator") {
+        //code
+       init(gladiatorImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
+   }
+    if (enemies[i].type == "Tiger") {
+        //code
+      init(tigerImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
+    }
+    if (enemies[i].type == "Boss") {
+        //code
+      init(bossImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
+    }
+  }
+}
+      init(playerImg,{x:player.xPos,y:player.yPos});
+
+}
+
+
+
 //@function nextStage() : Advances and sets stage layouts
 //@param stageNum [integer] {restricted : 0< stageNum < 7 : Whole Numbers} : The stage number
 function nextStage(stageNum) {
@@ -66,18 +171,23 @@ function keyUpHandler(e) {
 
 
 
-var enemies = [];//all the enemies
 //@function makeThemSpawn : makes them spawn
 function makeThemSpawn() {
     for (var i = 0; i < stage.enemy.length;i++) {
         enemies.push(new Npc({x:stage.enemy[i].x,y:stage.enemy[i].y}, stage.enemy[i].hp, stage.enemy[i].dam, 1,stage.enemy[i].type,stage.enemy[i].aT,stage.enemy[i].aS));//makes new
     }
 }
-
+var fixAnims = 0;
 var setNumber = 0;//interator
 var afterSpawn = false;
 //@function sets : amount of sets that are in the stage
 function sets() {
+  if (fixAnims!==2) {
+    //code
+enemies = [];
+makeThemSpawn();
+fixAnims++;
+  }else{
   if ((stage.enemy.length == 0 && enemies.length == 0 ) || afterSpawn == false) {
     if (setNumber!==stage.sets) {//amount of sents passed
         makeThemSpawn();
@@ -91,6 +201,7 @@ function sets() {
           stageNumber++;//add to stage
           nextStage(stageNumber)//set next stage
         }
+  }
   }
 }
 sets();//starting
@@ -114,7 +225,7 @@ function randomNumber(min,max) {
           player.attackTimer = 0;
       }else{
           player.attackTimer = Math.round(player.attackTimer*10)/10;//Keeping it all to the first decimal point
-      } 
+      }
       for (var i = 0; i<enemies.length;i++) {
           if ((enemies[i].pos.x  >= player.xPos-18 && enemies[i].pos.x  <= player.xPos + 18) || (enemies[i].pos.x  + 10 >= player.xPos-18 && enemies[i].pos.x  + 10 <= player.xPos + 18) || (enemies[i].pos.x - 10 >= player.xPos-18 && enemies[i].pos.x - 10 <= player.xPos + 18)) {
               if ((enemies[i].pos.y >= player.yPos-18 && enemies[i].pos.y <= player.yPos + 18) || (enemies[i].pos.y - 10 >= player.yPos-18 && enemies[i].pos.y - 10 <= player.yPos + 18) || (enemies[i].pos.y + 10 >= player.yPos-18 && enemies[i].pos.y + 10 <= player.yPos + 18)) {
@@ -143,10 +254,7 @@ function randomNumber(min,max) {
                     enemies[i].attackTimer=0;
                 }else {
                       enemies[i].attackTimer+=0.1;
-                  }if (player.attackTimer>=player.attackSpeed) {//attack params player
-                enemies[i].hp -= player.dam;
-                  player.attackTimer = 0;
-                }
+                  }
                 if (player.hp <= 0) {//player is dead
                     //later
                 }
@@ -349,8 +457,6 @@ function applyEffects(){
     }
 }
 
-
-
 //@function fileHandeler() : handelers all files and folders
 //essentially makes the game run
 //-collision
@@ -360,6 +466,7 @@ function fileHandeler() {
   //make new enemies, removes the ones that die, places player, updade for movment and collision of player, and refresh
   //Tells stage handler what stage to use
   ctx.clearRect(0, 0, c.width, c.height);
+cycleAllOnScreen();
   npcMovement();
   setLocations(player);
   if(right == true) {//Allows the player to move to the right
@@ -407,7 +514,50 @@ function fileHandeler() {
       }
   }
 }
+
+ function playerAttack(){
+  if (player.attackTimer !== player.attackSpeed) {
+    player.attackTimer+=0.1;
+  }
+}
+
+
+document.addEventListener('click', clickLoc, false);
+function clickLoc(e) {
+    var mousepos = mousePos(e);
+    var enemyClicked = [];
+    for (var i = 0; i < enemies.length;i++) {
+          if (mousepos.xPos > enemies[i].pos.x -10 && mousepos.xPos < enemies[i].pos.x +10) {
+              if (mousepos.yPos > enemies[i].pos.y - 10 && mousepos.yPos < enemies[i].pos.y +10) {
+                enemyClicked=enemies[i];
+              }
+          }
+    }
+    if (enemyClicked.pos !== undefined) {
+        var distancePos = {x:(player.xPos-enemyClicked.pos.x),y:(player.yPos-enemyClicked.pos.y)};
+        var distanceValue = Math.sqrt(Math.pow(distancePos.x,2)+Math.pow(distancePos.y,2));
+    }
+      if (player.attackTimer>=player.attackSpeed) {//attack params player
+        if (distanceValue <= player.attackDist) {
+             enemyClicked.hp -= player.dam;
+            //code
+          player.attackTimer = 0;
+             console.log("clicked");
+        }
+      }
+}
+function mousePos(e) {
+  var rect = c.getBoundingClientRect();
+  return {
+    xPos: e.clientX - rect.left,
+    yPos: e.clientY - rect.top
+  };
+}
+
+
 setInterval(sets, 100);//interval for updates
 setInterval(npcCollision, 100);//interval for updates
+setInterval(playerAttack, 100);//interval for updates
 setInterval(fileHandeler, 20);//interval for updates
+setInterval(initAllOnScreen, 250);//interval for updates
 setInterval(applyEffects, 100);//interval for updates
