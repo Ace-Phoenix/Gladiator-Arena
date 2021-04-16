@@ -60,7 +60,6 @@ function cycle(from,img,target) {
   drawFrame(img,itterAnim,playerScale,target.x-26,target.y-26);
 
   if (from == "init") {
-  itterAnim++;
   drawFrame(img,itterAnim,playerScale,target.x-26,target.y-26);
   if (itterAnim >3) {
     itterAnim = 0;
@@ -90,6 +89,7 @@ cycle("",playerImg,{x:player.xPos,y:player.yPos});
   }
 }
 function initAllOnScreen() {
+  itterAnim++;
 if (enemies.length!== 0) {
   for (var i = 0; i < enemies.length;i++) {
     if (enemies[i].type == "Peasant") {
@@ -177,18 +177,10 @@ function makeThemSpawn() {
         enemies.push(new Npc({x:stage.enemy[i].x,y:stage.enemy[i].y}, stage.enemy[i].hp, stage.enemy[i].dam, 1,stage.enemy[i].type,stage.enemy[i].aT,stage.enemy[i].aS));//makes new
     }
 }
-var fixAnims = 0;
 var setNumber = 0;//interator
 var afterSpawn = false;
 //@function sets : amount of sets that are in the stage
 function sets() {
-  if (fixAnims!==2) {
-    //code
-enemies = [];
-makeThemSpawn();
-enemies = [];
-fixAnims++;
-  }else{
   if ((stage.enemy.length == 0 && enemies.length == 0 ) || afterSpawn == false) {
     if (setNumber!==stage.sets) {//amount of sents passed
         makeThemSpawn();
@@ -202,7 +194,6 @@ fixAnims++;
           stageNumber++;//add to stage
           nextStage(stageNumber)//set next stage
         }
-  }
   }
 }
 sets();//starting
@@ -560,5 +551,5 @@ setInterval(sets, 100);//interval for updates
 setInterval(npcCollision, 100);//interval for updates
 setInterval(playerAttack, 100);//interval for updates
 setInterval(fileHandeler, 20);//interval for updates
-setInterval(initAllOnScreen, 250);//interval for updates
+setInterval(initAllOnScreen, 200);//interval for updates
 setInterval(applyEffects, 100);//interval for updates
