@@ -20,24 +20,65 @@ class Stages{
     }
     
     shopLayout(stage){
-        var retObj = {border:{},imgLocs:[],buttonLoc:[],costLoc:[],armLoc:[],damLoc:[],descLoc:[]}
+        var retObj = {border:{},imgLocs:[],buttonLoc:[]}
         if (stage == 2) {
             retObj.border = {x:50,y:50,width:700,height:700};
-            retObj.imgLocs.push({x:85,y:85,width:135,height:185});
-            retObj.imgLocs.push({x:(85+135+25),y:85,width:135,height:185});
-            retObj.imgLocs.push({x:(((85+(135*2)))+(25*2)),y:85,width:135,height:185});
-            retObj.imgLocs.push({x:(((85+(135*3)))+(25*3)),y:85,width:135,height:185});
-            retObj.imgLocs.push({x:(((85+(135*.5)))+(25*.5)),y:(85+185+25),width:135,height:185});
-            retObj.imgLocs.push({x:(((85+(135*1.5)))+(25*1.5)),y:(85+185+25),width:135,height:185});
-            retObj.imgLocs.push({x:(((85+(135*2.5)))+(25*2.5)),y:(85+185+25),width:135,height:185});
-            
+            retObj.imgLocs.push({x:90,y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(90+135+25),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*2)))+(25*2)),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*3)))+(25*3)),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*.5)))+(25*.5)),y:(85+185+25),width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*1.5)))+(25*1.5)),y:(85+185+25),width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*2.5)))+(25*2.5)),y:(85+185+25),width:135,height:185});
+            retObj.buttonLoc.push({x:(350-95),y:550,width:95,height:55});
+            retObj.buttonLoc.push({x:(350+95),y:550,width:95,height:55});
         }if (stage == 4) {
+            retObj.border = {x:50,y:50,width:700,height:700};
+            retObj.imgLocs.push({x:90,y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(90+135+25),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*2)))+(25*2)),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*3)))+(25*3)),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*.5)))+(25*.5)),y:(85+185+25),width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*1.5)))+(25*1.5)),y:(85+185+25),width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*2.5)))+(25*2.5)),y:(85+185+25),width:135,height:185});
+            retObj.buttonLoc.push({x:(350-95),y:550,width:95,height:55});
+            retObj.buttonLoc.push({x:(350+95),y:550,width:95,height:55});
             //code
         }if (stage == 6) {
+            retObj.border = {x:50,y:50,width:700,height:700};
+            retObj.imgLocs.push({x:90,y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(90+135+25),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*2)))+(25*2)),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*3)))+(25*3)),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*.5)))+(25*.5)),y:(85+185+25),width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*1.5)))+(25*1.5)),y:(85+185+25),width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*2.5)))+(25*2.5)),y:(85+185+25),width:135,height:185});
+            retObj.buttonLoc.push({x:(350-95),y:550,width:95,height:55});
+            retObj.buttonLoc.push({x:(350+95),y:550,width:95,height:55});
             //code
         }if (stage == 8) {
+            retObj.border = {x:50,y:50,width:700,height:700};
+            retObj.imgLocs.push({x:90,y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(90+135+25),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*2)))+(25*2)),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*3)))+(25*3)),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*.5)))+(25*.5)),y:(85+185+25),width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*1.5)))+(25*1.5)),y:(85+185+25),width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*2.5)))+(25*2.5)),y:(85+185+25),width:135,height:185});
+            retObj.buttonLoc.push({x:(350-95),y:550,width:95,height:55});
+            retObj.buttonLoc.push({x:(350+95),y:550,width:95,height:55});
             //code
         }if (stage == 10) {
+            retObj.border = {x:50,y:50,width:700,height:700};
+            retObj.imgLocs.push({x:90,y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(90+135+25),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*2)))+(25*2)),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*3)))+(25*3)),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*.5)))+(25*.5)),y:(85+185+25),width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*1.5)))+(25*1.5)),y:(85+185+25),width:135,height:185});
+            retObj.imgLocs.push({x:(((90+(135*2.5)))+(25*2.5)),y:(85+185+25),width:135,height:185});
+            retObj.buttonLoc.push({x:(350-95),y:550,width:95,height:55});
+            retObj.buttonLoc.push({x:(350+95),y:550,width:95,height:55});
             //code
         }
         return retObj;
