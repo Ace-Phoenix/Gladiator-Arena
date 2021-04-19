@@ -16,25 +16,50 @@ class Stages{
         this.enemy = this.enemyPush(stage);//enemy is actually enemies but its ok
         this.playerSpawn = this.playerPush(stage);//player default spawn varies for each stage
         this.sets = this.numberOfSets(stage);//player default spawn varies for each stage
+        this.shop = this.shopLayout(stage);
+    }
+    
+    shopLayout(stage){
+        var retObj = {border:{},imgLocs:[],buttonLoc:[],costLoc:[],armLoc:[],damLoc:[],descLoc:[]}
+        if (stage == 2) {
+            retObj.border = {x:50,y:50,width:700,height:700};
+            retObj.imgLocs.push({x:85,y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(85+135+25),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((85+(135*2)))+(25*2)),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((85+(135*3)))+(25*3)),y:85,width:135,height:185});
+            retObj.imgLocs.push({x:(((85+(135*.5)))+(25*.5)),y:(85+185+25),width:135,height:185});
+            retObj.imgLocs.push({x:(((85+(135*1.5)))+(25*1.5)),y:(85+185+25),width:135,height:185});
+            retObj.imgLocs.push({x:(((85+(135*2.5)))+(25*2.5)),y:(85+185+25),width:135,height:185});
+            
+        }if (stage == 4) {
+            //code
+        }if (stage == 6) {
+            //code
+        }if (stage == 8) {
+            //code
+        }if (stage == 10) {
+            //code
+        }
+        return retObj;
     }
     
     numberOfSets(stage){
         if (stage == 1) {
             return 2;
         }
-        if (stage == 2) {
+        if (stage == 3) {
             return 3;
         }
-        if (stage == 3) {
-            return 2;
-        }
-        if (stage == 4) {
-            return 2;
-        }
         if (stage == 5) {
+            return 2;
+        }
+        if (stage == 7) {
+            return 2;
+        }
+        if (stage == 9) {
             return 1;
         }
-        if (stage == 6) {
+        if (stage == 11) {
             return 10;
         }
     }
@@ -53,21 +78,21 @@ class Stages{
             retObject.locations.push({x:460,y:600});
             retObject.locations.push({x:680,y:260});
         }
-        if (stage == 2) {
+        if (stage == 3) {
             retObject.locations.push({x:65*2,y:85*2});
             retObject.locations.push({x:125*2,y:290*2});
             retObject.locations.push({x:290*2,y:120*2});
         }
-        if (stage == 3) {
+        if (stage == 5) {
             retObject.locations.push({x:65*2,y:75*2});
             retObject.locations.push({x:150*2,y:310*2});
         }
-        if (stage == 4) {
+        if (stage == 7) {
             retObject.locations.push({x:110*2,y:125*2});
         }
-        if (stage == 5) {
+        if (stage == 9) {
         }
-        if (stage == 6) {
+        if (stage == 11) {
         }
         retObject.amount = retObject.locations.length;
         return retObject;
@@ -79,21 +104,21 @@ class Stages{
         if (stage == 1) {
             retPlayer = {x:390*2,y:200*2};            
         }
-        if (stage == 2) {
+        if (stage == 3) {
             retPlayer = {x:270*2,y:289*2}; 
         }
-        if (stage == 3) {
+        if (stage == 5) {
             retPlayer = {x:210*2,y:110*2}; 
         }
-        if (stage == 4) {
+        if (stage == 7) {
             retPlayer = {x:270*2,y:210*2}; 
 
         }
-        if (stage == 5) {
+        if (stage == 9) {
             retPlayer = {x:380*2,y:200*2}; 
 
         }
-        if (stage == 6) {
+        if (stage == 11) {
             retPlayer = {x:200*2,y:200*2}; 
         }
         return retPlayer;
@@ -113,7 +138,7 @@ class Stages{
             retEnemy.push({type:"Peasant", x:(250*2), y:(365*2),hp:50,dam:5,aT:0,aS:1});
             retEnemy.push({type:"Peasant", x:(365*2), y:(365*2),hp:50,dam:5,aT:0,aS:1});
         }
-        if (stage == 2) {
+        if (stage == 3) {
             retEnemy.push({type:"Gladiator", x:35*2, y:35*2,hp:100,dam:10,aT:0,aS:2});
             retEnemy.push({type:"Peasant", x:125*2, y:35*2,hp:50,dam:5,aT:0,aS:1});
             retEnemy.push({type:"Gladiator", x:250*2, y:35*2,hp:100,dam:10,aT:0,aS:2});
@@ -125,7 +150,7 @@ class Stages{
             retEnemy.push({type:"Peasant", x:365*2, y:365*2,hp:50,dam:5,aT:0,aS:1});
             retEnemy.push({type:"Gladiator", x:365*2, y:200*2,hp:100,dam:10,aT:0,aS:2});
         }
-        if (stage == 3) {
+        if (stage == 5) {
             retEnemy.push({type:"Gladiator", x:35*2, y:35*2,hp:100,dam:10,aT:0,aS:2});
             retEnemy.push({type:"Peasant", x:125*2, y:35*2,hp:50,dam:5,aT:0,aS:1});
             retEnemy.push({type:"Gladiator", x:250*2, y:35*2,hp:100,dam:10,aT:0,aS:2});
@@ -137,7 +162,7 @@ class Stages{
             retEnemy.push({type:"Peasant", x:365*2, y:365*2,hp:50,dam:5,aT:0,aS:1});
             retEnemy.push({type:"Gladiator", x:365*2, y:200*2,hp:100,dam:10,aT:0,aS:2});
         }
-        if (stage == 4) {
+        if (stage == 7) {
             retEnemy.push({type:"Tiger", x:35*2, y:35*2,hp:75,dam:5,aT:0,aS:0.5});
             retEnemy.push({type:"Tiger", x:125*2, y:35*2,hp:75,dam:5,aT:0,aS:0.5});
             retEnemy.push({type:"Tiger", x:250*2, y:35*2,hp:75,dam:5,aT:0,aS:0.5});
@@ -149,10 +174,10 @@ class Stages{
             retEnemy.push({type:"Gladiator", x:365*2, y:365*2,hp:100,dam:10,aT:0,aS:2});
             retEnemy.push({type:"Tiger", x:365*2, y:200*2,hp:75,dam:5,aT:0,aS:0.5});
         }
-        if (stage == 5) {
+        if (stage == 9) {
             retEnemy.push({type:"Boss", x:35*2, y:200*2,hp:500,dam:100,aT:0,aS:2.5});
         }
-        if (stage == 6) {
+        if (stage == 11) {
             retEnemy.push({type:"Peasant", x:35*2, y:35*2,hp:50,dam:5,aT:0,aS:1});
             retEnemy.push({type:"Peasant", x:125*2, y:35*2,hp:50,dam:5,aT:0,aS:1});
             retEnemy.push({type:"Peasant", x:250*2, y:35*2,hp:50,dam:5,aT:0,aS:1});

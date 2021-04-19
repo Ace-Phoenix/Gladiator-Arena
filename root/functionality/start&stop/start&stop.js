@@ -6,8 +6,8 @@ var up = false;//variable to detect if the w key is peing pressed down
 var down = false;//variable to detect if the s key is peing pressed down
 var left = false;//variable to detect if the a key is peing pressed down
 var right = false;//variable to detect if the d key is peing pressed down
-var stage = new Stages(1);
-var stageNumber = 1;
+var stage = new Stages(2);
+var stageNumber = 2;
 var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 10, 3,0,1);//forms the player
 var appliedEffects = [undefined,undefined];//player status effects
 
@@ -119,9 +119,12 @@ if (enemies.length!== 0) {
 //@param stageNum [integer] {restricted : 0< stageNum < 7 : Whole Numbers} : The stage number
 function nextStage(stageNum) {
     stage = new Stages(stageNum);//updates the stage
-    player.xPos = stage.playerSpawn.x;
+    if (stage.playerSpawn !== undefined) {
+        //code
     player.yPos = stage.playerSpawn.y;
+    player.xPos = stage.playerSpawn.x;
     setNumber = 0;
+    }
 }
 
 
@@ -173,14 +176,19 @@ function keyUpHandler(e) {
 
 //@function makeThemSpawn : makes them spawn
 function makeThemSpawn() {
+  if (stage.enemy !== undefined) {
     for (var i = 0; i < stage.enemy.length;i++) {
+        //code
         enemies.push(new Npc({x:stage.enemy[i].x,y:stage.enemy[i].y}, stage.enemy[i].hp, stage.enemy[i].dam, 1,stage.enemy[i].type,stage.enemy[i].aT,stage.enemy[i].aS));//makes new
+      }
     }
 }
 var setNumber = 0;//interator
 var afterSpawn = false;
 //@function sets : amount of sets that are in the stage
 function sets() {
+  if (stage.enemy !== undefined) {
+    //code
   if ((stage.enemy.length == 0 && enemies.length == 0 ) || afterSpawn == false) {
     if (setNumber!==stage.sets) {//amount of sents passed
         makeThemSpawn();
@@ -195,11 +203,12 @@ function sets() {
           nextStage(stageNumber)//set next stage
         }
   }
+  }
 }
 sets();//starting
 
 //@function randomNumber() : gets a random number used for peasants
-//@param min [integre] : number for the min value
+//@param min [integer] : number for the min value
 //@param max [integer] : number for the max value
 //@returns retNumber [integer:random] : random number between min and max
 function randomNumber(min,max) {
@@ -460,6 +469,8 @@ function fileHandeler() {
   ctx.clearRect(0, 0, c.width, c.height);
 cycleAllOnScreen();
   npcMovement();
+  if (stage.playerSpawn.x !== undefined) {
+    //code
   setLocations(player);
   if(right == true) {//Allows the player to move to the right
     player.xPos += 1;
@@ -504,6 +515,10 @@ cycleAllOnScreen();
         }
 
       }
+  }
+  }
+  else {
+    setShop(stage);
   }
 }
 

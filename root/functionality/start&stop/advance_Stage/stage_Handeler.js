@@ -13,3 +13,12 @@ function setLocations(player) {
      placeObjects({x:(stage.playerSpawn.x-30),y:(stage.playerSpawn.y-30)},"green");//Place player spawn
      drawPlayer(player);//Place Player
 }
+function setShop(stage) {
+       ctx.beginPath();//begins to draw ball on the canvas
+          ctx.rect(stage.shop.border.x, stage.shop.border.y, stage.shop.border.width, stage.shop.border.height);//draw the box
+          for (var i = 0; i < stage.shop.imgLocs.length;i++) {            
+               ctx.rect(stage.shop.imgLocs[i].x, stage.shop.imgLocs[i].y, stage.shop.imgLocs[i].width, stage.shop.imgLocs[i].height);//draw the box
+          }
+        ctx.strokeStyle = "black";//default black
+  ctx.stroke();//end draw
+}
