@@ -533,6 +533,22 @@ document.addEventListener('click', clickLoc, false);
 function clickLoc(e) {
     var mousepos = mousePos(e);
     var enemyClicked = [];
+    if (stage.shop !== undefined) {
+      for (var i = 0; i < stage.shop.buttonLoc.length;i++) {
+        var w = stage.shop.buttonLoc[i].width;
+        var h = stage.shop.buttonLoc[i].height;
+        var x = stage.shop.buttonLoc[i].x;
+        var y = stage.shop.buttonLoc[i].y;
+        if ((mousepos.yPos >= y && mousepos.yPos <= (h+y))&&(mousepos.xPos >= x && mousepos.xPos <= (w+x))) {
+            if (stage.shop.buttonLoc[i].type == "buy") {
+                console.log("Buying " + " Nothing because there is nothing");
+            }
+            if (stage.shop.buttonLoc[i].type == "cancel") {
+                console.log("Canceling " + "... there is nothing to cancel");
+            }
+        }
+      }
+    }
     for (var i = 0; i < enemies.length;i++) {
           if (mousepos.xPos > enemies[i].pos.x -20 && mousepos.xPos < enemies[i].pos.x +20) {
               if (mousepos.yPos > enemies[i].pos.y - 20 && mousepos.yPos < enemies[i].pos.y +20) {
