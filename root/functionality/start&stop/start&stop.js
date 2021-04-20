@@ -6,7 +6,7 @@ var up = false;//variable to detect if the w key is peing pressed down
 var down = false;//variable to detect if the s key is peing pressed down
 var left = false;//variable to detect if the a key is peing pressed down
 var right = false;//variable to detect if the d key is peing pressed down
-var stage = new Stages(2);
+var stage = new Stages(1);
 var stageNumber = 1;
 var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 10, 3,0,1);//forms the player
 var appliedEffects = [undefined,undefined];//player status effects
@@ -258,9 +258,6 @@ function randomNumber(min,max) {
                   }
                 if (player.hp <= 0) {//player is dead
                     //later
-                }
-                if (enemies[i].hp <= 0) {//enemy is dead
-                    enemies.splice(i,1);//remove dead guy
                 }
               }
           }
@@ -635,8 +632,12 @@ function clickLoc(e) {
           if (mousepos.xPos > enemies[i].pos.x -20 && mousepos.xPos < enemies[i].pos.x +20) {
               if (mousepos.yPos > enemies[i].pos.y - 20 && mousepos.yPos < enemies[i].pos.y +20) {
                 enemyClicked=enemies[i];
+                  if (enemies[i].hp <= 0) {//enemy is dead
+                    enemies.splice(i,1);//remove dead guy
+                  }
               }
           }
+          
     }
     if (enemyClicked.pos !== undefined) {
         var distancePos = {x:(player.xPos-enemyClicked.pos.x),y:(player.yPos-enemyClicked.pos.y)};
@@ -649,6 +650,7 @@ function clickLoc(e) {
           player.attackTimer = 0;
         }
       }
+
 }
 function mousePos(e) {
   var rect = c.getBoundingClientRect();
