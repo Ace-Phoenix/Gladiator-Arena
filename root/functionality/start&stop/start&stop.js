@@ -7,7 +7,7 @@ var down = false;//variable to detect if the s key is peing pressed down
 var left = false;//variable to detect if the a key is peing pressed down
 var right = false;//variable to detect if the d key is peing pressed down
 var stage = new Stages(2);
-var stageNumber = 2;
+var stageNumber = 1;
 var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 10, 3,0,1);//forms the player
 var appliedEffects = [undefined,undefined];//player status effects
 
@@ -528,8 +528,8 @@ cycleAllOnScreen();
   }
 }
 
-
-document.addEventListener('click', clickLoc, false);
+var clicked = undefined;
+document.addEventListener('mousedown', clickLoc, false);
 function clickLoc(e) {
     var mousepos = mousePos(e);
     var enemyClicked = [];
@@ -546,6 +546,88 @@ function clickLoc(e) {
             if (stage.shop.buttonLoc[i].type == "cancel") {
                 console.log("Canceling " + "... there is nothing to cancel");
             }
+        }
+      }
+      for (var i = 0; i < stage.shop.imgLocs.length;i++) {//starter for loop to go through the stage shp list 
+        var w = stage.shop.imgLocs[i].width;//width of the current imgLoc
+        var h = stage.shop.imgLocs[i].height;//current height
+        var x = stage.shop.imgLocs[i].x;//current x
+        var y = stage.shop.imgLocs[i].y;//current y
+        if ((mousepos.yPos >= y && mousepos.yPos <= (h+y))&&(mousepos.xPos >= x && mousepos.xPos <= (w+x))) {//mouse positions
+                    for (var k = 0; k < stage.shop.imgLocs.length;k++) {
+                        if (stage.shop.imgLocs[k]!==clicked && clicked!== undefined) {
+                            stage.shop.imgLocs[k].width = stage.shop.imgLocs[k].width*2
+                            stage.shop.imgLocs[k].height = stage.shop.imgLocs[k].height*2
+                        }
+                        if (stage.shop.imgLocs[k]==clicked) {
+                            stage.shop.imgLocs[k].width = stage.shop.imgLocs[k].width/2
+                            stage.shop.imgLocs[k].height = stage.shop.imgLocs[k].height/2
+
+                        }
+                    }
+                    clicked = stage.shop.imgLocs[i];
+                    //code
+                for (var j = 0; j < stage.shop.imgLocs.length;j++) {
+                  if (stage.shop.imgLocs[j] !== clicked) {
+                    if ((clicked.width/4) !== stage.shop.imgLocs[j].width) {
+                    stage.shop.imgLocs[j].width = stage.shop.imgLocs[j].width/2
+                    }
+                    if ((clicked.height/4) !== stage.shop.imgLocs[j].height) {
+                    stage.shop.imgLocs[j].height = stage.shop.imgLocs[j].height/2
+                    }
+                  }
+                    //code
+                }
+                var counter = 0
+                for (var l = 0; l < stage.shop.imgLocs.length;l++) {
+                    if (clicked == stage.shop.imgLocs[l]) {
+                        //code
+                        stage.shop.imgLocs[l].x = 90+(135/2)+105;
+                        stage.shop.imgLocs[l].y = 85;
+                        if (stage.shop.imgLocs[l-1]!== undefined) {
+                            //code
+                      if (stage.shop.imgLocs[l].width/4 !== stage.shop.imgLocs[l-1].width) {
+                        stage.shop.imgLocs[l].width = stage.shop.imgLocs[l].width*2;
+                        stage.shop.imgLocs[l].height = stage.shop.imgLocs[l].height*2;
+                      }
+                        }else{
+                      if (stage.shop.imgLocs[l].width/4 !== stage.shop.imgLocs[l+1].width) {
+                        stage.shop.imgLocs[l].width = stage.shop.imgLocs[l].width*2;
+                        stage.shop.imgLocs[l].height = stage.shop.imgLocs[l].height*2;
+                          
+                        }
+                      }
+                    }else{
+                      if (counter == 0) {
+                        stage.shop.imgLocs[l].x = 20;
+                        stage.shop.imgLocs[l].y = 85;
+                      }if (counter == 1) {
+                        stage.shop.imgLocs[l].x = 20;
+                        stage.shop.imgLocs[l].y = 85+(stage.shop.imgLocs[l].height)+10;
+                        
+                      }if (counter == 2) {
+                        stage.shop.imgLocs[l].x = 20;
+                        stage.shop.imgLocs[l].y = 85+(stage.shop.imgLocs[l].height*2)+10*2;
+                        
+                      }if (counter == 3) {
+                        stage.shop.imgLocs[l].x = 780-stage.shop.imgLocs[l].width;
+                        stage.shop.imgLocs[l].y = 85;
+                      }if (counter == 4) {
+                        stage.shop.imgLocs[l].x = 780-stage.shop.imgLocs[l].width;
+                        stage.shop.imgLocs[l].y = 85+(stage.shop.imgLocs[l].height)+10;
+                        
+                      }if (counter == 5) {
+                        stage.shop.imgLocs[l].x = 780-stage.shop.imgLocs[l].width;
+                        stage.shop.imgLocs[l].y = 85+(stage.shop.imgLocs[l].height*2)+10*2;
+                        
+                      }
+                      counter++;
+                      if (counter > 5) {
+                        counter = 0;
+                      }
+                    }
+                }
+            break;
         }
       }
     }
@@ -565,7 +647,6 @@ function clickLoc(e) {
              enemyClicked.hp -= player.dam;
             //code
           player.attackTimer = 0;
-             console.log("clicked");
         }
       }
 }
