@@ -29,8 +29,8 @@ class Stages{
             retObj.border = {x:50,y:50,width:700,height:700};
             retObj.imgLocs.push({x:defaultX,y:defaultY,width:defaultW,height:defaultH,tag:"topLeft",color:"red"});
             retObj.imgLocs.push({x:(defaultX+defaultW+25),y:defaultY,width:defaultW,height:defaultH,tag:"topMidLeft",color:"blue"});
-            retObj.imgLocs.push({x:(((defaultX+(defaultW*2)))+(25*2)),y:defaultY,width:defaultW,height:defaultH,tag:"topMidRight",color:"yellow"});
-            retObj.imgLocs.push({x:(((defaultX+(defaultW*3)))+(25*3)),y:defaultY,width:defaultW,height:defaultH, tag:"topRight",color:"purple"});
+            retObj.imgLocs.push({x:(((defaultX+(defaultW*2)))+(25*2)),y:defaultY,width:defaultW,height:defaultH,tag:"topMidRight",color:"red"});
+            retObj.imgLocs.push({x:(((defaultX+(defaultW*3)))+(25*3)),y:defaultY,width:defaultW,height:defaultH, tag:"topRight",color:"blue"});
             retObj.imgLocs.push({x:(((defaultX+(defaultW*.5)))+(25*.5)),y:(defaultY+defaultH+25),width:defaultW,height:defaultH,tag:"bottomLeft",color:"green"});
             retObj.imgLocs.push({x:(((defaultX+(defaultW*1.5)))+(25*1.5)),y:(defaultY+defaultH+25),width:defaultW,height:defaultH,tag:"bottomMid",color:"black"});
             retObj.imgLocs.push({x:(((defaultX+(defaultW*2.5)))+(25*2.5)),y:(defaultY+defaultH+25),width:defaultW,height:defaultH,tag:"bottomRight",color:"cyan"});
