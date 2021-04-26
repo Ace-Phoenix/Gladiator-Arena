@@ -1,0 +1,43 @@
+#inventory{
+    float:left;
+    border-top-style: dashed;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-width: 1px;
+    border-top-color: black;
+}
+#myCanvas{
+    float: Left;
+    
+    
+}
+#playerArmor{
+    display:inline;
+        margin-left: 10px;
+}
+#playerMoney{
+    display:inline;
+    margin-left: 40px;
+}
+#playerHP{
+    display:inline;
+        margin-left: 10px;
+}
+#attackTimer{
+    display:inline;
+       margin-left: 10px;
+}
+#damage{
+    display:inline;
+       margin-left: 10px;
+}
+#stats{
+    display:inline-table;
+    float: left;
+    margin-left: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+ 
+}

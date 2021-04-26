@@ -14,6 +14,7 @@ class Player {
     this.xPos = xPos;
     this.yPos = yPos;
     this.equiped = {helmet:undefined,chestplate:undefined,weapon:undefined,shield:undefined};
+    this.items = {helmet:[],chestplate:[],weapon:[],shield:[]};
     this.effects = this.effectsAdd(this.equiped); 
     this.hp = hp;
     this.dam = dam;

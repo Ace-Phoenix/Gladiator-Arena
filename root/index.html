@@ -3,10 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>Gladiator Game</title>
+    <link rel="stylesheet" href = "style.css">
   </head>
   <body>
     <canvas id = "myCanvas" width = "800" height = "800" style="border:1px solid"></canvas>
+    <div id = "stats">
+      <p id = "playerHP">Player Health : 100</p>
+      <p id = "playerMoney">Player Money : 100</p> <br>
+      <p id = "playerArmor">Player Armor : 100</p> <br>
+      <p id = "attackTimer">Attack Timer : 0</p> <br>
+      <p id = "damage">Player Damage : 10</p> <br>
+    <canvas id = "inventory" width = "600" height = "400" ></canvas>
+    </div>
   </body>
+  
     <script src="elements/Map/map_Class.js"></script>
     <script src="elements/NPC/ai_Class.js"></script>
     <script src="elements/NPC/ai_NPC.js"></script>    

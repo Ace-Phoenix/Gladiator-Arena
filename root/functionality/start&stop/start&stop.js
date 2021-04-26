@@ -1,3 +1,6 @@
+
+//Core Mechanics
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var c = document.getElementById("myCanvas");//canvas variables
 var ctx = c.getContext("2d");
 
@@ -667,3 +670,76 @@ setInterval(playerAttack, 100);//interval for updates
 setInterval(fileHandeler, 20);//interval for updates
 setInterval(initAllOnScreen, 200);//interval for updates
 setInterval(applyEffects, 100);//interval for updates
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Inventory Mechanics
+var invC = document.getElementById("inventory");//canvas variables
+var invCtx = invC.getContext("2d");
+
+document.addEventListener('mousedown', invLoc, false);
+var playerItems = {helms:[],armors:[],weapons:[],shields:[]};
+function allTheItems(code) {
+    if (code == "All The ITEMS") {
+        var helmets = [];
+        var armors = [];
+        var weapons = [];
+        var shields = [];
+        for (var i = 0; i < armor.length;i++) {
+            if (armor[i].type == "Helmet"){
+              helmets.push(armor[i])
+            }
+            if (armor[i].type == "Chestplate"){
+              armors.push(armor[i])
+              
+            }
+        }
+        for (var j = 0; j < weapon.length;j++) {
+            if (weapon[j].type == "Shield"){
+              shields.push(weapon[j])
+            }
+            else{
+              weapons.push(weapon[j])
+              
+            }
+        }
+        player.items.helmet = helmets;
+        player.items.chestplate = armors;
+        player.items.weapon = weapons;
+        player.items.shield = shields;
+        playerItems = {helms:player.items.helmet,armors:player.items.chestplate,weapons:player.items.weapon,shields:player.items.shield};
+    }
+}
+var equipedItems = {helm:player.equiped.helmet,armor:player.equiped.armor,weapon:player.equiped.weapon,shield:player.equiped.shield}
+var itemBoxesMain = [{},{},{},{}];
+
+function drawBoxes(select) {
+  invCtx.beginPath();//begins to draw ball on the canvas
+    invCtx.rect(15, 30, 135, 185);//draw the box
+        itemBoxesMain[0] = {x:15,y:30,width:135,height:185,item:undefined}
+    invCtx.rect(15+135+10, 30, 135, 185);//draw the box
+        itemBoxesMain[1] = {x:(15+135+10),y:30,width:135,height:185,item:undefined}
+    invCtx.rect(15+135+135+20, 30, 135, 185);//draw the box
+        itemBoxesMain[2] = {x:(15+135+135+20),y:30,width:135,height:185,item:undefined}
+    invCtx.rect(15+(135*3)+(10*3), 30, 135, 185);//draw the box
+        itemBoxesMain[3] = {x:(15+(135*3)+(10*3)),y:30,width:135,height:185,item:undefined}
+      invCtx.strokeStyle = "black";//default black
+  invCtx.stroke();//end draw
+}
+function inventoryHandeler() {
+    drawBoxes();
+}
+
+function invLoc(e) {
+  var loc = mouseInvPos(e)
+  console.log(loc);
+  
+}
+
+function mouseInvPos(e) {
+  var rect = invC.getBoundingClientRect();
+  return {
+    xPos: e.clientX - rect.left,
+    yPos: e.clientY - rect.top
+  };
+}
+
+setInterval(inventoryHandeler, 10);//interval for updates
