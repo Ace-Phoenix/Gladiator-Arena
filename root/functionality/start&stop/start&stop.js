@@ -672,6 +672,7 @@ setInterval(initAllOnScreen, 200);//interval for updates
 setInterval(applyEffects, 100);//interval for updates
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Inventory Mechanics
+var inventoryStage = "Main";
 var invC = document.getElementById("inventory");//canvas variables
 var invCtx = invC.getContext("2d");
 
@@ -710,9 +711,10 @@ function allTheItems(code) {
 }
 var equipedItems = {helm:player.equiped.helmet,armor:player.equiped.armor,weapon:player.equiped.weapon,shield:player.equiped.shield}
 var itemBoxesMain = [{},{},{},{}];
-
-function drawBoxes(select) {
+var selectBoxes = [];
+function drawBoxes() {
   invCtx.beginPath();//begins to draw ball on the canvas
+  if (inventoryStage == "Main") {
     invCtx.rect(15, 30, 135, 185);//draw the box
         itemBoxesMain[0] = {x:15,y:30,width:135,height:185,item:undefined}
     invCtx.rect(15+135+10, 30, 135, 185);//draw the box
@@ -722,15 +724,64 @@ function drawBoxes(select) {
     invCtx.rect(15+(135*3)+(10*3), 30, 135, 185);//draw the box
         itemBoxesMain[3] = {x:(15+(135*3)+(10*3)),y:30,width:135,height:185,item:undefined}
       invCtx.strokeStyle = "black";//default black
+  }else if (inventoryStage == "Helm Select") {
+    invCtx.rect(30, 30, 20, 185/1.25);//draw the box
+    invCtx.font = "100px Arial";
+    invCtx.fillText("Hello World", 10, 50);
+    invCtx.rect(250, 30, 135/1.25, 185/1.25);//draw the box
+    selectBoxes.push({x:250,y:30,width:135/1.25,height:185/1.25,});
+    invCtx.moveTo(0, 200);
+    invCtx.lineTo(600, 200);    
+    invCtx.rect(24, 225, 135/1.50, 185/1.50);//draw the box
+    invCtx.rect(24*2+5+((135/1.50)), 225, 135/1.50, 185/1.50);//draw the box
+    invCtx.rect(24*3+5+((135/1.50)*2), 225, 135/1.50, 185/1.50);//draw the box
+    invCtx.rect(24*4+5+((135/1.50)*3), 225, 135/1.50, 185/1.50);//draw the box
+    invCtx.rect(24*5+5+((135/1.50)*4), 225, 135/1.50, 185/1.50);//draw the box
+
+  }
   invCtx.stroke();//end draw
 }
 function inventoryHandeler() {
+    invCtx.clearRect(0, 0, invC.width, invC.height);
     drawBoxes();
 }
-
 function invLoc(e) {
   var loc = mouseInvPos(e)
-  console.log(loc);
+  
+  if (inventoryStage == "Helm Select") {
+  console.log("Helm Select")
+  }  
+  if (inventoryStage == "Plate Select") {
+  console.log("Plate Select")
+  
+  }  
+  if (inventoryStage == "Weapon Select") {
+  console.log("Weapon Select")
+  
+  }  
+  if (inventoryStage == "Shield Select") {
+  console.log("Shield Select")
+    
+  }  
+
+  if (inventoryStage == "Main") {
+      if ((loc.xPos >= itemBoxesMain[0].x && loc.xPos <= (itemBoxesMain[0].x + itemBoxesMain[0].width))&&(loc.yPos >= itemBoxesMain[0].y && loc.yPos <= (itemBoxesMain[0].y + itemBoxesMain[0].height))) {
+          console.log("helm");
+          inventoryStage = "Helm Select";
+      }  
+      if ((loc.xPos >= itemBoxesMain[1].x && loc.xPos <= (itemBoxesMain[1].x + itemBoxesMain[1].width))&&(loc.yPos >= itemBoxesMain[1].y && loc.yPos <= (itemBoxesMain[1].y + itemBoxesMain[1].height))) {
+          console.log("Plate");
+          inventoryStage = "Plate Select";
+      }  
+      if ((loc.xPos >= itemBoxesMain[2].x && loc.xPos <= (itemBoxesMain[2].x + itemBoxesMain[2].width))&&(loc.yPos >= itemBoxesMain[2].y && loc.yPos <= (itemBoxesMain[2].y + itemBoxesMain[2].height))) {
+          console.log("Weapon");
+          inventoryStage = "Weapon Select";
+      }  
+      if ((loc.xPos >= itemBoxesMain[3].x && loc.xPos <= (itemBoxesMain[3].x + itemBoxesMain[3].width))&&(loc.yPos >= itemBoxesMain[3].y && loc.yPos <= (itemBoxesMain[3].y + itemBoxesMain[3].height))) {
+          console.log("Shield");
+          inventoryStage = "Shield Select";
+      }  
+  }
   
 }
 
