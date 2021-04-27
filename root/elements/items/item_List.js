@@ -146,73 +146,96 @@ const weapon = [
 //@array armor [array of objects] : list of armors
 //@objects {restricted : Must Follow : {name:"string",type:???,desc:"string",damRest:integer,spec:"type:percentage"};}
  const armor = [
-   {name: "Basic Chestplate",//Name
-    type: "Chestplate",//Type:Chestplate 
-    value: 1,//Worth
-    desc: "Basic protection from attacks",
-    damRest: 2},//resistance it gives
-   {name: "Basic Helmet",//Name
-    type: "Helmet",//Type:Helmet
-    value: 1,//Worth
-    desc: "Basic protection from attacks",
-    damRest: 2},//resistance it gives
-   {name: "Light Chestplate",//Name
+  {
+    name: "Basic Chestplate",//Name
     type: "Chestplate",//Type:Chestplate
-    value: 2,//Worth
+    value: 10,//Worth
+    desc: "Basic protection from attacks",
+    damRest: 20
+  },//resistance it gives
+  {
+    name: "Basic Helmet",//Name
+    type: "Helmet",//Type:Helmet
+    value: 10,//Worth
+    desc: "Basic protection from attacks",
+    damRest: 20
+  },//resistance it gives
+  {
+    name: "Light Chestplate",//Name
+    type: "Chestplate",//Type:Chestplate
+    value: 20,//Worth
     desc: "Light protection from attacks but more movement",
-    damRest: 1,//Gresistance it gives
-    spec: "Dodge:5%"},//Special Effect:Dodge : chance to not take damage
-   {name: "Light Helmet",
+    damRest: 10,//Gresistance it gives
+    spec: "Dodge:5%"
+  },//Special Effect:Dodge : chance to not take damage
+  {
+    name: "Light Helmet",
     type: "Helmet",
-    value: 2,
+    value: 20,
     desc: "Light protection from attacks but more movement",
-    damRest: 1,
-    spec: "Dodge:5%"},//Special Effect:Dodge : chance to not take damage
-   {name: "Heavy Chestplate",
+    damRest: 10,
+    spec: "Dodge:5%"
+  },//Special Effect:Dodge : chance to not take damage
+  {
+    name: "Heavy Chestplate",
     type: "Chestplate",
-    value: 3,
+    value: 30,
     desc: "Heavy protection from attacks",
-    damRest: 4,
-    spec: "DamageRes:2%"},//Special Effect : DamagaeRes : Increase in damage res by a percentage
-   {name: "Heavy Helmet",
+    damRest: 40,
+    spec: "DamageRes:2%"
+  },//Special Effect : DamagaeRes : Increase in damage res by a percentage
+  {
+    name: "Heavy Helmet",
     type: "Helmet",
-    value: 3,
+    value: 30,
     desc: "Heavy protection from attacks",
-    damRest: 4,
-    spec: "DamageRes:3%"},//Special Effect : DamagaeRes : Increase in damage res by a percentage
-   {name: "Unique Chestplate",
+    damRest: 40,
+    spec: "DamageRes:3%"
+  },//Special Effect : DamagaeRes : Increase in damage res by a percentage
+  {
+    name: "Unique Chestplate",
     type: "Chestplate",
-    value: 4,
+    value: 40,
     desc: "Moderate protection and unique resistance",
-    damRest: 3,
-    spec: "AttackSpeed:2%"},//Special Effect : AttackSpeed : increases attack rate by a percentage
-   {name: "Unique Helmet",
+    damRest: 30,
+    spec: "AttackSpeed:2%"
+  },//Special Effect : AttackSpeed : increases attack rate by a percentage
+  {
+    name: "Unique Helmet",
     type: "Helmet",
-    value: 4,
+    value: 40,
     desc: "Moderate protection and unique resistance",
-    damRest: 3,
-    spec: "AttackSpeed:1%"},//Special Effect : AttackSpeed : increases attack rate by a percentage
-   {name: "Mythic Chestplate",
+    damRest: 30,
+    spec: "AttackSpeed:1%"
+  },//Special Effect : AttackSpeed : increases attack rate by a percentage
+  {
+    name: "Mythic Chestplate",
     type: "Chestplate",
-    value: 5,
+    value: 50,
     desc: "Light chestplate, with the power of life bestowed upon it",
-    damRest: 3,
-    spec: "HealthBoost:4%"},//Special Effect : HealthBoost : increases health by a percentage
-   {name: "Mythic Helmet",
+    damRest: 60,
+    spec: "HealthBoost:4%"
+  },//Special Effect : HealthBoost : increases health by a percentage
+  {
+    name: "Mythic Helmet",
     type: "Helmet",
-    value: 5,
+    value: 50,
     desc: "Light helmet, with the power of life bestowed upon it",
-    damRest: 3,
-    spec: "HealthBoost:6%"},//Special Effect : HealthBoost : increases health by a percentage
-   {name: "Ancient Chestplate",
+    damRest: 60,
+    spec: "HealthBoost:6%"
+  },//Special Effect : HealthBoost : increases health by a percentage
+  {
+    name: "Ancient Chestplate",
     type: "Chestplate",
-    value: 6,
+    value: 60,
     desc: "Heavily armored chestplate, infused with an ancient power",
-    damRest: 4,
-    spec: "AttackDamage:2%"},//Special Effect : AttackBoost : increases damage by a percentage
-   {name: "Ancient Helmet",
+    damRest: 50,
+    spec: "AttackDamage:2%"
+  },//Special Effect : AttackBoost : increases damage by a percentage
+  {
+    name: "Ancient Helmet",
     type: "Helmet",
-    value: 6,
+    value: 60,
     desc: "Heavily armored helmet, infused with an ancient power",
-    damRest: 4,
+    damRest: 50,
     spec: "AttackDamage:1%"}];//Special Effect : AttackBoost : increases damage by a percentage
