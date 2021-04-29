@@ -744,6 +744,66 @@ function drawBoxes() {
     invCtx.rect(24*5+5+((135/1.50)*4), 225, 135/1.50, 185/1.50);//draw the box
     selectBoxes.push({x:24*5+5+((135/1.50)*4),y:225,width:135/1.50,height:185/1.50});
 
+  }else if (inventoryStage == "Plate Select") {
+    invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
+    //invCtx.font = "100px Arial";
+    //invCtx.fillText("Hello World", 10, 50);
+    invCtx.rect(250, 30, 135/1.25, 185/1.25);//draw the box
+    selectBoxes.push({x:250,y:30,width:135/1.25,height:185/1.25});
+    invCtx.moveTo(0, 200);
+    invCtx.lineTo(600, 200);    
+    invCtx.rect(24, 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24,y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*2+5+((135/1.50)), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*2+5+((135/1.50)),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*3+5+((135/1.50)*2), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*3+5+((135/1.50)*2),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*4+5+((135/1.50)*3), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*4+5+((135/1.50)*3),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*5+5+((135/1.50)*4), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*5+5+((135/1.50)*4),y:225,width:135/1.50,height:185/1.50});
+
+  }else if (inventoryStage == "Weapon Select") {
+    invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
+    //invCtx.font = "100px Arial";
+    //invCtx.fillText("Hello World", 10, 50);
+    invCtx.rect(250, 30, 135/1.25, 185/1.25);//draw the box
+    selectBoxes.push({x:250,y:30,width:135/1.25,height:185/1.25});
+    invCtx.moveTo(0, 200);
+    invCtx.lineTo(600, 200);    
+    invCtx.rect(24, 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24,y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*2+5+((135/1.50)), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*2+5+((135/1.50)),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*3+5+((135/1.50)*2), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*3+5+((135/1.50)*2),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*4+5+((135/1.50)*3), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*4+5+((135/1.50)*3),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*5+5+((135/1.50)*4), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*5+5+((135/1.50)*4),y:225,width:135/1.50,height:185/1.50});
+
+  }else if (inventoryStage == "Shield Select") {
+    invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
+    //invCtx.font = "100px Arial";
+    //invCtx.fillText("Hello World", 10, 50);
+    invCtx.rect(250, 30, 135/1.25, 185/1.25);//draw the box
+    selectBoxes.push({x:250,y:30,width:135/1.25,height:185/1.25});
+    invCtx.moveTo(0, 200);
+    invCtx.lineTo(600, 200);    
+    invCtx.rect(24, 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24,y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*2+5+((135/1.50)), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*2+5+((135/1.50)),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*3+5+((135/1.50)*2), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*3+5+((135/1.50)*2),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*4+5+((135/1.50)*3), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*4+5+((135/1.50)*3),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*5+5+((135/1.50)*4), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*5+5+((135/1.50)*4),y:225,width:135/1.50,height:185/1.50});
+
   }
   invCtx.stroke();//end draw
 }
