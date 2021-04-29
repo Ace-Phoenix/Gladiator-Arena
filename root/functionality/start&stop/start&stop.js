@@ -712,6 +712,7 @@ function allTheItems(code) {
 var equipedItems = {helm:player.equiped.helmet,armor:player.equiped.armor,weapon:player.equiped.weapon,shield:player.equiped.shield}
 var itemBoxesMain = [{},{},{},{}];
 var selectBoxes = [];
+var buttons = {accept:{x:125,y:(20+((185/1.25)/2)),width:70,height:30},cancel:{x:250+125+35,y:20+((185/1.25)/2),width:70,height:30}};
 function drawBoxes() {
   invCtx.beginPath();//begins to draw ball on the canvas
   if (inventoryStage == "Main") {
@@ -786,6 +787,7 @@ function drawBoxes() {
 
   }else if (inventoryStage == "Shield Select") {
     invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
+    
     invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
     //invCtx.font = "100px Arial";
     //invCtx.fillText("Hello World", 10, 50);
@@ -816,6 +818,9 @@ function invLoc(e) {
   
   if (inventoryStage == "Helm Select") {
   console.log("Helm Select")
+    if (buttons) {
+    //code
+    }
   }  
   if (inventoryStage == "Plate Select") {
   console.log("Plate Select")
