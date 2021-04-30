@@ -712,6 +712,7 @@ function allTheItems(code) {
 var equipedItems = {helm:player.equiped.helmet,armor:player.equiped.armor,weapon:player.equiped.weapon,shield:player.equiped.shield}
 var itemBoxesMain = [{},{},{},{}];
 var selectBoxes = [];
+var buttons = {accept:{x:125,y:(20+((185/1.25)/2)),width:70,height:30},cancel:{x:250+125+35,y:20+((185/1.25)/2),width:70,height:30}};
 function drawBoxes() {
   invCtx.beginPath();//begins to draw ball on the canvas
   if (inventoryStage == "Main") {
@@ -725,18 +726,85 @@ function drawBoxes() {
         itemBoxesMain[3] = {x:(15+(135*3)+(10*3)),y:30,width:135,height:185,item:undefined}
       invCtx.strokeStyle = "black";//default black
   }else if (inventoryStage == "Helm Select") {
-    invCtx.rect(30, 30, 20, 185/1.25);//draw the box
-    invCtx.font = "100px Arial";
-    invCtx.fillText("Hello World", 10, 50);
+    invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
+    //invCtx.font = "100px Arial";
+    //invCtx.fillText("Hello World", 10, 50);
     invCtx.rect(250, 30, 135/1.25, 185/1.25);//draw the box
-    selectBoxes.push({x:250,y:30,width:135/1.25,height:185/1.25,});
+    selectBoxes.push({x:250,y:30,width:135/1.25,height:185/1.25});
     invCtx.moveTo(0, 200);
     invCtx.lineTo(600, 200);    
     invCtx.rect(24, 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24,y:225,width:135/1.50,height:185/1.50});
     invCtx.rect(24*2+5+((135/1.50)), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*2+5+((135/1.50)),y:225,width:135/1.50,height:185/1.50});
     invCtx.rect(24*3+5+((135/1.50)*2), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*3+5+((135/1.50)*2),y:225,width:135/1.50,height:185/1.50});
     invCtx.rect(24*4+5+((135/1.50)*3), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*4+5+((135/1.50)*3),y:225,width:135/1.50,height:185/1.50});
     invCtx.rect(24*5+5+((135/1.50)*4), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*5+5+((135/1.50)*4),y:225,width:135/1.50,height:185/1.50});
+
+  }else if (inventoryStage == "Plate Select") {
+    invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
+    //invCtx.font = "100px Arial";
+    //invCtx.fillText("Hello World", 10, 50);
+    invCtx.rect(250, 30, 135/1.25, 185/1.25);//draw the box
+    selectBoxes.push({x:250,y:30,width:135/1.25,height:185/1.25});
+    invCtx.moveTo(0, 200);
+    invCtx.lineTo(600, 200);    
+    invCtx.rect(24, 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24,y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*2+5+((135/1.50)), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*2+5+((135/1.50)),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*3+5+((135/1.50)*2), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*3+5+((135/1.50)*2),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*4+5+((135/1.50)*3), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*4+5+((135/1.50)*3),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*5+5+((135/1.50)*4), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*5+5+((135/1.50)*4),y:225,width:135/1.50,height:185/1.50});
+
+  }else if (inventoryStage == "Weapon Select") {
+    invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
+    //invCtx.font = "100px Arial";
+    //invCtx.fillText("Hello World", 10, 50);
+    invCtx.rect(250, 30, 135/1.25, 185/1.25);//draw the box
+    selectBoxes.push({x:250,y:30,width:135/1.25,height:185/1.25});
+    invCtx.moveTo(0, 200);
+    invCtx.lineTo(600, 200);    
+    invCtx.rect(24, 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24,y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*2+5+((135/1.50)), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*2+5+((135/1.50)),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*3+5+((135/1.50)*2), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*3+5+((135/1.50)*2),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*4+5+((135/1.50)*3), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*4+5+((135/1.50)*3),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*5+5+((135/1.50)*4), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*5+5+((135/1.50)*4),y:225,width:135/1.50,height:185/1.50});
+
+  }else if (inventoryStage == "Shield Select") {
+    invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
+    
+    invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
+    //invCtx.font = "100px Arial";
+    //invCtx.fillText("Hello World", 10, 50);
+    invCtx.rect(250, 30, 135/1.25, 185/1.25);//draw the box
+    selectBoxes.push({x:250,y:30,width:135/1.25,height:185/1.25});
+    invCtx.moveTo(0, 200);
+    invCtx.lineTo(600, 200);    
+    invCtx.rect(24, 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24,y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*2+5+((135/1.50)), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*2+5+((135/1.50)),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*3+5+((135/1.50)*2), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*3+5+((135/1.50)*2),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*4+5+((135/1.50)*3), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*4+5+((135/1.50)*3),y:225,width:135/1.50,height:185/1.50});
+    invCtx.rect(24*5+5+((135/1.50)*4), 225, 135/1.50, 185/1.50);//draw the box
+    selectBoxes.push({x:24*5+5+((135/1.50)*4),y:225,width:135/1.50,height:185/1.50});
 
   }
   invCtx.stroke();//end draw
@@ -750,6 +818,9 @@ function invLoc(e) {
   
   if (inventoryStage == "Helm Select") {
   console.log("Helm Select")
+    if (buttons) {
+    //code
+    }
   }  
   if (inventoryStage == "Plate Select") {
   console.log("Plate Select")
