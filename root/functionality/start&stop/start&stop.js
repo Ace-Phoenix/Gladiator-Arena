@@ -226,7 +226,7 @@ function randomNumber(min,max) {
   function npcCollision() {
     player.attackTimer+=0.1;//add to attack timer
       if (player.attackTimer>player.attackSpeed) {//attack timer over the speed set zero
-          player.attackTimer = 0;
+          player.attackTimer = player.attackSpeed;
       }else{
           player.attackTimer = Math.round(player.attackTimer*10)/10;//Keeping it all to the first decimal point
       } 
@@ -529,6 +529,7 @@ cycleAllOnScreen();
 }
 
 var clicked = undefined;
+var target = undefined;
 document.addEventListener('mousedown', clickLoc, false);
 function clickLoc(e) {
     var mousepos = mousePos(e);
@@ -541,8 +542,21 @@ function clickLoc(e) {
         var y = stage.shop.buttonLoc[i].y;
         if ((mousepos.yPos >= y && mousepos.yPos <= (h+y))&&(mousepos.xPos >= x && mousepos.xPos <= (w+x))) {
             if (stage.shop.buttonLoc[i].type == "buy") {
-              stageNumber++;
-                nextStage(stageNumber)
+                if (target !== undefined) {
+                  if (target.type == "Helmet") {
+                    console.log(target)
+                    player.items.helmet.push(target);
+                  }
+                  if (target.type == "Chestplate") {
+                    player.items.chestplate.push(target);
+                  }
+                  if (target.type == "Sword" || target.type == "Mace") {
+                    player.items.weapon.push(target);
+                  }
+                  if (target.type == "Shield") {
+                    player.items.shield.push(target);
+                  }
+                }
             }
             if (stage.shop.buttonLoc[i].type == "cancel") {
                 console.log("Canceling " + "... there is nothing to cancel");
@@ -557,6 +571,8 @@ function clickLoc(e) {
         var x = stage.shop.imgLocs[i].x;//current x
         var y = stage.shop.imgLocs[i].y;//current y
         if ((mousepos.yPos >= y && mousepos.yPos <= (h+y))&&(mousepos.xPos >= x && mousepos.xPos <= (w+x))) {//mouse positions
+          target = stage.shop.imgLocs[i].item;
+
                     for (var k = 0; k < stage.shop.imgLocs.length;k++) {
                         if (stage.shop.imgLocs[k]!==clicked && clicked!== undefined) {
                             stage.shop.imgLocs[k].width = stage.shop.imgLocs[k].width*2
@@ -747,7 +763,7 @@ function drawBoxes(selectLoc) {
 
     invCtx.rect(15+135+135+20, 30, 135, 185);//draw the box
         itemBoxesMain[2] = {x:(15+135+135+20),y:30,width:135,height:185,item:undefined}
-        if (player.equiped.weapon == undefined || player.equped.weapon.img == undefined) {
+        if (player.equiped.weapon == undefined) {
                 boxToimg((15+135+135+20),30,135,185,swordImg);
         }else{
                 boxToimg((15+135+135+20),30,135,185,player.equiped.weapon.img);
@@ -755,7 +771,7 @@ function drawBoxes(selectLoc) {
         }
     invCtx.rect(15+(135*3)+(10*3), 30, 135, 185);//draw the box
         itemBoxesMain[3] = {x:(15+(135*3)+(10*3)),y:30,width:135,height:185,item:undefined}
-        if (player.equiped.shield == undefined || player.equped.shield.img == undefined) {
+        if (player.equiped.shield == undefined) {
                 boxToimg((15+(135*3)+(10*3)),30,135,185,shieldImg);
         }else{
                 boxToimg((15+(135*3)+(10*3)),30,135,185,player.equiped.shield.img);
@@ -852,8 +868,11 @@ function drawBoxes(selectLoc) {
     //invCtx.fillText("Hello World", 10, 50);
   invCtx.beginPath();//begins to draw ball on the canvas
     invCtx.rect(235, 30, 135/1.0, 185/1.0);//draw the box
+          selectBoxes[0] = {x:235,y:30,width:135/1.0,height:185/1.0,item:player.equiped.weapon};
+
    /// selectBoxes.push({x:235,y:30,width:135/1.0,height:185/1.0,item:player.equiped.helm});
-      if (player.equiped.shield !== undefined) {
+      if (player.equiped.weapon !== undefined) {
+        boxToimg(235,30,135/1.0,185/1.0,player.equiped.weapon.img);
 
       }
   invCtx.moveTo(0, 240);
@@ -876,7 +895,6 @@ function drawBoxes(selectLoc) {
 
   }
   invCtx.stroke();//end draw
-selectBoxes = [];
   }else if (inventoryStage == "Shield Select") {
   invCtx.beginPath();//begins to draw ball on the canvas
     invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
@@ -890,7 +908,9 @@ selectBoxes = [];
     //invCtx.fillText("Hello World", 10, 50);
   invCtx.beginPath();//begins to draw ball on the canvas
     invCtx.rect(235, 30, 135/1.0, 185/1.0);//draw the box
+            selectBoxes[0] = {x:235,y:30,width:135/1.0,height:185/1.0,item:player.equiped.shield};
       if (player.equiped.shield !== undefined) {
+        boxToimg(235,30,135/1.0,185/1.0,player.equiped.shield.img);
 
       }
   invCtx.moveTo(0, 240);
@@ -905,7 +925,7 @@ selectBoxes = [];
       var x = 24*i+5+((135/1.5)*(i-1)) 
     }
     invCtx.rect(x, y, w, h);//draw the box
-      selectBoxes.push({x:x,y:y,width:w,height:h});
+      selectBoxes[i] = {x:x,y:y,width:w,height:h,item:boxItems[i-1]};
       if (boxItems[i-1] !== undefined) {
         //code
         boxToimg(x,y,w,h,boxItems[i-1].img);
@@ -913,7 +933,6 @@ selectBoxes = [];
 
   }
   invCtx.stroke();//end draw
-selectBoxes = [];
   }
   if (selectLoc !== undefined) {
   }
@@ -1016,11 +1035,55 @@ function invLoc(e) {
   }  
   if (inventoryStage == "Weapon Select") {
   console.log("Weapon Select")
- 
+       for (var i = 0; i < selectBoxes.length;i++) {
+        if (loc.xPos > selectBoxes[i].x && loc.xPos < (selectBoxes[i].x + selectBoxes[i].width) && loc.yPos > selectBoxes[i].y && loc.yPos < selectBoxes[i].y + selectBoxes[i].height) {
+           if (selectBoxes[i].item !== undefined) {
+            //code
+            console.log("Checks out")
+            player.equipItem(selectBoxes[i].item);
+           }
+                boxItems = [];//making the box items no longer have selected items 
+                      var index = 0//indexing
+          for (var j = 0; j < player.items.weapon.length;j++) {//for loop to check for the first five items
+              if (player.items.weapon[j] !== player.equiped.weapon) {
+                boxItems.push(player.items.weapon[j])//push
+                if (index >= 5) {
+                  index = 0//indexing
+                  break;//break out this is needed please for the love of sane things don't remove the breaks they are nneded 
+                }
+                index++;
+              }
+          }
+
+        }
+    }
+
   }  
   if (inventoryStage == "Shield Select") {
   console.log("Shield Select")
-  
+         for (var i = 0; i < selectBoxes.length;i++) {
+        if (loc.xPos > selectBoxes[i].x && loc.xPos < (selectBoxes[i].x + selectBoxes[i].width) && loc.yPos > selectBoxes[i].y && loc.yPos < selectBoxes[i].y + selectBoxes[i].height) {
+           console.log("Hello?")
+           if (selectBoxes[i].item !== undefined) {
+            //code
+            player.equipItem(selectBoxes[i].item);
+           }
+                boxItems = [];//making the box items no longer have selected items 
+                      var index = 0//indexing
+          for (var j = 0; j < player.items.shield.length;j++) {//for loop to check for the first five items
+              if (player.items.shield[j] !== player.equiped.shield) {
+                boxItems.push(player.items.shield[j])//push
+                if (index >= 5) {
+                  index = 0//indexing
+                  break;//break out this is needed please for the love of sane things don't remove the breaks they are nneded 
+                }
+                index++;
+              }
+          }
+
+        }
+    }
+
   }  
 //Everything after this point is in the main screen
 //So if we wanted secrets in the inventory screen it will be here
@@ -1100,4 +1163,17 @@ function mouseInvPos(e) {
   };
 }
 
+function updateStats(){
+  document.getElementById("playerHP").innerHTML = "Player Health : " + player.hp;
+  document.getElementById("playerArmor").innerHTML = "Player Armor : " + player.armorRating;
+  var time = (Math.round(player.attackTimer*10))/10;
+  document.getElementById("attackTimer").innerHTML = "Player Armor : " + time;
+  document.getElementById("damage").innerHTML = "Player Damage : " + player.dam;
+  document.getElementById("playerMoney").innerHTML = "Player Money : " + player.gold;
+  
+}
+
+
+
 setInterval(inventoryHandeler, 10);//interval for updates
+setInterval(updateStats,10)

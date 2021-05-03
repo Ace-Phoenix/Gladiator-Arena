@@ -1,6 +1,9 @@
 
 var shopItemsHelmets = [{stageOne:[armor[1],armor[3]]}]
 var shopItemsPlates = [{stageOne:[armor[0],armor[2]]}]
+var shopItemsSword = [{stageOne:weapon[0]}]
+var shopItemsMace = [{stageOne:weapon[12]}]
+var shopItemsShield = [{stageOne:weapon[6]}]
 
 
 
@@ -88,14 +91,25 @@ function colorAdder(stage) {
         if (plat >=2) {
             plat=0
         }
-
      }if (stage.color == "green") {
-        ctx.drawImage(swordImg,stage.x, stage.y, stage.width, stage.height);
+      if (stageNumber < 3) {
+        //code
+        ctx.drawImage(shopItemsSword[0].stageOne.img,stage.x, stage.y, stage.width, stage.height);
+      }
+
+
+        //ctx.drawImage(swordImg,stage.x, stage.y, stage.width, stage.height);
      }if (stage.color == "black") {
-        ctx.drawImage(shieldImg,stage.x, stage.y, stage.width, stage.height);
+      if (stageNumber < 3) {
+        //code
+        ctx.drawImage(shopItemsShield[0].stageOne.img,stage.x, stage.y, stage.width, stage.height);
+      }
      }
     if (stage.color == "cyan") {
-        ctx.drawImage(maceImg,stage.x, stage.y, stage.width, stage.height);
+      if (stageNumber < 3) {
+        //code
+        ctx.drawImage(shopItemsMace[0].stageOne.img,stage.x, stage.y, stage.width, stage.height);
+      }
      }
 
         ctx.strokeStyle = "black";//default black

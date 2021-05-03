@@ -9,6 +9,7 @@
 ////@param hp [object] {retsricted : Must follow {current:#,total:#}} : Health of the player
 ////@param dam [object] {restricted : Must follow {min: #, max:#}}:min and max damage the player can do
 ////@param lives [integer] {retsricted : 0 < lives < Too Many} : amount of live the player has 
+var baseDamage = 10;
 class Player {
   constructor(xPos, yPos, hp, dam, lives,attackTimer,attackSpeed) {
     this.xPos = xPos;
@@ -22,6 +23,7 @@ class Player {
     this.armorRating = 0;
     this.attackDist = 70;//px
     this.aF = 0;
+    this.gold = 0;
     this.attackTimer = attackTimer;
     this.attackSpeed = attackSpeed;
   }
@@ -118,26 +120,30 @@ class Player {
   }
   equipItem(item){
     var prevEffect = this.effects;
+    var totalDam = 10;
+    var totalArmor = 0;
     if (this.effects !== undefined) {
       this.updateOrRemove("remove");
     }
     if (item.type == "Helmet") {
         this.equiped.helmet = item;
-        this.armorRating += item.damRest;
+        totalArmor += item.damRest;
     }
     if (item.type == "Chestplate") {
       this.equiped.chestplate = item;
-      this.armorRating += item.damRest;
+      totalArmor += item.damRest;
     }
     if (item.type == "Sword") {
       this.equiped.weapon = item;
-      this.dam += item.dam;
+      totalDam += item.dam ;
     }
     if (item.type == "Shield") {
       this.equiped.shield = item;
-      this.armorRating += item.damRest;
-      this.dam += item.dam;
+      totalArmor += item.damRest;
+      totalDam += item.dam ;
     }
+    this.dam = totalDam;
+    this.armorRating = totalArmor;
     this.effectsAdd(this.equiped);
     this.updateOrRemove("update");
   }

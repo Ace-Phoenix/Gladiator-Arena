@@ -27,13 +27,13 @@ class Stages{
         var defaultW = 135;
         if (stage == 2) {
             retObj.border = {x:50,y:50,width:700,height:700};
-            retObj.imgLocs.push({x:defaultX,y:defaultY,width:defaultW,height:defaultH,tag:"topLeft",color:"red"});
-            retObj.imgLocs.push({x:(defaultX+defaultW+25),y:defaultY,width:defaultW,height:defaultH,tag:"topMidLeft",color:"blue"});
-            retObj.imgLocs.push({x:(((defaultX+(defaultW*2)))+(25*2)),y:defaultY,width:defaultW,height:defaultH,tag:"topMidRight",color:"red"});
-            retObj.imgLocs.push({x:(((defaultX+(defaultW*3)))+(25*3)),y:defaultY,width:defaultW,height:defaultH, tag:"topRight",color:"blue"});
-            retObj.imgLocs.push({x:(((defaultX+(defaultW*.5)))+(25*.5)),y:(defaultY+defaultH+25),width:defaultW,height:defaultH,tag:"bottomLeft",color:"green"});
-            retObj.imgLocs.push({x:(((defaultX+(defaultW*1.5)))+(25*1.5)),y:(defaultY+defaultH+25),width:defaultW,height:defaultH,tag:"bottomMid",color:"black"});
-            retObj.imgLocs.push({x:(((defaultX+(defaultW*2.5)))+(25*2.5)),y:(defaultY+defaultH+25),width:defaultW,height:defaultH,tag:"bottomRight",color:"cyan"});
+            retObj.imgLocs.push({x:defaultX,y:defaultY,width:defaultW,height:defaultH,tag:"topLeft",color:"red",item:armor[1]});
+            retObj.imgLocs.push({x:(defaultX+defaultW+25),y:defaultY,width:defaultW,height:defaultH,tag:"topMidLeft",color:"blue",item:armor[0]});
+            retObj.imgLocs.push({x:(((defaultX+(defaultW*2)))+(25*2)),y:defaultY,width:defaultW,height:defaultH,tag:"topMidRight",color:"red",item:armor[3]});
+            retObj.imgLocs.push({x:(((defaultX+(defaultW*3)))+(25*3)),y:defaultY,width:defaultW,height:defaultH, tag:"topRight",color:"blue", item:armor[2]});
+            retObj.imgLocs.push({x:(((defaultX+(defaultW*.5)))+(25*.5)),y:(defaultY+defaultH+25),width:defaultW,height:defaultH,tag:"bottomLeft",color:"green", item:weapon[0]});
+            retObj.imgLocs.push({x:(((defaultX+(defaultW*1.5)))+(25*1.5)),y:(defaultY+defaultH+25),width:defaultW,height:defaultH,tag:"bottomMid",color:"black",item:weapon[6]});
+            retObj.imgLocs.push({x:(((defaultX+(defaultW*2.5)))+(25*2.5)),y:(defaultY+defaultH+25),width:defaultW,height:defaultH,tag:"bottomRight",color:"cyan",item:weapon[12]});
             retObj.buttonLoc.push({x:(350-95),y:550,width:95,height:55,type:"buy"});
             retObj.buttonLoc.push({x:(350+95),y:550,width:95,height:55,type:"cancel"});
         }if (stage == 4) {
