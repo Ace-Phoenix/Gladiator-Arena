@@ -677,6 +677,16 @@ var invC = document.getElementById("inventory");//canvas variables
 var invCtx = invC.getContext("2d");
 
 document.addEventListener('mousedown', invLoc, false);
+
+//@function boxToimg() : [Purpose:Functionality] : [Utility:Conversion:Images] : takes a box and places an img where it would make sence and places it
+//@param x [integer:Initial] : Location x 
+//@param y [integer:Initaial] : location y
+//@param w [integer:Final] : width
+//@param h [integer:Final] : height
+function boxToimg(x,y,w,h,img){
+  invCtx.drawImage(img,x,y,w,h)
+}
+
 var playerItems = {helms:[],armors:[],weapons:[],shields:[]};
 function allTheItems(code) {
     if (code == "All The ITEMS") {
@@ -709,148 +719,354 @@ function allTheItems(code) {
         playerItems = {helms:player.items.helmet,armors:player.items.chestplate,weapons:player.items.weapon,shields:player.items.shield};
     }
 }
+
 var equipedItems = {helm:player.equiped.helmet,armor:player.equiped.armor,weapon:player.equiped.weapon,shield:player.equiped.shield}
 var itemBoxesMain = [{},{},{},{}];
-var selectBoxes = [];
+var selectBoxes = [undefined,undefined,undefined,undefined,undefined,undefined];
 var buttons = {accept:{x:125,y:(20+((185/1.25)/2)),width:70,height:30},cancel:{x:250+125+35,y:20+((185/1.25)/2),width:70,height:30}};
-function drawBoxes() {
-  invCtx.beginPath();//begins to draw ball on the canvas
+function drawBoxes(selectLoc) {
   if (inventoryStage == "Main") {
+  invCtx.beginPath();//begins to draw ball on the canvas
     invCtx.rect(15, 30, 135, 185);//draw the box
         itemBoxesMain[0] = {x:15,y:30,width:135,height:185,item:undefined}
+            if (player.equiped.helmet == undefined) {
+                boxToimg(15,30,135,185,helmImg);
+            }else{
+              boxToimg(15,30,135,185,player.equiped.helmet.img);
+            }
     invCtx.rect(15+135+10, 30, 135, 185);//draw the box
         itemBoxesMain[1] = {x:(15+135+10),y:30,width:135,height:185,item:undefined}
+            if (player.equiped.chestplate == undefined) {
+                boxToimg(15+135+10,30,135,185,chestImg);
+            }else{
+                boxToimg(15+135+10,30,135,185,player.equiped.chestplate.img);
+            }
+
     invCtx.rect(15+135+135+20, 30, 135, 185);//draw the box
         itemBoxesMain[2] = {x:(15+135+135+20),y:30,width:135,height:185,item:undefined}
+        if (player.equiped.weapon == undefined || player.equped.weapon.img == undefined) {
+                boxToimg((15+135+135+20),30,135,185,swordImg);
+        }else{
+                boxToimg((15+135+135+20),30,135,185,player.equiped.weapon.img);
+              
+        }
     invCtx.rect(15+(135*3)+(10*3), 30, 135, 185);//draw the box
         itemBoxesMain[3] = {x:(15+(135*3)+(10*3)),y:30,width:135,height:185,item:undefined}
+        if (player.equiped.shield == undefined || player.equped.shield.img == undefined) {
+                boxToimg((15+(135*3)+(10*3)),30,135,185,shieldImg);
+        }else{
+                boxToimg((15+(135*3)+(10*3)),30,135,185,player.equiped.shield.img);
+
+        }
+                
       invCtx.strokeStyle = "black";//default black
+  invCtx.stroke();//end draw
   }else if (inventoryStage == "Helm Select") {
+  invCtx.beginPath();//begins to draw ball on the canvas
     invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
     invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
+  invCtx.stroke();//end draw
     //invCtx.font = "100px Arial";
     //invCtx.fillText("Hello World", 10, 50);
-    invCtx.rect(250, 30, 135/1.25, 185/1.25);//draw the box
-    selectBoxes.push({x:250,y:30,width:135/1.25,height:185/1.25});
-    invCtx.moveTo(0, 200);
-    invCtx.lineTo(600, 200);    
-    invCtx.rect(24, 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24,y:225,width:135/1.50,height:185/1.50});
-    invCtx.rect(24*2+5+((135/1.50)), 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24*2+5+((135/1.50)),y:225,width:135/1.50,height:185/1.50});
-    invCtx.rect(24*3+5+((135/1.50)*2), 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24*3+5+((135/1.50)*2),y:225,width:135/1.50,height:185/1.50});
-    invCtx.rect(24*4+5+((135/1.50)*3), 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24*4+5+((135/1.50)*3),y:225,width:135/1.50,height:185/1.50});
-    invCtx.rect(24*5+5+((135/1.50)*4), 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24*5+5+((135/1.50)*4),y:225,width:135/1.50,height:185/1.50});
-
-  }else if (inventoryStage == "Plate Select") {
-    invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
-    invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
-    //invCtx.font = "100px Arial";
-    //invCtx.fillText("Hello World", 10, 50);
-    invCtx.rect(250, 30, 135/1.25, 185/1.25);//draw the box
-    selectBoxes.push({x:250,y:30,width:135/1.25,height:185/1.25});
-    invCtx.moveTo(0, 200);
-    invCtx.lineTo(600, 200);    
-    invCtx.rect(24, 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24,y:225,width:135/1.50,height:185/1.50});
-    invCtx.rect(24*2+5+((135/1.50)), 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24*2+5+((135/1.50)),y:225,width:135/1.50,height:185/1.50});
-    invCtx.rect(24*3+5+((135/1.50)*2), 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24*3+5+((135/1.50)*2),y:225,width:135/1.50,height:185/1.50});
-    invCtx.rect(24*4+5+((135/1.50)*3), 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24*4+5+((135/1.50)*3),y:225,width:135/1.50,height:185/1.50});
-    invCtx.rect(24*5+5+((135/1.50)*4), 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24*5+5+((135/1.50)*4),y:225,width:135/1.50,height:185/1.50});
-
-  }else if (inventoryStage == "Weapon Select") {
-    invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
-    invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
-    //invCtx.font = "100px Arial";
-    //invCtx.fillText("Hello World", 10, 50);
-    invCtx.rect(250, 30, 135/1.25, 185/1.25);//draw the box
-    selectBoxes.push({x:250,y:30,width:135/1.25,height:185/1.25});
-    invCtx.moveTo(0, 200);
-    invCtx.lineTo(600, 200);    
-    invCtx.rect(24, 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24,y:225,width:135/1.50,height:185/1.50});
-    invCtx.rect(24*2+5+((135/1.50)), 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24*2+5+((135/1.50)),y:225,width:135/1.50,height:185/1.50});
-    invCtx.rect(24*3+5+((135/1.50)*2), 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24*3+5+((135/1.50)*2),y:225,width:135/1.50,height:185/1.50});
-    invCtx.rect(24*4+5+((135/1.50)*3), 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24*4+5+((135/1.50)*3),y:225,width:135/1.50,height:185/1.50});
-    invCtx.rect(24*5+5+((135/1.50)*4), 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24*5+5+((135/1.50)*4),y:225,width:135/1.50,height:185/1.50});
-
-  }else if (inventoryStage == "Shield Select") {
-    invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
-    
-    invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
-    //invCtx.font = "100px Arial";
-    //invCtx.fillText("Hello World", 10, 50);
-    invCtx.rect(250, 30, 135/1.25, 185/1.25);//draw the box
-    selectBoxes.push({x:250,y:30,width:135/1.25,height:185/1.25});
-    invCtx.moveTo(0, 200);
-    invCtx.lineTo(600, 200);    
-    invCtx.rect(24, 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24,y:225,width:135/1.50,height:185/1.50});
-    invCtx.rect(24*2+5+((135/1.50)), 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24*2+5+((135/1.50)),y:225,width:135/1.50,height:185/1.50});
-    invCtx.rect(24*3+5+((135/1.50)*2), 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24*3+5+((135/1.50)*2),y:225,width:135/1.50,height:185/1.50});
-    invCtx.rect(24*4+5+((135/1.50)*3), 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24*4+5+((135/1.50)*3),y:225,width:135/1.50,height:185/1.50});
-    invCtx.rect(24*5+5+((135/1.50)*4), 225, 135/1.50, 185/1.50);//draw the box
-    selectBoxes.push({x:24*5+5+((135/1.50)*4),y:225,width:135/1.50,height:185/1.50});
+  invCtx.beginPath();//begins to draw ball on the canvas
+    invCtx.rect(235, 30, 135/1.0, 185/1.0);//draw the box
+      selectBoxes[0] = {x:235,y:30,width:135/1.0,height:185/1.0,item:player.equiped.helm};
+      if (player.equiped.helmet !== undefined) {
+        boxToimg(235,30,135/1.0,185/1.0,player.equiped.helmet.img);
+      }
+  invCtx.moveTo(0, 240);
+  invCtx.lineTo(600, 240);
+  for (var i = 1; i <= 5;i++) {
+    var w = 135/1.5;
+    var h = 185/1.5;
+    var y = 260;
+    if (i == 1) {
+    var x = 24
+    }else{
+      var x = 24*i+5+((135/1.5)*(i-1)) 
+    }
+    invCtx.rect(x, y, w, h);//draw the box
+      selectBoxes[i] = {x:x,y:y,width:w,height:h,item:boxItems[i-1]};
+      if (boxItems[i-1] !== undefined) {
+        //code
+        boxToimg(x,y,w,h,boxItems[i-1].img);
+      }
 
   }
   invCtx.stroke();//end draw
+  }else if (inventoryStage == "Plate Select") {
+  invCtx.beginPath();//begins to draw ball on the canvas
+    invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
+  invCtx.stroke();//end draw
+    //invCtx.font = "100px Arial";
+    //invCtx.fillText("Hello World", 10, 50);
+  invCtx.beginPath();//begins to draw ball on the canvas
+    invCtx.rect(235, 30, 135/1.0, 185/1.0);//draw the box
+      selectBoxes[0] = {x:235,y:30,width:135/1.0,height:185/1.0,item:player.equiped.chestplate};
+      if (player.equiped.chestplate !== undefined) {
+        boxToimg(235,30,135/1.0,185/1.0,player.equiped.chestplate.img);
+      }
+  invCtx.moveTo(0, 240);
+  invCtx.lineTo(600, 240);
+  for (var i = 1; i <= 5;i++) {
+    var w = 135/1.5;
+    var h = 185/1.5;
+    var y = 260;
+    if (i == 1) {
+    var x = 24
+    }else{
+      var x = 24*i+5+((135/1.5)*(i-1)) 
+    }
+    invCtx.rect(x, y, w, h);//draw the box
+      selectBoxes[i] = {x:x,y:y,width:w,height:h,item:boxItems[i-1]};
+      if (boxItems[i-1] !== undefined) {
+        //code
+        boxToimg(x,y,w,h,boxItems[i-1].img);
+      }
+
+  }
+  invCtx.stroke();//end draw
+  }else if (inventoryStage == "Weapon Select") {
+  invCtx.beginPath();//begins to draw ball on the canvas
+    invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
+  invCtx.stroke();//end draw
+    //invCtx.font = "100px Arial";
+    //invCtx.fillText("Hello World", 10, 50);
+  invCtx.beginPath();//begins to draw ball on the canvas
+    invCtx.rect(235, 30, 135/1.0, 185/1.0);//draw the box
+   /// selectBoxes.push({x:235,y:30,width:135/1.0,height:185/1.0,item:player.equiped.helm});
+      if (player.equiped.shield !== undefined) {
+
+      }
+  invCtx.moveTo(0, 240);
+  invCtx.lineTo(600, 240);
+  for (var i = 1; i <= 5;i++) {
+    var w = 135/1.5;
+    var h = 185/1.5;
+    var y = 260;
+    if (i == 1) {
+    var x = 24
+    }else{
+      var x = 24*i+5+((135/1.5)*(i-1)) 
+    }
+    invCtx.rect(x, y, w, h);//draw the box
+      selectBoxes[i] = {x:x,y:y,width:w,height:h,item:boxItems[i-1]};
+      if (boxItems[i-1] !== undefined) {
+        //code
+        boxToimg(x,y,w,h,boxItems[i-1].img);
+      }
+
+  }
+  invCtx.stroke();//end draw
+selectBoxes = [];
+  }else if (inventoryStage == "Shield Select") {
+  invCtx.beginPath();//begins to draw ball on the canvas
+    invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
+  invCtx.stroke();//end draw
+    //invCtx.font = "100px Arial";
+    //invCtx.fillText("Hello World", 10, 50);
+  invCtx.beginPath();//begins to draw ball on the canvas
+    invCtx.rect(235, 30, 135/1.0, 185/1.0);//draw the box
+      if (player.equiped.shield !== undefined) {
+
+      }
+  invCtx.moveTo(0, 240);
+  invCtx.lineTo(600, 240);
+  for (var i = 1; i <= 5;i++) {
+    var w = 135/1.5;
+    var h = 185/1.5;
+    var y = 260;
+    if (i == 1) {
+    var x = 24
+    }else{
+      var x = 24*i+5+((135/1.5)*(i-1)) 
+    }
+    invCtx.rect(x, y, w, h);//draw the box
+      selectBoxes.push({x:x,y:y,width:w,height:h});
+      if (boxItems[i-1] !== undefined) {
+        //code
+        boxToimg(x,y,w,h,boxItems[i-1].img);
+      }
+
+  }
+  invCtx.stroke();//end draw
+selectBoxes = [];
+  }
+  if (selectLoc !== undefined) {
+  }
 }
 function inventoryHandeler() {
     invCtx.clearRect(0, 0, invC.width, invC.height);
     drawBoxes();
 }
+var boxItems = [];
+var originEqiup = {helmet:undefined,chestplate:undefined,shield:undefined,weapon:undefined};
+//@function invLoc() : [Purpose] To be the clicking for within the inventory : [Function : Utility] Send and receive information from outside functions
+//@param e [object] {target : key} : the pressed key
 function invLoc(e) {
-  var loc = mouseInvPos(e)
-  
-  if (inventoryStage == "Helm Select") {
-  console.log("Helm Select")
-    if (buttons) {
+  var loc = mouseInvPos(e)//location of the mouse
+  console.log(loc)//logs it
+  if (inventoryStage == "Helm Select"||inventoryStage == "Plate Select"||inventoryStage == "Weapon Select"||inventoryStage == "Shield Select") {
+    if (loc.xPos > buttons.cancel.x && loc.xPos < (buttons.cancel.x+buttons.cancel.width) && loc.yPos > buttons.cancel.y && loc.yPos < (buttons.cancel.y + buttons.cancel.width)) {
     //code
+    console.log("main switch decline")//Another log for sanity check
+    if (originEqiup.helmet !== undefined) {
+      console.log(originEqiup)
+      console.log(player)
+      player.equipItem(originEqiup.helmet);
+    }
+    if (originEqiup.shield !== undefined) {
+    player.equipItem(originEqiup.shield);
+    }
+     if (originEqiup.chestplate !== undefined) {
+    player.equipItem(originEqiup.chestplate);
+    }
+     if (originEqiup.weapon !== undefined) {
+     player.equipItem(originEqiup.weapon);
+    }
+    boxItems = [];//making the box items no longer have selected items 
+    selectBoxes=[];//making the select box no longer have items 
+    return inventoryStage="Main"//returning the screen back to the main/title inventory screen
+    }
+    if (loc.xPos > buttons.accept.x && loc.xPos < (buttons.accept.x+buttons.accept.width) && loc.yPos > buttons.accept.y && loc.yPos < (buttons.accept.y + buttons.accept.width)) {
+    //code
+    console.log("main switch accept")//Another sanity check
+    originEqiup.helmet = player.equiped.helmet;
+    originEqiup.chestplate = player.equiped.chestplate;
+    originEqiup.weapon = player.equiped.weapon;
+    originEqiup.shield = player.equiped.shield;
+    boxItems = [];//making the box items no longer have selected items 
+    selectBoxes=[];//same as the other
+    
+    return inventoryStage="Main"//repetitive and yes IK it would have been easeir to just do an if its any of these and i might change it to that 
+    }
+  }
+  if (inventoryStage == "Helm Select") {//inventory stage at the hemlet selection screeb
+  console.log("Helm Select")//log for sanity check
+    for (var i = 0; i < selectBoxes.length;i++) {
+        if (loc.xPos > selectBoxes[i].x && loc.xPos < (selectBoxes[i].x + selectBoxes[i].width) && loc.yPos > selectBoxes[i].y && loc.yPos < selectBoxes[i].y + selectBoxes[i].height) {
+            if (selectBoxes[i].item !== undefined) {
+            player.equipItem(selectBoxes[i].item);
+                //code
+            }
+                boxItems = [];//making the box items no longer have selected items 
+                      var index = 0//indexing
+          for (var j = 0; j < player.items.helmet.length;j++) {//for loop to check for the first five items
+              if (player.items.helmet[j] !== player.equiped.helmet) {
+                boxItems.push(player.items.helmet[j])//push
+                if (index >= 5) {
+                  index = 0//indexing
+                  break;//break out this is needed please for the love of sane things don't remove the breaks they are nneded 
+                }
+                index++;
+              }
+          }
+
+        }
     }
   }  
   if (inventoryStage == "Plate Select") {
   console.log("Plate Select")
-  
+      for (var i = 0; i < selectBoxes.length;i++) {
+        if (loc.xPos > selectBoxes[i].x && loc.xPos < (selectBoxes[i].x + selectBoxes[i].width) && loc.yPos > selectBoxes[i].y && loc.yPos < selectBoxes[i].y + selectBoxes[i].height) {
+           console.log("Hello?")
+           if (selectBoxes[i].item !== undefined) {
+            //code
+            player.equipItem(selectBoxes[i].item);
+           }
+                boxItems = [];//making the box items no longer have selected items 
+                      var index = 0//indexing
+          for (var j = 0; j < player.items.chestplate.length;j++) {//for loop to check for the first five items
+              if (player.items.chestplate[j] !== player.equiped.chestplate) {
+                boxItems.push(player.items.chestplate[j])//push
+                if (index >= 5) {
+                  index = 0//indexing
+                  break;//break out this is needed please for the love of sane things don't remove the breaks they are nneded 
+                }
+                index++;
+              }
+          }
+
+        }
+    }
+
   }  
   if (inventoryStage == "Weapon Select") {
   console.log("Weapon Select")
-  
+ 
   }  
   if (inventoryStage == "Shield Select") {
   console.log("Shield Select")
-    
+  
   }  
-
+//Everything after this point is in the main screen
+//So if we wanted secrets in the inventory screen it will be here
   if (inventoryStage == "Main") {
       if ((loc.xPos >= itemBoxesMain[0].x && loc.xPos <= (itemBoxesMain[0].x + itemBoxesMain[0].width))&&(loc.yPos >= itemBoxesMain[0].y && loc.yPos <= (itemBoxesMain[0].y + itemBoxesMain[0].height))) {
-          console.log("helm");
+          console.log("helm");//when the helm part is pressed
+          var index = 0//indexing
+          for (var i = 0; i < player.items.helmet.length;i++) {//for loop to check for the first five items
+              if (player.items.helmet[i] !== player.equiped.helmet) {
+                boxItems.push(player.items.helmet[i])//push
+                if (index >= 5) {
+                  index = 0//indexing
+                  break;//break out this is needed please for the love of sane things don't remove the breaks they are nneded 
+                }
+                index++;
+              }
+          }
           inventoryStage = "Helm Select";
       }  
       if ((loc.xPos >= itemBoxesMain[1].x && loc.xPos <= (itemBoxesMain[1].x + itemBoxesMain[1].width))&&(loc.yPos >= itemBoxesMain[1].y && loc.yPos <= (itemBoxesMain[1].y + itemBoxesMain[1].height))) {
           console.log("Plate");
+                    var index = 0
+          for (var i = 0; i < player.items.chestplate.length;i++) {
+              if (player.items.chestplate[i] !== player.equiped.chestplate) {
+                boxItems.push(player.items.chestplate[i])
+                if (index >= 5) {
+                  index = 0
+                  break;
+                }
+                index++;
+              }
+          }
+
           inventoryStage = "Plate Select";
       }  
       if ((loc.xPos >= itemBoxesMain[2].x && loc.xPos <= (itemBoxesMain[2].x + itemBoxesMain[2].width))&&(loc.yPos >= itemBoxesMain[2].y && loc.yPos <= (itemBoxesMain[2].y + itemBoxesMain[2].height))) {
           console.log("Weapon");
+                    var index = 0
+          for (var i = 0; i < player.items.weapon.length;i++) {
+              if (player.items.weapon[i] !== player.equiped.weapon) {
+                boxItems.push(player.items.weapon[i])
+                if (index >= 5) {
+                  index = 0
+                  break;
+                }
+                index++;
+              }
+          }
           inventoryStage = "Weapon Select";
+
       }  
       if ((loc.xPos >= itemBoxesMain[3].x && loc.xPos <= (itemBoxesMain[3].x + itemBoxesMain[3].width))&&(loc.yPos >= itemBoxesMain[3].y && loc.yPos <= (itemBoxesMain[3].y + itemBoxesMain[3].height))) {
           console.log("Shield");
+                    var index = 0
+          for (var i = 0; i < player.items.shield.length;i++) {
+              if (player.items.shield[i] !== player.equiped.shield) {
+                boxItems.push(player.items.shield[i])
+                if (index >= 5) {
+                  index = 0
+                  break;
+                }
+                index++;
+              }
+          }
           inventoryStage = "Shield Select";
+          
       }  
   }
   
