@@ -541,10 +541,13 @@ function clickLoc(e) {
         var y = stage.shop.buttonLoc[i].y;
         if ((mousepos.yPos >= y && mousepos.yPos <= (h+y))&&(mousepos.xPos >= x && mousepos.xPos <= (w+x))) {
             if (stage.shop.buttonLoc[i].type == "buy") {
-                console.log("Buying " + " Nothing because there is nothing");
+              stageNumber++;
+                nextStage(stageNumber)
             }
             if (stage.shop.buttonLoc[i].type == "cancel") {
                 console.log("Canceling " + "... there is nothing to cancel");
+                stageNumber++;
+                nextStage(stageNumber)
             }
         }
       }
@@ -764,7 +767,12 @@ function drawBoxes(selectLoc) {
   }else if (inventoryStage == "Helm Select") {
   invCtx.beginPath();//begins to draw ball on the canvas
     invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.font = "15px courier new";
+    invCtx.fillText("Accept", 133, 20+((185/1.25)/2)+20);
+
     invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.fillText("Cancel", 250+125+42, 20+((185/1.25)/2)+20);
+
   invCtx.stroke();//end draw
     //invCtx.font = "100px Arial";
     //invCtx.fillText("Hello World", 10, 50);
@@ -797,7 +805,11 @@ function drawBoxes(selectLoc) {
   }else if (inventoryStage == "Plate Select") {
   invCtx.beginPath();//begins to draw ball on the canvas
     invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.font = "15px courier new";
+    invCtx.fillText("Accept", 133, 20+((185/1.25)/2)+20);
+
     invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.fillText("Cancel", 250+125+42, 20+((185/1.25)/2)+20);
   invCtx.stroke();//end draw
     //invCtx.font = "100px Arial";
     //invCtx.fillText("Hello World", 10, 50);
@@ -830,7 +842,11 @@ function drawBoxes(selectLoc) {
   }else if (inventoryStage == "Weapon Select") {
   invCtx.beginPath();//begins to draw ball on the canvas
     invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.font = "15px courier new";
+    invCtx.fillText("Accept", 133, 20+((185/1.25)/2)+20);
+
     invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.fillText("Cancel", 250+125+42, 20+((185/1.25)/2)+20);
   invCtx.stroke();//end draw
     //invCtx.font = "100px Arial";
     //invCtx.fillText("Hello World", 10, 50);
@@ -864,7 +880,11 @@ selectBoxes = [];
   }else if (inventoryStage == "Shield Select") {
   invCtx.beginPath();//begins to draw ball on the canvas
     invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.font = "15px courier new";
+    invCtx.fillText("Accept", 133, 20+((185/1.25)/2)+20);
+
     invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
+    invCtx.fillText("Cancel", 250+125+42, 20+((185/1.25)/2)+20);
   invCtx.stroke();//end draw
     //invCtx.font = "100px Arial";
     //invCtx.fillText("Hello World", 10, 50);

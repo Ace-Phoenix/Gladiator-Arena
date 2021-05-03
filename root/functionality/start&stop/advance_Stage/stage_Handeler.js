@@ -1,3 +1,9 @@
+
+var shopItemsHelmets = [{stageOne:[armor[1],armor[3]]}]
+var shopItemsPlates = [{stageOne:[armor[0],armor[2]]}]
+
+
+
 //@function setLocations() : Ceneral draw function that draws everything were it is supposed to be
 //@param player [class:Object] {restricted:Must come from player_Class.js class player} : just player things 
 function setLocations(player) {
@@ -59,14 +65,30 @@ function setShop(stage) {
           }
   ctx.stroke();//end draw
 }
-
+var met =0;
+var plat =0;
 function colorAdder(stage) {
             ctx.beginPath();//begins to draw ball on the canvas
      ctx.rect(stage.x, stage.y, stage.width, stage.height);//draw the box
      if (stage.color == "red") {
-        ctx.drawImage(helmImg,stage.x, stage.y, stage.width, stage.height);
+      if (stageNumber < 3) {
+        //code
+        ctx.drawImage(shopItemsHelmets[0].stageOne[met].img,stage.x, stage.y, stage.width, stage.height);
+      }
+        met++;
+        if (met >=2) {
+            met=0
+        }
      }if (stage.color == "blue") {
-        ctx.drawImage(chestImg,stage.x, stage.y, stage.width, stage.height);
+            if (stageNumber < 3) {
+        //code
+        ctx.drawImage(shopItemsPlates[0].stageOne[plat].img,stage.x, stage.y, stage.width, stage.height);
+      }
+        plat++;
+        if (plat >=2) {
+            plat=0
+        }
+
      }if (stage.color == "green") {
         ctx.drawImage(swordImg,stage.x, stage.y, stage.width, stage.height);
      }if (stage.color == "black") {
