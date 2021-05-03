@@ -143,6 +143,16 @@ const weapon = [
     dam: 6,
     damRest: 6,
     level: 6}];
+
+
+//Color//Status//set
+//Blue//Taken//Basic Set
+//Green//Taken//Light Set
+//Orange//Taken// Ancient set 
+//Purple//Taken// Unique Set
+//Red//Taken//Heavy Set
+//Yellow//Taken//Mystic Set
+
 //@array armor [array of objects] : list of armors
 //@objects {restricted : Must Follow : {name:"string",type:???,desc:"string",damRest:integer,spec:"type:percentage"};}
  const armor = [
@@ -151,14 +161,20 @@ const weapon = [
     type: "Chestplate",//Type:Chestplate
     value: 10,//Worth
     desc: "Basic protection from attacks",
-    damRest: 20
+    damRest: 20,
+    spec:"",
+    color:"Blue",
+    img:plateBlue
   },//resistance it gives
   {
     name: "Basic Helmet",//Name
     type: "Helmet",//Type:Helmet
     value: 10,//Worth
     desc: "Basic protection from attacks",
-    damRest: 20
+    damRest: 20,
+    spec:"",
+    color:"Blue",
+    img:helmBlue
   },//resistance it gives
   {
     name: "Light Chestplate",//Name
@@ -166,7 +182,9 @@ const weapon = [
     value: 20,//Worth
     desc: "Light protection from attacks but more movement",
     damRest: 10,//Gresistance it gives
-    spec: "Dodge:5%"
+    spec: "Dodge:5%",
+    color:"Green",
+    img:plateGreen
   },//Special Effect:Dodge : chance to not take damage
   {
     name: "Light Helmet",
@@ -174,7 +192,9 @@ const weapon = [
     value: 20,
     desc: "Light protection from attacks but more movement",
     damRest: 10,
-    spec: "Dodge:5%"
+    spec: "Dodge:5%",
+    color:"Green",
+    img:helmGreen
   },//Special Effect:Dodge : chance to not take damage
   {
     name: "Heavy Chestplate",
@@ -182,7 +202,9 @@ const weapon = [
     value: 30,
     desc: "Heavy protection from attacks",
     damRest: 40,
-    spec: "DamageRes:2%"
+    spec: "DamageRes:2%",
+    color:"Red",
+    img:plateRed
   },//Special Effect : DamagaeRes : Increase in damage res by a percentage
   {
     name: "Heavy Helmet",
@@ -190,7 +212,9 @@ const weapon = [
     value: 30,
     desc: "Heavy protection from attacks",
     damRest: 40,
-    spec: "DamageRes:3%"
+    spec: "DamageRes:3%",
+    color:"Red",
+    img:helmRed
   },//Special Effect : DamagaeRes : Increase in damage res by a percentage
   {
     name: "Unique Chestplate",
@@ -198,7 +222,9 @@ const weapon = [
     value: 40,
     desc: "Moderate protection and unique resistance",
     damRest: 30,
-    spec: "AttackSpeed:2%"
+    spec: "AttackSpeed:2%",
+    color:"Purple",
+    img:platePurple
   },//Special Effect : AttackSpeed : increases attack rate by a percentage
   {
     name: "Unique Helmet",
@@ -206,7 +232,9 @@ const weapon = [
     value: 40,
     desc: "Moderate protection and unique resistance",
     damRest: 30,
-    spec: "AttackSpeed:1%"
+    spec: "AttackSpeed:1%",
+    color:"Purple",
+    img:helmPurple
   },//Special Effect : AttackSpeed : increases attack rate by a percentage
   {
     name: "Mythic Chestplate",
@@ -214,7 +242,9 @@ const weapon = [
     value: 50,
     desc: "Light chestplate, with the power of life bestowed upon it",
     damRest: 60,
-    spec: "HealthBoost:4%"
+    spec: "HealthBoost:4%",
+    color:"Yellow",
+    img:plateYellow
   },//Special Effect : HealthBoost : increases health by a percentage
   {
     name: "Mythic Helmet",
@@ -222,7 +252,9 @@ const weapon = [
     value: 50,
     desc: "Light helmet, with the power of life bestowed upon it",
     damRest: 60,
-    spec: "HealthBoost:6%"
+    spec: "HealthBoost:6%",
+    color:"Yellow",
+    img:helmYellow
   },//Special Effect : HealthBoost : increases health by a percentage
   {
     name: "Ancient Chestplate",
@@ -230,7 +262,9 @@ const weapon = [
     value: 60,
     desc: "Heavily armored chestplate, infused with an ancient power",
     damRest: 50,
-    spec: "AttackDamage:2%"
+    spec: "AttackDamage:2%",
+    color:"Orange",
+    img:plateOrange
   },//Special Effect : AttackBoost : increases damage by a percentage
   {
     name: "Ancient Helmet",
@@ -238,4 +272,6 @@ const weapon = [
     value: 60,
     desc: "Heavily armored helmet, infused with an ancient power",
     damRest: 50,
-    spec: "AttackDamage:1%"}];//Special Effect : AttackBoost : increases damage by a percentage
+    spec: "AttackDamage:1%",
+    color:"Orange",
+    img:helmOrange}];//Special Effect : AttackBoost : increases damage by a percentage
