@@ -54,6 +54,8 @@ plateYellow.onload = function(){
 //Purple
 //Red
 //Yellow
+<<<<<<< HEAD
+=======
 var shieldBulkHead = new Image();
 shieldBulkHead.src = "itemImgs/shieldBulkHead.png"
 shieldBulkHead.onload = function(){
@@ -134,3 +136,4 @@ var maceLargeStick = new Image();
 maceLargeStick.src = "itemImgs/maceLargeStick.png"
 maceLargeStick.onload = function(){
 }
+>>>>>>> 934725d64345cc077d1032a782e28a808a224e9b
