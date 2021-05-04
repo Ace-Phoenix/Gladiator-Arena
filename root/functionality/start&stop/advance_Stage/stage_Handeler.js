@@ -4,9 +4,89 @@ var shopItemsPlates = [{stageOne:[armor[0],armor[2]]}]
 var shopItemsSword = [{stageOne:weapon[0]}]
 var shopItemsMace = [{stageOne:weapon[12]}]
 var shopItemsShield = [{stageOne:weapon[6]}]
+var unbought = {chestplate:undefined,helmet:undefined}
+var allCurrent = {chestplate:{0:undefined,1:undefined},helm:{0:undefined,1:undefined}};
+var shopTwo = 0;
+var shopThree = 0;
+var shopFour = 0;
+var shopFive = 0;
 
+var shldStrt = 6;
+var swrdStrt = 0;
+var maceStrt = 12;
 
+var stopMet = 0
+var stopPlat = 0;
 
+function nextShopForming() {
+    if (stageNumber > 2 ) {
+        if (shopTwo == 0) {
+            var stageTwoHelm = [[unbought.helmet],[armor[5]]];
+            var stageTwoPlates = [[unbought.chestplate],[armor[4]]];
+            var stageTwoSword = weapon[1];
+            var stageTwoMace = weapon[13];
+            var stageTwoShield = weapon[7];
+            shopItemsMace[0].stageTwo = stageTwoMace;
+            shopItemsSword[0].stageTwo = stageTwoSword;
+            shopItemsHelmets[0].stageTwo = stageTwoHelm;
+            shopItemsPlates[0].stageTwo = stageTwoPlates;
+            shopItemsShield[0].stageTwo = stageTwoShield;
+            unbought = {chestplate:undefined,helmet:undefined}
+            allCurrent = {chestplate:{0:undefined,1:undefined},helm:{0:undefined,1:undefined}};
+            stopPlat = 0;
+            stopMet = 0;
+          shopTwo++
+        }
+    }
+    if (stageNumber > 4) {
+      if (shopThree == 0) {
+            var stageThreeHelm = [[unbought.helmet],[armor[7]]];
+            var stageThreePlates = [[unbought.chestplate],[armor[6]]]
+            var stageThreeSword = weapon[2];
+            var stageThreeMace = weapon[14];
+            var stageThreeShield = weapon[8];
+            shopItemsMace[0].stageThree = stageThreeMace;
+            shopItemsSword[0].stageThree = stageThreeSword;
+            shopItemsHelmets[0].stageThree = stageThreeHelm;
+            shopItemsPlates[0].stageThree = stageThreePlates;
+            shopItemsShield[0].stageThree = stageThreeShield;
+            shopThree++;
+      }
+    }
+    if (stageNumber > 6) {
+      if (shopFour == 0) {
+        //code
+            var stageFourHelm = [[unbought.helmet],[armor[9]]];
+            var stageFourPlates = [[unbought.chestplate],[armor[8]]]
+            var stageFourSword = weapon[3];
+            var stageFourMace = weapon[15];
+            var stageFourShield = weapon[9];
+            shopItemsMace[0].stageFour = stageFourMace;
+            shopItemsSword[0].stageFour = stageFourSword;
+            shopItemsHelmets[0].stageFour = stageFourHelm;
+            shopItemsPlates[0].stageFour = stageFourPlates;
+            shopItemsShield[0].stageFour = stageFourShield;
+            shopFour++;
+      }
+    }
+    if (stageNumber > 8) {
+      if (shopFive == 0) {
+        //code    
+            var stageFiveHelm = [[unbought.helmet],[armor[11]]];
+            var stageFivePlates = [[unbought.chestplate],[armor[10]]]
+            var stageFiveSword = weapon[4];
+            var stageFiveMace = weapon[16];
+            var stageFiveShield = weapon[10];
+            shopItemsMace[0].stageFive = stageFiveMace;
+            shopItemsSword[0].stageFive = stageFiveSword;
+            shopItemsHelmets[0].stageFive = stageFiveHelm;
+            shopItemsPlates[0].stageFive = stageFivePlates;
+            shopItemsShield[0].stageFive = stageFiveShield;
+            shopFive++;
+      }
+    }
+}
+  setInterval(nextShopForming,100)
 //@function setLocations() : Ceneral draw function that draws everything were it is supposed to be
 //@param player [class:Object] {restricted:Must come from player_Class.js class player} : just player things 
 function setLocations(player) {
@@ -74,9 +154,27 @@ function colorAdder(stage) {
             ctx.beginPath();//begins to draw ball on the canvas
      ctx.rect(stage.x, stage.y, stage.width, stage.height);//draw the box
      if (stage.color == "red") {
-      if (stageNumber < 3) {
+      if (stageNumber == 2) {
         //code
+        if (stopMet < 1) {
+        allCurrent.helm[met] = shopItemsHelmets[0].stageOne[met];
+        
+        }
+        if (met >= 1) {
+            stopMet++;
+        }
         ctx.drawImage(shopItemsHelmets[0].stageOne[met].img,stage.x, stage.y, stage.width, stage.height);
+      }
+      if (stageNumber == 4 || stageNumber == 3) {
+        //code
+        if (stopMet < 1) {
+        allCurrent.helm[met] = shopItemsHelmets[0].stageTwo[met];
+        
+        }
+        if (met >= 1) {
+            stopMet++;
+        }
+        ctx.drawImage(shopItemsHelmets[0].stageTwo[met].img,stage.x, stage.y, stage.width, stage.height);
       }
         met++;
         if (met >=2) {
@@ -84,9 +182,16 @@ function colorAdder(stage) {
         }
      }if (stage.color == "blue") {
             if (stageNumber < 3) {
-        //code
-        ctx.drawImage(shopItemsPlates[0].stageOne[plat].img,stage.x, stage.y, stage.width, stage.height);
+        if (stopPlat < 1) {
+        allCurrent.chestplate[plat] = shopItemsPlates[0].stageOne[plat];
+        console.log("keeps getting here")
+        }
+        if (plat >= 1) {
+            stopPlat++;
+        }
+
       }
+        ctx.drawImage(shopItemsPlates[0].stageOne[plat].img,stage.x, stage.y, stage.width, stage.height);
         plat++;
         if (plat >=2) {
             plat=0

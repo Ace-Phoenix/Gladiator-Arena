@@ -17,6 +17,7 @@ class Stages{
         this.playerSpawn = this.playerPush(stage);//player default spawn varies for each stage
         this.sets = this.numberOfSets(stage);//player default spawn varies for each stage
         this.shop = this.shopLayout(stage);
+        this.item = undefined;
     }
     
     shopLayout(stage){

@@ -545,9 +545,28 @@ function clickLoc(e) {
                 if (target !== undefined) {
                   if (target.type == "Helmet") {
                     console.log(target)
+                    if (target == allCurrent.helm[0] && allCurrent.helm[1] !== undefined) {
+                        allCurrent.helm[0] = undefined;
+                        unbought.helmet = allCurrent.helm[1];
+                    }
+                    if (target == allCurrent.helm[1] && allCurrent.helm[0] !== undefined) {
+                        allCurrent.helm[1] = undefined;
+                        unbought.helmet = allCurrent.helm[0];
+                    }
                     player.items.helmet.push(target);
                   }
                   if (target.type == "Chestplate") {
+                        console.log(target)
+                    if (target.name == allCurrent.chestplate[0].name && allCurrent.chestplate[1] !== undefined) {
+                        allCurrent.chestplate[0] = undefined;
+                        console.log("undefined?")
+                        unbought.chestplate = allCurrent.chestplate[1];
+                    }
+                    if (target == allCurrent.chestplate[1] && allCurrent.chestplate[0] !== undefined) {
+                        allCurrent.chestplate[1] = undefined;
+                        unbought.chestplate = allCurrent.chestplate[0];
+                    }
+
                     player.items.chestplate.push(target);
                   }
                   if (target.type == "Sword" || target.type == "Mace") {

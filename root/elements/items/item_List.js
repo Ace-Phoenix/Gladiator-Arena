@@ -152,7 +152,7 @@ const weapon = [
 //@objects {restricted : Must Follow : {name:"string",type:???,desc:"string",damRest:integer,spec:"type:percentage"};}
  const armor = [
   {
-    name: "Basic Chestplate",//Name
+    name: "Basic Chestplate",//Name//0
     type: "Chestplate",//Type:Chestplate
     value: 10,//Worth
     desc: "Basic protection from attacks",
@@ -163,7 +163,7 @@ const weapon = [
     img:plateBlue
   },//resistance it gives
   {
-    name: "Basic Helmet",//Name
+    name: "Basic Helmet",//Name//1
     type: "Helmet",//Type:Helmet
     value: 10,//Worth
     desc: "Basic protection from attacks",
@@ -174,7 +174,7 @@ const weapon = [
     img:helmBlue
   },//resistance it gives
   {
-    name: "Light Chestplate",//Name
+    name: "Light Chestplate",//Name//2
     type: "Chestplate",//Type:Chestplate
     value: 20,//Worth
     desc: "Light protection from attacks but more movement",
@@ -185,7 +185,7 @@ const weapon = [
     img:plateGreen
   },//Special Effect:Dodge : chance to not take damage
   {
-    name: "Light Helmet",
+    name: "Light Helmet",//3
     type: "Helmet",
     value: 20,
     desc: "Light protection from attacks but more movement",
@@ -196,7 +196,7 @@ const weapon = [
     img:helmGreen
   },//Special Effect:Dodge : chance to not take damage
   {
-    name: "Heavy Chestplate",
+    name: "Heavy Chestplate",//4
     type: "Chestplate",
     value: 30,
     desc: "Heavy protection from attacks",
@@ -207,7 +207,7 @@ const weapon = [
     img:plateRed
   },//Special Effect : DamagaeRes : Increase in damage res by a percentage
   {
-    name: "Heavy Helmet",
+    name: "Heavy Helmet",//5
     type: "Helmet",
     value: 30,
     desc: "Heavy protection from attacks",
@@ -218,7 +218,7 @@ const weapon = [
     img:helmRed
   },//Special Effect : DamagaeRes : Increase in damage res by a percentage
   {
-    name: "Unique Chestplate",
+    name: "Unique Chestplate",//6
     type: "Chestplate",
     value: 40,
     desc: "Moderate protection and unique resistance",
@@ -229,7 +229,7 @@ const weapon = [
     img:platePurple
   },//Special Effect : AttackSpeed : increases attack rate by a percentage
   {
-    name: "Unique Helmet",
+    name: "Unique Helmet",//7
     type: "Helmet",
     unlocked:2,
     value: 40,
@@ -240,7 +240,7 @@ const weapon = [
     img:helmPurple
   },//Special Effect : AttackSpeed : increases attack rate by a percentage
   {
-    name: "Mythic Chestplate",
+    name: "Mythic Chestplate",//8
     type: "Chestplate",
     value: 50,
     desc: "Light chestplate, with the power of life bestowed upon it",
@@ -251,7 +251,7 @@ const weapon = [
     img:plateYellow
   },//Special Effect : HealthBoost : increases health by a percentage
   {
-    name: "Mythic Helmet",
+    name: "Mythic Helmet",//9
     type: "Helmet",
     value: 50,
     desc: "Light helmet, with the power of life bestowed upon it",
@@ -262,7 +262,7 @@ const weapon = [
     img:helmYellow
   },//Special Effect : HealthBoost : increases health by a percentage
   {
-    name: "Ancient Chestplate",
+    name: "Ancient Chestplate",//10
     type: "Chestplate",
     value: 60,
     desc: "Heavily armored chestplate, infused with an ancient power",
@@ -273,7 +273,7 @@ const weapon = [
     img:plateOrange
   },//Special Effect : AttackBoost : increases damage by a percentage
   {
-    name: "Ancient Helmet",
+    name: "Ancient Helmet",//11
     type: "Helmet",
     unlocked:3,
     value: 60,
