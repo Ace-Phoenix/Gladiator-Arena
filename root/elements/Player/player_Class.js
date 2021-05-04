@@ -18,14 +18,42 @@ class Player {
     this.items = {helmet:[],chestplate:[],weapon:[],shield:[]};
     this.effects = this.effectsAdd(this.equiped); 
     this.hp = hp;
-    this.dam = dam;
+    this._dam = dam;
+    this.defDam = 10;
     this.lives = lives;
-    this.armorRating = 0;
+    this._armorRating = 0;
     this.attackDist = 70;//px
     this.aF = 0;
     this.gold = 0;
     this.attackTimer = attackTimer;
     this.attackSpeed = attackSpeed;
+  }
+  get dam(){
+    return this._dam;
+  }
+  set dam(dam){
+    var placeHolder = 0;
+    if (this.equiped.weapon !== undefined) {
+      placeHolder += this.equiped.weapon.dam;
+    }if (this.equiped.shield !== undefined) {
+      placeHolder += this.equiped.shield.dam;
+    }
+    placeHolder+=this.defDam;
+    this._dam = placeHolder;
+  }
+  get armorRating(){
+    return this._armorRating;
+  }
+  set armorRating(armorRating){
+    var placeHolder = 0;
+    if (this.equiped.chestplate !== undefined) {
+      placeHolder += this.equiped.chestplate.damRest;
+    }if (this.equiped.shield !== undefined) {
+      placeHolder += this.equiped.shield.damRest;
+    }if (this.equiped.helmet !== undefined) {
+      placeHolder += this.equiped.helmet.damRest;
+    }
+    this._armorRating = placeHolder;
   }
   effectsAdd(equiped){
     var previousEffects = this.effects;
@@ -52,7 +80,7 @@ class Player {
     var boost = {aDb:0,aSb:0,dRb:0,hpB:0};
     if (this.effects!==undefined) {
         //code
-    if (this.effects[0]!==undefined) {
+    if (this.effects[0]!=="") {
       if (this.effects[0].name == "AttackDamage") {
         boost.aDb += this.effects[0].percentage;
       }
@@ -160,7 +188,7 @@ class Player {
       this.equiped.chestplate = undefined;
       this.effectsAdd(this.equiped);
     }
-    if (slot == "Sword") {
+    if (slot == "Sword" || slot == "Mace") {
       this.dam -= this.equiped.weapon.dam;
       this.equiped.weapon = undefined;
     }

@@ -1040,6 +1040,10 @@ function invLoc(e) {
            if (selectBoxes[i].item !== undefined) {
             //code
             console.log("Checks out")
+            if (player.equiped.weapon !== undefined) {
+            player.unequipItem(player.equiped.weapon.type);
+                //code
+            }
             player.equipItem(selectBoxes[i].item);
            }
                 boxItems = [];//making the box items no longer have selected items 
@@ -1084,7 +1088,10 @@ function invLoc(e) {
         }
     }
 
-  }  
+  }
+  if (player.equiped.helmet !== undefined) {
+    
+  }
 //Everything after this point is in the main screen
 //So if we wanted secrets in the inventory screen it will be here
   if (inventoryStage == "Main") {
@@ -1167,7 +1174,7 @@ function updateStats(){
   document.getElementById("playerHP").innerHTML = "Player Health : " + player.hp;
   document.getElementById("playerArmor").innerHTML = "Player Armor : " + player.armorRating;
   var time = (Math.round(player.attackTimer*10))/10;
-  document.getElementById("attackTimer").innerHTML = "Player Armor : " + time;
+  document.getElementById("attackTimer").innerHTML = "Attack Timer : " + time;
   document.getElementById("damage").innerHTML = "Player Damage : " + player.dam;
   document.getElementById("playerMoney").innerHTML = "Player Money : " + player.gold;
   
