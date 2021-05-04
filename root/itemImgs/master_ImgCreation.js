@@ -54,3 +54,86 @@ plateYellow.onload = function(){
 //Purple
 //Red
 //Yellow
+<<<<<<< HEAD
+=======
+var shieldBulkHead = new Image();
+shieldBulkHead.src = "itemImgs/shieldBulkHead.png"
+shieldBulkHead.onload = function(){
+}
+var shieldLegendary = new Image();
+shieldLegendary.src = "itemImgs/shieldLegendary.png"
+shieldLegendary.onload = function(){
+}
+var shieldFace = new Image();
+shieldFace.src = "itemImgs/shieldFace.png"
+shieldFace.onload = function(){
+}
+var shieldBlunt = new Image();
+shieldBlunt.src = "itemImgs/shieldBlunt.png"
+shieldBlunt.onload = function(){
+}
+var shieldSpiked = new Image();
+shieldSpiked.src = "itemImgs/shieldSpiked.png"
+shieldSpiked.onload = function(){
+}
+var shieldGlass = new Image();
+shieldGlass.src = "itemImgs/shieldGlass.png"
+shieldGlass.onload = function(){
+}
+
+
+
+
+var swordPoke= new Image();
+swordPoke.src = "itemImgs/swordPoke.png"
+swordPoke.onload = function(){
+}
+var swordIce= new Image();
+swordIce.src = "itemImgs/swordIce.png"
+swordIce.onload = function(){
+}
+var swordKnife= new Image();
+swordKnife.src = "itemImgs/swordKnife.png"
+swordKnife.onload = function(){
+}
+var swordShort= new Image();
+swordShort.src = "itemImgs/swordShort.png"
+swordShort.onload = function(){
+}
+var swordPen= new Image();
+swordPen.src = "itemImgs/swordPen.png"
+swordPen.onload = function(){
+}
+var swordExaultedBlade= new Image();
+swordExaultedBlade.src = "itemImgs/swordExaultedBlade.png"
+swordExaultedBlade.onload = function(){
+}
+
+
+
+
+var maceDullAxe = new Image();
+maceDullAxe.src = "itemImgs/maceDullAxe.png"
+maceDullAxe.onload = function(){
+}
+var maceFlayl = new Image();
+maceFlayl.src = "itemImgs/maceFlayl.png"
+maceFlayl.onload = function(){
+}
+var maceMorningstar = new Image();
+maceMorningstar.src = "itemImgs/maceMorningstar.png"
+maceMorningstar.onload = function(){
+}
+var maceRockSlime = new Image();
+maceRockSlime.src = "itemImgs/maceRockSlime.png"
+maceRockSlime.onload = function(){
+}
+var maceWarhammer = new Image();
+maceWarhammer.src = "itemImgs/maceWarhammer.png"
+maceWarhammer.onload = function(){
+}
+var maceLargeStick = new Image();
+maceLargeStick.src = "itemImgs/maceLargeStick.png"
+maceLargeStick.onload = function(){
+}
+>>>>>>> 934725d64345cc077d1032a782e28a808a224e9b
