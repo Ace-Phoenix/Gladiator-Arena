@@ -1,42 +1,39 @@
 
-var shopItemsHelmets = [{stageOne:[armor[1],armor[3]]}]
-var shopItemsPlates = [{stageOne:[armor[0],armor[2]]}]
-var shopItemsSword = [{stageOne:weapon[0]}]
-var shopItemsMace = [{stageOne:weapon[12]}]
-var shopItemsShield = [{stageOne:weapon[6]}]
-var unbought = {chestplate:undefined,helmet:undefined}
-var allCurrent = {chestplate:{0:undefined,1:undefined},helm:{0:undefined,1:undefined}};
-var shopTwo = 0;
-var shopThree = 0;
-var shopFour = 0;
-var shopFive = 0;
+var shopItemsHelmets = [{stageOne:[armor[1],armor[3]]}]//shop helms beggining
+var shopItemsPlates = [{stageOne:[armor[0],armor[2]]}]//shop Plates beggining
+var shopItemsSword = [{stageOne:weapon[0]}]//shop swords beggining
+var shopItemsMace = [{stageOne:weapon[12]}]//shop maces beggining
+var shopItemsShield = [{stageOne:weapon[6]}]//shop shields beggining
+var unbought = {chestplate:undefined,helmet:undefined}//unbought items
+var allCurrent = {chestplate:{0:undefined,1:undefined},helm:{0:undefined,1:undefined}};//current items
+var shopTwo = 0;//itter
+var shopThree = 0;//itter
+var shopFour = 0;//itter
+var shopFive = 0;//itter
 
-var shldStrt = 6;
-var swrdStrt = 0;
-var maceStrt = 12;
+var shldStrt = 6;//starting number
+var swrdStrt = 0;//starting number 
+var maceStrt = 12;//starting number
 
-var stopMet = 0
-var stopPlat = 0;
+var stopMet = 0//checker
+var stopPlat = 0;//checker
 
-function nextShopForming(stage) {
-    if (stage.stage == 4) {
-        if (shopTwo == 0) {
-            console.log(stage)
-
-            var stageTwoHelm = [unbought.helmet,armor[5]];
-            var stageTwoPlates = [unbought.chestplate,armor[4]];
-            var stageTwoSword = weapon[1];
-            var stageTwoMace = weapon[13];
-            var stageTwoShield = weapon[7];
-            stage.items.helmets =  stageTwoHelm;
-            stage.items.plates =  stageTwoPlates;
-            stage.items.sword =  stageTwoSword;
-            stage.items.mace =  stageTwoMace;
-            stage.items.shield =  stageTwoShield;
-            console.log(stage)
-            
+function nextShopForming(stage) {//Function that forms the next shop
+  //only commenting one as they are repeated just with different names
+    if (stage.stage == 4) {//shop number two stage four
+        if (shopTwo == 0) {//check
+            var stageTwoHelm = [unbought.helmet,armor[5]];//included helms
+            var stageTwoPlates = [unbought.chestplate,armor[4]];//included plates
+            var stageTwoSword = weapon[1];//included sword
+            var stageTwoMace = weapon[13];//included mace
+            var stageTwoShield = weapon[7];//included shield
+            stage.items.helmets =  stageTwoHelm;//sets to stage items 
+            stage.items.plates =  stageTwoPlates;//
+            stage.items.sword =  stageTwoSword;//
+            stage.items.mace =  stageTwoMace;//
+            stage.items.shield =  stageTwoShield;//
             for (var i = 0; i < stage.shop.imgLocs.length;i++) {
-                if (stage.shop.imgLocs[i].tag == "topLeft") {
+                if (stage.shop.imgLocs[i].tag == "topLeft") {//tells what position an item goes in 
                      stage.shop.imgLocs[i].item = stageTwoHelm[0]
                 }
                 if (stage.shop.imgLocs[i].tag == "topMidLeft") {
@@ -59,16 +56,16 @@ function nextShopForming(stage) {
                     stage.shop.imgLocs[i].item = stageTwoMace
                 }
             }
-            shopItemsMace[0].stageTwo = stageTwoMace;
-            shopItemsSword[0].stageTwo = stageTwoSword;
-            shopItemsHelmets[0].stageTwo = stageTwoHelm;
-            shopItemsPlates[0].stageTwo = stageTwoPlates;
-            shopItemsShield[0].stageTwo = stageTwoShield;
-            unbought = {chestplate:undefined,helmet:undefined}
-            allCurrent = {chestplate:{0:undefined,1:undefined},helm:{0:undefined,1:undefined}};
-            stopPlat = 0;
-            stopMet = 0;
-          shopTwo++
+            shopItemsMace[0].stageTwo = stageTwoMace;//seting 
+            shopItemsSword[0].stageTwo = stageTwoSword;//
+            shopItemsHelmets[0].stageTwo = stageTwoHelm;//
+            shopItemsPlates[0].stageTwo = stageTwoPlates;//
+            shopItemsShield[0].stageTwo = stageTwoShield;//
+            unbought = {chestplate:undefined,helmet:undefined};//resetting
+            allCurrent = {chestplate:{0:undefined,1:undefined},helm:{0:undefined,1:undefined}};//
+            stopPlat = 0;//
+            stopMet = 0;//
+          shopTwo++;//continueing
         }
     }
     if (stageNumber ==6) {
@@ -270,19 +267,19 @@ function setShop(stage) {
           }
   ctx.stroke();//end draw
 }
-var met =0;
-var plat =0;
+var met =0;//itter
+var plat =0;//itter
 function colorAdder(stage) {
             ctx.beginPath();//begins to draw ball on the canvas
      ctx.rect(stage.x, stage.y, stage.width, stage.height);//draw the box
      if (stage.color == "red") {
       if (stageNumber == 2) {
         //code
-        if (stopMet < 1) {
+        if (stopMet < 1) {//less then keep going
         allCurrent.helm[met] = shopItemsHelmets[0].stageOne[met];
         
         }
-        if (met >= 1) {
+        if (met >= 1) {//greater then stop
             stopMet++;
         }
         ctx.drawImage(shopItemsHelmets[0].stageOne[met].img,stage.x, stage.y, stage.width, stage.height);
@@ -344,7 +341,6 @@ function colorAdder(stage) {
             if (stageNumber == 2) {
         if (stopPlat < 1) {
         allCurrent.chestplate[plat] = shopItemsPlates[0].stageOne[plat];
-        console.log("keeps getting here")
         }
         if (plat >= 1) {
             stopPlat++;
@@ -355,7 +351,6 @@ function colorAdder(stage) {
             if (stageNumber ==4) {
         if (stopPlat < 1) {
         allCurrent.chestplate[plat] = shopItemsPlates[0].stageTwo[plat];
-        console.log("keeps getting here")
         }
         if (plat >= 1) {
             stopPlat++;
@@ -366,7 +361,6 @@ function colorAdder(stage) {
             if (stageNumber ==6) {
         if (stopPlat < 1) {
         allCurrent.chestplate[plat] = shopItemsPlates[0].stageThree[plat];
-        console.log("keeps getting here")
         }
         if (plat >= 1) {
             stopPlat++;
@@ -377,7 +371,6 @@ function colorAdder(stage) {
             if (stageNumber ==8) {
         if (stopPlat < 1) {
         allCurrent.chestplate[plat] = shopItemsPlates[0].stageFour[plat];
-        console.log("keeps getting here")
         }
         if (plat >= 1) {
             stopPlat++;
@@ -388,7 +381,6 @@ function colorAdder(stage) {
             if (stageNumber ==10) {
         if (stopPlat < 1) {
         allCurrent.chestplate[plat] = shopItemsPlates[0].stageFive[plat];
-        console.log("keeps getting here")
         }
         if (plat >= 1) {
             stopPlat++;

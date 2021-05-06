@@ -47,7 +47,7 @@ function init(img,locat){
 
 cycle("init",img,{x:locat.x,y:locat.y});
 }
-function drawFrame(img,number,scale,x,y) {
+function drawFrame(img,number,scale,x,y) {//for animations
   if (number == 0) {
     ctx.drawImage(img,0,0,64,64,x,y,64*scale,64*scale);
   }if (number == 1) {
@@ -59,7 +59,7 @@ function drawFrame(img,number,scale,x,y) {
   }
 }
 var itterAnim = 0;
-function cycle(from,img,target) {
+function cycle(from,img,target) {//changer it was getting long and repetitive so i made this
   drawFrame(img,itterAnim,playerScale,target.x-26,target.y-26);
 
   if (from == "init") {
@@ -70,7 +70,7 @@ function cycle(from,img,target) {
     //code
   }
 }
-function cycleAllOnScreen() {
+function cycleAllOnScreen() {//cycles all animations on screen
   for (var i = 0; i < enemies.length;i++) {
     if (enemies[i].type == "Peasant") {
       cycle("",peasantImg,{x:enemies[i].pos.x,y:enemies[i].pos.y});
@@ -91,7 +91,7 @@ cycle("",playerImg,{x:player.xPos,y:player.yPos});
 
   }
 }
-function initAllOnScreen() {
+function initAllOnScreen() {//initiates all the animations on screen
   itterAnim++;
 if (enemies.length!== 0) {
   for (var i = 0; i < enemies.length;i++) {
@@ -445,7 +445,7 @@ function npcMovement() {
   }
 }
 
-function applyEffects(){
+function applyEffects(){//applies affects that are needed to be used in this file
   var before = appliedEffects;
   var after = [];
   for (var i = 0; i < player.effects;i++) {
@@ -518,48 +518,46 @@ cycleAllOnScreen();
   }
   }
   else {
-    setShop(stage);
+    setShop(stage);//changes to shop
   }
 }
 
- function playerAttack(){
-  if (player.attackTimer !== player.attackSpeed) {
+ function playerAttack(){//When the player can atttack
+  if (player.attackTimer !== player.attackSpeed) {//timmer
     player.attackTimer+=0.1;
   }
 }
 
-var clicked = undefined;
-var target = undefined;
+var clicked = undefined;//Placeholder
+var target = undefined;//Placeholder
 document.addEventListener('mousedown', clickLoc, false);
 function clickLoc(e) {
-    var mousepos = mousePos(e);
-    var enemyClicked = [];
-    if (stage.shop !== undefined) {
+    var mousepos = mousePos(e);//location of the mouse when clicking
+    var enemyClicked = [];//tells what enemy was clicked
+    if (stage.shop !== undefined) {//if there is a shop
+      //start of buttons 
       for (var i = 0; i < stage.shop.buttonLoc.length;i++) {
-        var w = stage.shop.buttonLoc[i].width;
-        var h = stage.shop.buttonLoc[i].height;
-        var x = stage.shop.buttonLoc[i].x;
-        var y = stage.shop.buttonLoc[i].y;
-        if ((mousepos.yPos >= y && mousepos.yPos <= (h+y))&&(mousepos.xPos >= x && mousepos.xPos <= (w+x))) {
-            if (stage.shop.buttonLoc[i].type == "buy") {
-                if (target !== undefined) {
-                  if (target.type == "Helmet") {
-                    console.log(target)
-                    if (target == allCurrent.helm[0] && allCurrent.helm[1] !== undefined) {
-                        allCurrent.helm[0] = undefined;
-                        unbought.helmet = allCurrent.helm[1];
+        var w = stage.shop.buttonLoc[i].width;//width
+        var h = stage.shop.buttonLoc[i].height;//height
+        var x = stage.shop.buttonLoc[i].x;//x cord
+        var y = stage.shop.buttonLoc[i].y;//y cord
+        if ((mousepos.yPos >= y && mousepos.yPos <= (h+y))&&(mousepos.xPos >= x && mousepos.xPos <= (w+x))) {//fine point checks
+            if (stage.shop.buttonLoc[i].type == "buy") {//what was clicked
+                if (target !== undefined) {//if there is a target
+                  if (target.type == "Helmet") {//type of helmet
+                    if (target == allCurrent.helm[0] && allCurrent.helm[1] !== undefined) {//simple check
+                        allCurrent.helm[0] = undefined;//making the one bought undefined
+                        unbought.helmet = allCurrent.helm[1];//the one not is pushed to unbought
                     }
-                    if (target == allCurrent.helm[1] && allCurrent.helm[0] !== undefined) {
-                        allCurrent.helm[1] = undefined;
+                    if (target == allCurrent.helm[1] && allCurrent.helm[0] !== undefined) {//another check
+                        allCurrent.helm[1] = undefined;//same same just opposite
                         unbought.helmet = allCurrent.helm[0];
                     }
                     player.items.helmet.push(target);
                   }
-                  if (target.type == "Chestplate") {
-                        console.log(target)
+                  if (target.type == "Chestplate") {//chestplate is the same as the helm just for chestplate instead
                     if (target.name == allCurrent.chestplate[0].name && allCurrent.chestplate[1] !== undefined) {
                         allCurrent.chestplate[0] = undefined;
-                        console.log("undefined?")
                         unbought.chestplate = allCurrent.chestplate[1];
                     }
                     if (target == allCurrent.chestplate[1] && allCurrent.chestplate[0] !== undefined) {
@@ -570,17 +568,17 @@ function clickLoc(e) {
                     player.items.chestplate.push(target);
                   }
                   if (target.type == "Sword" || target.type == "Mace") {
-                    player.items.weapon.push(target);
+                    player.items.weapon.push(target);//pushes items to the players inventory
                   }
                   if (target.type == "Shield") {
                     player.items.shield.push(target);
                   }
                 }
             }
-            if (stage.shop.buttonLoc[i].type == "cancel") {
+            if (stage.shop.buttonLoc[i].type == "cancel") {//this is actually exit and not cancel it was just too late to change it
                 console.log("Canceling " + "... there is nothing to cancel");
-                stageNumber++;
-                nextStage(stageNumber)
+                stageNumber++;//continue 
+                nextStage(stageNumber)//continue
             }
         }
       }
@@ -590,56 +588,37 @@ function clickLoc(e) {
         var x = stage.shop.imgLocs[i].x;//current x
         var y = stage.shop.imgLocs[i].y;//current y
         if ((mousepos.yPos >= y && mousepos.yPos <= (h+y))&&(mousepos.xPos >= x && mousepos.xPos <= (w+x))) {//mouse positions
-          target = stage.shop.imgLocs[i].item;
+          target = stage.shop.imgLocs[i].item;//setting target
                     for (var k = 0; k < stage.shop.imgLocs.length;k++) {
                         if (stage.shop.imgLocs[k]!==clicked && clicked!== undefined) {
-                            stage.shop.imgLocs[k].width = 270
-                            stage.shop.imgLocs[k].height = 370
+                            stage.shop.imgLocs[k].width = 270;//correctly setting size won't be changed
+                            stage.shop.imgLocs[k].height = 370;
                         }
                         if (stage.shop.imgLocs[k]==clicked) {
-                            stage.shop.imgLocs[k].width = 67.5
-                            stage.shop.imgLocs[k].height =  92.5
+                            stage.shop.imgLocs[k].width = 67.5;
+                            stage.shop.imgLocs[k].height =  92.5;
 
                         }
                     }
-                    clicked = stage.shop.imgLocs[i];
-                    console.log(clicked)
-                    //code
+                    clicked = stage.shop.imgLocs[i];//Setting clicked
                 for (var j = 0; j < stage.shop.imgLocs.length;j++) {
-                  if (stage.shop.imgLocs[j] !== clicked) {
+                  if (stage.shop.imgLocs[j] !== clicked) {//checking 
                     if ((clicked.width/4) !== stage.shop.imgLocs[j].width) {
-                        stage.shop.imgLocs[j].width = 67.5;
-
+                        stage.shop.imgLocs[j].width = 67.5;//make small
                     }
                     if ((clicked.height/4) !== stage.shop.imgLocs[j].height) {
-                        stage.shop.imgLocs[j].height = 92.5;
-                    console.log(clicked.height/4)
-
+                        stage.shop.imgLocs[j].height = 92.5;//make small
                     }
                   }
                     //code
                 }
-                var counter = 0
-                for (var l = 0; l < stage.shop.imgLocs.length;l++) {
-                  console.log(clicked)
+                var counter = 0;//itter 
+                for (var l = 0; l < stage.shop.imgLocs.length;l++) {//this is entirely for positioning
                     if (clicked == stage.shop.imgLocs[l]) {
-                        //code
                         stage.shop.imgLocs[l].x = 90+(135/2)+105;
                         stage.shop.imgLocs[l].y = 85;
-                        //if (stage.shop.imgLocs[l-1]!== undefined) {
-                            //code
-                      //if (stage.shop.imgLocs[l].width/4 !== stage.shop.imgLocs[l-1].width) {
                         stage.shop.imgLocs[l].width = 270;
                         stage.shop.imgLocs[l].height = 370
-                      //}
-                      //  }else{
-                      //if (stage.shop.imgLocs[l].width/4 !== stage.shop.imgLocs[l+1].width) {
-                      //  stage.shop.imgLocs[l].width = stage.shop.imgLocs[l].width*2;
-                      //  stage.shop.imgLocs[l].height = stage.shop.imgLocs[l].height*2;
-                      //  console.log(stage.shop.imgLocs[l].width/4 !== stage.shop.imgLocs[l-1].width)
-                      //    
-                      //  }
-                      //}
                     }else{
                       if (counter == 0) {
                         stage.shop.imgLocs[l].x = 20;
@@ -685,12 +664,13 @@ function clickLoc(e) {
                       }
                     }
                 }
-            break;
+            break;//This is needed please do not remove 
         }
       }
     }
+    //enemy stuff 
     for (var i = 0; i < enemies.length;i++) {
-          if (mousepos.xPos > enemies[i].pos.x -20 && mousepos.xPos < enemies[i].pos.x +20) {
+          if (mousepos.xPos > enemies[i].pos.x -20 && mousepos.xPos < enemies[i].pos.x +20) {//where clicked and if is in range
               if (mousepos.yPos > enemies[i].pos.y - 20 && mousepos.yPos < enemies[i].pos.y +20) {
                 enemyClicked=enemies[i];
                   if (enemies[i].hp <= 0) {//enemy is dead
@@ -700,7 +680,7 @@ function clickLoc(e) {
           }
           
     }
-    if (enemyClicked.pos !== undefined) {
+    if (enemyClicked.pos !== undefined) {//ranges
         var distancePos = {x:(player.xPos-enemyClicked.pos.x),y:(player.yPos-enemyClicked.pos.y)};
         var distanceValue = Math.sqrt(Math.pow(distancePos.x,2)+Math.pow(distancePos.y,2)); 
     }
@@ -713,7 +693,7 @@ function clickLoc(e) {
       }
 
 }
-function mousePos(e) {
+function mousePos(e) {//to say where was clicked
   var rect = c.getBoundingClientRect();
   return {
     xPos: e.clientX - rect.left,
@@ -728,29 +708,29 @@ setInterval(playerAttack, 100);//interval for updates
 setInterval(fileHandeler, 20);//interval for updates
 setInterval(initAllOnScreen, 200);//interval for updates
 setInterval(applyEffects, 100);//interval for updates
-function giveStage() {
+function giveStage() {//so that nextShopForming can actually work
 nextShopForming(stage)
 }
-setInterval(giveStage,10)
+setInterval(giveStage,10)//interval for givestage
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Inventory Mechanics
-var inventoryStage = "Main";
+var inventoryStage = "Main";//default
 var invC = document.getElementById("inventory");//canvas variables
 var invCtx = invC.getContext("2d");
 
-document.addEventListener('mousedown', invLoc, false);
+document.addEventListener('mousedown', invLoc, false);//needed for location clicked
 
 //@function boxToimg() : [Purpose:Functionality] : [Utility:Conversion:Images] : takes a box and places an img where it would make sence and places it
 //@param x [integer:Initial] : Location x 
 //@param y [integer:Initaial] : location y
 //@param w [integer:Final] : width
 //@param h [integer:Final] : height
-function boxToimg(x,y,w,h,img){
-  invCtx.drawImage(img,x,y,w,h)
+function boxToimg(x,y,w,h,img){//takes a box and makes an image from its params
+  invCtx.drawImage(img,x,y,w,h);//draws
 }
 
-var playerItems = {helms:[],armors:[],weapons:[],shields:[]};
-function allTheItems(code) {
+var playerItems = {helms:[],armors:[],weapons:[],shields:[]};//placeholder
+function allTheItems(code) {//this function gives player all items in game mainly a test though
     if (code == "All The ITEMS") {
         var helmets = [];
         var armors = [];
@@ -782,23 +762,23 @@ function allTheItems(code) {
     }
 }
 
-var equipedItems = {helm:player.equiped.helmet,armor:player.equiped.armor,weapon:player.equiped.weapon,shield:player.equiped.shield}
-var itemBoxesMain = [{},{},{},{}];
-var selectBoxes = [undefined,undefined,undefined,undefined,undefined,undefined];
-var buttons = {accept:{x:125,y:(20+((185/1.25)/2)),width:70,height:30},cancel:{x:250+125+35,y:20+((185/1.25)/2),width:70,height:30}};
-function drawBoxes(selectLoc) {
-  if (inventoryStage == "Main") {
+var equipedItems = {helm:player.equiped.helmet,armor:player.equiped.armor,weapon:player.equiped.weapon,shield:player.equiped.shield}//equiped items
+var itemBoxesMain = [{},{},{},{}];//what is shown
+var selectBoxes = [undefined,undefined,undefined,undefined,undefined,undefined];//bottom boxes when not in main inventory screen
+var buttons = {accept:{x:125,y:(20+((185/1.25)/2)),width:70,height:30},cancel:{x:250+125+35,y:20+((185/1.25)/2),width:70,height:30}};//button locs
+function drawBoxes(selectLoc) {//draws everything
+  if (inventoryStage == "Main") {//Main
   invCtx.beginPath();//begins to draw ball on the canvas
     invCtx.rect(15, 30, 135, 185);//draw the box
-        itemBoxesMain[0] = {x:15,y:30,width:135,height:185,item:undefined}
-            if (player.equiped.helmet == undefined) {
+        itemBoxesMain[0] = {x:15,y:30,width:135,height:185,item:undefined}//what is there
+            if (player.equiped.helmet == undefined) {//when the player has no helmet
                 boxToimg(15,30,135,185,helmImg);
-            }else{
+            }else{//when the player does
               boxToimg(15,30,135,185,player.equiped.helmet.img);
             }
     invCtx.rect(15+135+10, 30, 135, 185);//draw the box
         itemBoxesMain[1] = {x:(15+135+10),y:30,width:135,height:185,item:undefined}
-            if (player.equiped.chestplate == undefined) {
+            if (player.equiped.chestplate == undefined) {//same as the helmet
                 boxToimg(15+135+10,30,135,185,chestImg);
             }else{
                 boxToimg(15+135+10,30,135,185,player.equiped.chestplate.img);
@@ -823,14 +803,14 @@ function drawBoxes(selectLoc) {
                 
       invCtx.strokeStyle = "black";//default black
   invCtx.stroke();//end draw
-  }else if (inventoryStage == "Helm Select") {
+  }else if (inventoryStage == "Helm Select") {//Helmet select screen
   invCtx.beginPath();//begins to draw ball on the canvas
     invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
     invCtx.font = "15px courier new";
-    invCtx.fillText("Accept", 133, 20+((185/1.25)/2)+20);
+    invCtx.fillText("Accept", 133, 20+((185/1.25)/2)+20);//text
 
     invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
-    invCtx.fillText("Cancel", 250+125+42, 20+((185/1.25)/2)+20);
+    invCtx.fillText("Cancel", 250+125+42, 20+((185/1.25)/2)+20);//text
 
   invCtx.stroke();//end draw
     //invCtx.font = "100px Arial";
@@ -844,8 +824,8 @@ function drawBoxes(selectLoc) {
   invCtx.moveTo(0, 240);
   invCtx.lineTo(600, 240);
   for (var i = 1; i <= 5;i++) {
-    var w = 135/1.5;
-    var h = 185/1.5;
+    var w = 135/1.5;//width
+    var h = 185/1.5;//height
     var y = 260;
     if (i == 1) {
     var x = 24
@@ -855,7 +835,6 @@ function drawBoxes(selectLoc) {
     invCtx.rect(x, y, w, h);//draw the box
       selectBoxes[i] = {x:x,y:y,width:w,height:h,item:boxItems[i-1]};
       if (boxItems[i-1] !== undefined) {
-        //code
         boxToimg(x,y,w,h,boxItems[i-1].img);
       }
 
@@ -866,7 +845,6 @@ function drawBoxes(selectLoc) {
     invCtx.rect(125, 20+((185/1.25)/2), 70, 30);//draw the box
     invCtx.font = "15px courier new";
     invCtx.fillText("Accept", 133, 20+((185/1.25)/2)+20);
-
     invCtx.rect(250+125+35, 20+((185/1.25)/2), 70, 30);//draw the box
     invCtx.fillText("Cancel", 250+125+42, 20+((185/1.25)/2)+20);
   invCtx.stroke();//end draw
@@ -892,7 +870,6 @@ function drawBoxes(selectLoc) {
     invCtx.rect(x, y, w, h);//draw the box
       selectBoxes[i] = {x:x,y:y,width:w,height:h,item:boxItems[i-1]};
       if (boxItems[i-1] !== undefined) {
-        //code
         boxToimg(x,y,w,h,boxItems[i-1].img);
       }
 
@@ -932,7 +909,6 @@ function drawBoxes(selectLoc) {
     invCtx.rect(x, y, w, h);//draw the box
       selectBoxes[i] = {x:x,y:y,width:w,height:h,item:boxItems[i-1]};
       if (boxItems[i-1] !== undefined) {
-        //code
         boxToimg(x,y,w,h,boxItems[i-1].img);
       }
 
@@ -970,7 +946,6 @@ function drawBoxes(selectLoc) {
     invCtx.rect(x, y, w, h);//draw the box
       selectBoxes[i] = {x:x,y:y,width:w,height:h,item:boxItems[i-1]};
       if (boxItems[i-1] !== undefined) {
-        //code
         boxToimg(x,y,w,h,boxItems[i-1].img);
       }
 
@@ -993,11 +968,7 @@ function invLoc(e) {
   console.log(loc)//logs it
   if (inventoryStage == "Helm Select"||inventoryStage == "Plate Select"||inventoryStage == "Weapon Select"||inventoryStage == "Shield Select") {
     if (loc.xPos > buttons.cancel.x && loc.xPos < (buttons.cancel.x+buttons.cancel.width) && loc.yPos > buttons.cancel.y && loc.yPos < (buttons.cancel.y + buttons.cancel.width)) {
-    //code
-    console.log("main switch decline")//Another log for sanity check
-    if (originEqiup.helmet !== undefined) {
-      console.log(originEqiup)
-      console.log(player)
+    if (originEqiup.helmet !== undefined) {//if player has yet to equip a helmet it will force equip the one selected
       player.equipItem(originEqiup.helmet);
     }
     if (originEqiup.shield !== undefined) {
@@ -1016,7 +987,7 @@ function invLoc(e) {
     if (loc.xPos > buttons.accept.x && loc.xPos < (buttons.accept.x+buttons.accept.width) && loc.yPos > buttons.accept.y && loc.yPos < (buttons.accept.y + buttons.accept.width)) {
     //code
     console.log("main switch accept")//Another sanity check
-    originEqiup.helmet = player.equiped.helmet;
+    originEqiup.helmet = player.equiped.helmet;//setting everything so player has what is needed to be equiped
     originEqiup.chestplate = player.equiped.chestplate;
     originEqiup.weapon = player.equiped.weapon;
     originEqiup.shield = player.equiped.shield;
@@ -1027,7 +998,6 @@ function invLoc(e) {
     }
   }
   if (inventoryStage == "Helm Select") {//inventory stage at the hemlet selection screeb
-  console.log("Helm Select")//log for sanity check
     for (var i = 0; i < selectBoxes.length;i++) {
         if (loc.xPos > selectBoxes[i].x && loc.xPos < (selectBoxes[i].x + selectBoxes[i].width) && loc.yPos > selectBoxes[i].y && loc.yPos < selectBoxes[i].y + selectBoxes[i].height) {
             if (selectBoxes[i].item !== undefined) {
@@ -1051,10 +1021,8 @@ function invLoc(e) {
     }
   }  
   if (inventoryStage == "Plate Select") {
-  console.log("Plate Select")
       for (var i = 0; i < selectBoxes.length;i++) {
         if (loc.xPos > selectBoxes[i].x && loc.xPos < (selectBoxes[i].x + selectBoxes[i].width) && loc.yPos > selectBoxes[i].y && loc.yPos < selectBoxes[i].y + selectBoxes[i].height) {
-           console.log("Hello?")
            if (selectBoxes[i].item !== undefined) {
             //code
             player.equipItem(selectBoxes[i].item);
@@ -1077,12 +1045,10 @@ function invLoc(e) {
 
   }  
   if (inventoryStage == "Weapon Select") {
-  console.log("Weapon Select")
        for (var i = 0; i < selectBoxes.length;i++) {
         if (loc.xPos > selectBoxes[i].x && loc.xPos < (selectBoxes[i].x + selectBoxes[i].width) && loc.yPos > selectBoxes[i].y && loc.yPos < selectBoxes[i].y + selectBoxes[i].height) {
            if (selectBoxes[i].item !== undefined) {
             //code
-            console.log("Checks out")
             if (player.equiped.weapon !== undefined) {
             player.unequipItem(player.equiped.weapon.type);
                 //code
@@ -1107,10 +1073,8 @@ function invLoc(e) {
 
   }  
   if (inventoryStage == "Shield Select") {
-  console.log("Shield Select")
          for (var i = 0; i < selectBoxes.length;i++) {
         if (loc.xPos > selectBoxes[i].x && loc.xPos < (selectBoxes[i].x + selectBoxes[i].width) && loc.yPos > selectBoxes[i].y && loc.yPos < selectBoxes[i].y + selectBoxes[i].height) {
-           console.log("Hello?")
            if (selectBoxes[i].item !== undefined) {
             //code
             player.equipItem(selectBoxes[i].item);
@@ -1139,7 +1103,6 @@ function invLoc(e) {
 //So if we wanted secrets in the inventory screen it will be here
   if (inventoryStage == "Main") {
       if ((loc.xPos >= itemBoxesMain[0].x && loc.xPos <= (itemBoxesMain[0].x + itemBoxesMain[0].width))&&(loc.yPos >= itemBoxesMain[0].y && loc.yPos <= (itemBoxesMain[0].y + itemBoxesMain[0].height))) {
-          console.log("helm");//when the helm part is pressed
           var index = 0//indexing
           for (var i = 0; i < player.items.helmet.length;i++) {//for loop to check for the first five items
               if (player.items.helmet[i] !== player.equiped.helmet) {
@@ -1154,7 +1117,6 @@ function invLoc(e) {
           inventoryStage = "Helm Select";
       }  
       if ((loc.xPos >= itemBoxesMain[1].x && loc.xPos <= (itemBoxesMain[1].x + itemBoxesMain[1].width))&&(loc.yPos >= itemBoxesMain[1].y && loc.yPos <= (itemBoxesMain[1].y + itemBoxesMain[1].height))) {
-          console.log("Plate");
                     var index = 0
           for (var i = 0; i < player.items.chestplate.length;i++) {
               if (player.items.chestplate[i] !== player.equiped.chestplate) {
@@ -1170,7 +1132,6 @@ function invLoc(e) {
           inventoryStage = "Plate Select";
       }  
       if ((loc.xPos >= itemBoxesMain[2].x && loc.xPos <= (itemBoxesMain[2].x + itemBoxesMain[2].width))&&(loc.yPos >= itemBoxesMain[2].y && loc.yPos <= (itemBoxesMain[2].y + itemBoxesMain[2].height))) {
-          console.log("Weapon");
                     var index = 0
           for (var i = 0; i < player.items.weapon.length;i++) {
               if (player.items.weapon[i] !== player.equiped.weapon) {
@@ -1186,7 +1147,6 @@ function invLoc(e) {
 
       }  
       if ((loc.xPos >= itemBoxesMain[3].x && loc.xPos <= (itemBoxesMain[3].x + itemBoxesMain[3].width))&&(loc.yPos >= itemBoxesMain[3].y && loc.yPos <= (itemBoxesMain[3].y + itemBoxesMain[3].height))) {
-          console.log("Shield");
                     var index = 0
           for (var i = 0; i < player.items.shield.length;i++) {
               if (player.items.shield[i] !== player.equiped.shield) {
@@ -1205,7 +1165,7 @@ function invLoc(e) {
   
 }
 
-function mouseInvPos(e) {
+function mouseInvPos(e) {//same as the main canvas one
   var rect = invC.getBoundingClientRect();
   return {
     xPos: e.clientX - rect.left,
@@ -1213,17 +1173,17 @@ function mouseInvPos(e) {
   };
 }
 
-function updateStats(){
-  document.getElementById("playerHP").innerHTML = "Player Health : " + player.hp;
-  document.getElementById("playerArmor").innerHTML = "Player Armor : " + player.armorRating;
-  var time = (Math.round(player.attackTimer*10))/10;
-  document.getElementById("attackTimer").innerHTML = "Attack Timer : " + time;
-  document.getElementById("damage").innerHTML = "Player Damage : " + player.dam;
-  document.getElementById("playerMoney").innerHTML = "Player Money : " + player.gold;
+function updateStats(){//just for the side stats
+  document.getElementById("playerHP").innerHTML = "Player Health : " + player.hp;//player hp
+  document.getElementById("playerArmor").innerHTML = "Player Armor : " + player.armorRating;//player armor
+  var time = (Math.round(player.attackTimer*10))/10;//time
+  document.getElementById("attackTimer").innerHTML = "Attack Timer : " + time;//attack Timer
+  document.getElementById("damage").innerHTML = "Player Damage : " + player.dam;//Damage amount
+  document.getElementById("playerMoney").innerHTML = "Player Money : " + player.gold;//Gold amount
   
 }
 
 
 
 setInterval(inventoryHandeler, 10);//interval for updates
-setInterval(updateStats,10)
+setInterval(updateStats,10)//another interval for the stat updates

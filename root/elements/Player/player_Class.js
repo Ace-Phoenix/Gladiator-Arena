@@ -15,8 +15,8 @@ class Player {
     this.xPos = xPos;
     this.yPos = yPos;
     this.equiped = {helmet:undefined,chestplate:undefined,weapon:undefined,shield:undefined};
-    this.items = {helmet:[],chestplate:[],weapon:[],shield:[]};
-    this.effects = this.effectsAdd(this.equiped); 
+    this.items = {helmet:[],chestplate:[],weapon:[],shield:[]};//inventory
+    this.effects = this.effectsAdd(this.equiped); //effects 
     this.hp = hp;
     this._dam = dam;
     this.defDam = 10;
@@ -32,10 +32,10 @@ class Player {
     return this._dam;
   }
   set dam(dam){
-    var placeHolder = 0;
-    if (this.equiped.weapon !== undefined) {
+    var placeHolder = 0;//it is what its called
+    if (this.equiped.weapon !== undefined) {//a weapon is equiped
       placeHolder += this.equiped.weapon.dam;
-    }if (this.equiped.shield !== undefined) {
+    }if (this.equiped.shield !== undefined) {//a shield is equiped
       placeHolder += this.equiped.shield.dam;
     }
     placeHolder+=this.defDam;
@@ -76,7 +76,7 @@ class Player {
     }
     return this.effects = effect;
   }
-  updateOrRemove(type){
+  updateOrRemove(type){//applies or removes current effects
     var boost = {aDb:0,aSb:0,dRb:0,hpB:0};
     if (this.effects!==undefined) {
         //code
@@ -146,7 +146,7 @@ class Player {
       }
     }
   }
-  equipItem(item){
+  equipItem(item){//equipes an item by the item
     var prevEffect = this.effects;
     var totalDam = 10;
     var totalArmor = 0;
@@ -161,7 +161,7 @@ class Player {
       this.equiped.chestplate = item;
       totalArmor += item.damRest;
     }
-    if (item.type == "Sword") {
+    if (item.type == "Sword" || item.type == "Mace") {
       this.equiped.weapon = item;
       totalDam += item.dam ;
     }
@@ -176,7 +176,7 @@ class Player {
     this.updateOrRemove("update");
   }
   
-  unequipItem(slot){
+  unequipItem(slot){//unequips by slot namme
       this.updateOrRemove("remove");
     if (slot == "Helmet") {
       this.armorRating -= this.equiped.helmet.damRest;
