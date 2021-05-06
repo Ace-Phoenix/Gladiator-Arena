@@ -591,73 +591,93 @@ function clickLoc(e) {
         var y = stage.shop.imgLocs[i].y;//current y
         if ((mousepos.yPos >= y && mousepos.yPos <= (h+y))&&(mousepos.xPos >= x && mousepos.xPos <= (w+x))) {//mouse positions
           target = stage.shop.imgLocs[i].item;
-
                     for (var k = 0; k < stage.shop.imgLocs.length;k++) {
                         if (stage.shop.imgLocs[k]!==clicked && clicked!== undefined) {
-                            stage.shop.imgLocs[k].width = stage.shop.imgLocs[k].width*2
-                            stage.shop.imgLocs[k].height = stage.shop.imgLocs[k].height*2
+                            stage.shop.imgLocs[k].width = 270
+                            stage.shop.imgLocs[k].height = 370
                         }
                         if (stage.shop.imgLocs[k]==clicked) {
-                            stage.shop.imgLocs[k].width = stage.shop.imgLocs[k].width/2
-                            stage.shop.imgLocs[k].height = stage.shop.imgLocs[k].height/2
+                            stage.shop.imgLocs[k].width = 67.5
+                            stage.shop.imgLocs[k].height =  92.5
 
                         }
                     }
                     clicked = stage.shop.imgLocs[i];
+                    console.log(clicked)
                     //code
                 for (var j = 0; j < stage.shop.imgLocs.length;j++) {
                   if (stage.shop.imgLocs[j] !== clicked) {
                     if ((clicked.width/4) !== stage.shop.imgLocs[j].width) {
-                    stage.shop.imgLocs[j].width = stage.shop.imgLocs[j].width/2
+                        stage.shop.imgLocs[j].width = 67.5;
+
                     }
                     if ((clicked.height/4) !== stage.shop.imgLocs[j].height) {
-                    stage.shop.imgLocs[j].height = stage.shop.imgLocs[j].height/2
+                        stage.shop.imgLocs[j].height = 92.5;
+                    console.log(clicked.height/4)
+
                     }
                   }
                     //code
                 }
                 var counter = 0
                 for (var l = 0; l < stage.shop.imgLocs.length;l++) {
+                  console.log(clicked)
                     if (clicked == stage.shop.imgLocs[l]) {
                         //code
                         stage.shop.imgLocs[l].x = 90+(135/2)+105;
                         stage.shop.imgLocs[l].y = 85;
-                        if (stage.shop.imgLocs[l-1]!== undefined) {
+                        //if (stage.shop.imgLocs[l-1]!== undefined) {
                             //code
-                      if (stage.shop.imgLocs[l].width/4 !== stage.shop.imgLocs[l-1].width) {
-                        stage.shop.imgLocs[l].width = stage.shop.imgLocs[l].width*2;
-                        stage.shop.imgLocs[l].height = stage.shop.imgLocs[l].height*2;
-                      }
-                        }else{
-                      if (stage.shop.imgLocs[l].width/4 !== stage.shop.imgLocs[l+1].width) {
-                        stage.shop.imgLocs[l].width = stage.shop.imgLocs[l].width*2;
-                        stage.shop.imgLocs[l].height = stage.shop.imgLocs[l].height*2;
-                          
-                        }
-                      }
+                      //if (stage.shop.imgLocs[l].width/4 !== stage.shop.imgLocs[l-1].width) {
+                        stage.shop.imgLocs[l].width = 270;
+                        stage.shop.imgLocs[l].height = 370
+                      //}
+                      //  }else{
+                      //if (stage.shop.imgLocs[l].width/4 !== stage.shop.imgLocs[l+1].width) {
+                      //  stage.shop.imgLocs[l].width = stage.shop.imgLocs[l].width*2;
+                      //  stage.shop.imgLocs[l].height = stage.shop.imgLocs[l].height*2;
+                      //  console.log(stage.shop.imgLocs[l].width/4 !== stage.shop.imgLocs[l-1].width)
+                      //    
+                      //  }
+                      //}
                     }else{
                       if (counter == 0) {
                         stage.shop.imgLocs[l].x = 20;
                         stage.shop.imgLocs[l].y = 85;
+                        stage.shop.imgLocs[l].width = 67.5;
+                        stage.shop.imgLocs[l].height = 92.5;
                       }if (counter == 1) {
                         stage.shop.imgLocs[l].x = 20;
                         stage.shop.imgLocs[l].y = 85+(stage.shop.imgLocs[l].height)+10;
+                        stage.shop.imgLocs[l].width = 67.5;
+                        stage.shop.imgLocs[l].height = 92.5;
+
                         
                       }if (counter == 2) {
                         stage.shop.imgLocs[l].x = 20;
                         stage.shop.imgLocs[l].y = 85+(stage.shop.imgLocs[l].height*2)+10*2;
+                        stage.shop.imgLocs[l].width = 67.5;
+                        stage.shop.imgLocs[l].height = 92.5;
+
                         
                       }if (counter == 3) {
                         stage.shop.imgLocs[l].x = 780-stage.shop.imgLocs[l].width;
                         stage.shop.imgLocs[l].y = 85;
+                        stage.shop.imgLocs[l].width = 67.5;
+                        stage.shop.imgLocs[l].height = 92.5;
+
                       }if (counter == 4) {
                         stage.shop.imgLocs[l].x = 780-stage.shop.imgLocs[l].width;
                         stage.shop.imgLocs[l].y = 85+(stage.shop.imgLocs[l].height)+10;
-                        
+                        stage.shop.imgLocs[l].width = 67.5;
+                        stage.shop.imgLocs[l].height = 92.5;
+
                       }if (counter == 5) {
                         stage.shop.imgLocs[l].x = 780-stage.shop.imgLocs[l].width;
                         stage.shop.imgLocs[l].y = 85+(stage.shop.imgLocs[l].height*2)+10*2;
-                        
+                        stage.shop.imgLocs[l].width = 67.5;
+                        stage.shop.imgLocs[l].height = 92.5;
+
                       }
                       counter++;
                       if (counter > 5) {
@@ -708,6 +728,10 @@ setInterval(playerAttack, 100);//interval for updates
 setInterval(fileHandeler, 20);//interval for updates
 setInterval(initAllOnScreen, 200);//interval for updates
 setInterval(applyEffects, 100);//interval for updates
+function giveStage() {
+nextShopForming(stage)
+}
+setInterval(giveStage,10)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Inventory Mechanics
 var inventoryStage = "Main";
