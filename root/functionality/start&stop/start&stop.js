@@ -9,8 +9,8 @@ var up = false;//variable to detect if the w key is peing pressed down
 var down = false;//variable to detect if the s key is peing pressed down
 var left = false;//variable to detect if the a key is peing pressed down
 var right = false;//variable to detect if the d key is peing pressed down
-var stage = new Stages(2);
-var stageNumber = 2;
+var stage = new Stages(1);
+var stageNumber = 1;
 var player = new Player(stage.playerSpawn.x, stage.playerSpawn.y, 100, 10, 3,0,1);//forms the player
 var appliedEffects = [undefined,undefined];//player status effects
 
@@ -260,7 +260,7 @@ function randomNumber(min,max) {
                       enemies[i].attackTimer+=0.1;
                   }
                 if (player.hp <= 0) {//player is dead
-                    //later
+                  window.location.reload()
                 }
               }
           }
@@ -675,6 +675,7 @@ function clickLoc(e) {
                 enemyClicked=enemies[i];
                   if (enemies[i].hp <= 0) {//enemy is dead
                     enemies.splice(i,1);//remove dead guy
+                    player.gold++;
                   }
               }
           }
