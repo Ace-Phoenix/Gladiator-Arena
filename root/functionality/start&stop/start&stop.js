@@ -231,8 +231,8 @@ function randomNumber(min,max) {
           player.attackTimer = Math.round(player.attackTimer*10)/10;//Keeping it all to the first decimal point
       } 
       for (var i = 0; i<enemies.length;i++) {
-          if ((enemies[i].pos.x  >= player.xPos-18 && enemies[i].pos.x  <= player.xPos + 18) || (enemies[i].pos.x  + 10 >= player.xPos-18 && enemies[i].pos.x  + 10 <= player.xPos + 18) || (enemies[i].pos.x - 10 >= player.xPos-18 && enemies[i].pos.x - 10 <= player.xPos + 18)) {
-              if ((enemies[i].pos.y >= player.yPos-18 && enemies[i].pos.y <= player.yPos + 18) || (enemies[i].pos.y - 10 >= player.yPos-18 && enemies[i].pos.y - 10 <= player.yPos + 18) || (enemies[i].pos.y + 10 >= player.yPos-18 && enemies[i].pos.y + 10 <= player.yPos + 18)) {
+          if ((enemies[i].pos.x  >= player.xPos-22 && enemies[i].pos.x  <= player.xPos + 22) || (enemies[i].pos.x  + 22 >= player.xPos-22 && enemies[i].pos.x  + 22 <= player.xPos + 22) || (enemies[i].pos.x - 22 >= player.xPos-22 && enemies[i].pos.x - 22 <= player.xPos + 22)) {
+              if ((enemies[i].pos.y >= player.yPos-22 && enemies[i].pos.y <= player.yPos + 22) || (enemies[i].pos.y - 22 >= player.yPos-22 && enemies[i].pos.y - 22 <= player.yPos + 22) || (enemies[i].pos.y + 22 >= player.yPos-22 && enemies[i].pos.y + 22 <= player.yPos + 22)) {
                 if (enemies[i].attackTimer >= enemies[i].attackSpeed) {//attack params for npc
                     var randomNess = randomNumber(0,1);
                         if (appliedEffects[0] !== undefined || applyEffects[1] !== undefined) {
